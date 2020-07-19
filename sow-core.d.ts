@@ -11,7 +11,7 @@ import { Dct, HTMLElement } from './sow-framework';
 declare type ReqFunc = { ( run: () => void ): void };
 declare interface IPageRegInfo {
     window_interactive?: boolean;
-    window?: ( pageCtx: PageContext ) => {
+    window?: ( pageCtx: IPageContext ) => {
         maximize( evt: any, dlg: any ): void;
         minimize( evt: any, dlg: any ): void;
         restore( evt: any, dlg: any ): void;
@@ -51,6 +51,14 @@ declare interface IPageRegInfo {
     dynamic_report: boolean;
     report: ( event: any ) => void;
 }
+declare interface IPageConfig {
+    readonly reg: IPageRegInfo;
+    readonly cmd: ISQLCommand;
+    readonly fm: IFormInfo;
+    customEvent( req: ReqFunc ): void;
+    onReady( pageCtx: IPageContext, query: Dct<any> ): void;
+    onDispose( pageCtx: IPageContext ): void;
+}
 declare interface ISQLCommand {
     iu: Dct<any>;
     d: Dct<any>;
@@ -71,14 +79,14 @@ declare interface IFormInfo {
     header: any[];
     footer: any[];
 }
-type AlertConfig = {
+declare type AlertConfig = {
     icon?: string;
     title?: string; content: string;
     text?: string;
     btnClass?: string;
     ok?: () => void;
 };
-type PromptConfig = {
+declare type PromptConfig = {
     icon?: string;
     title?: string;
     required?: boolean;
@@ -86,7 +94,7 @@ type PromptConfig = {
     ok: ( val: any ) => void;
     cancel: () => void;
 };
-type ConfirmConfig = {
+declare type ConfirmConfig = {
     icon?: string;
     title?: string;
     required?: boolean;
@@ -95,7 +103,7 @@ type ConfirmConfig = {
     onContentReady?: () => void;
     cancel: ( msg: string, inst: JQuery<any> ) => void;
 };
-type XHRConfig = {
+declare type XHRConfig = {
     uri: string;
     def: Dct<any>;
     sp: string;
@@ -104,15 +112,74 @@ type XHRConfig = {
     done( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } ): void;
     fail( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } | string ): void;
 };
-export declare class PageContext {
+declare interface INotification {
+    clean(): void;
+    exit( $el?: JQuery<HTMLElement> ): void;
+    show( msg: string, cls?: string, interval?: number ): void;
+}
+declare interface IPageContext {
+    readonly isdialog: boolean;
+    readonly $ui: JQuery<HTMLElement>;
+    readonly reg: IPageRegInfo;
+    readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
+    readonly _query: Dct<any>;
+    getElem(): JQuery<HTMLElement>;
+    onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
+    onRender( req: ReqFunc, query: Dct<any> ): void;
+    onDispose(): void;
+    getDependancy(): IPageContext[];
+    enableDisable( t: 'enable' | 'disable', field?: string[] ): void;
+    dumpObj( obj: Dct<any> ): void;
+    dependancy_resolve( params: any ): void;
+    onTransportRequest( request: any ): void;
+    quoteLiteral( value?: string ): string;
+    createQuery( obj: Dct<string> ): string;
+    setDisposeProp( keys: ( Dct<any>[] ) | string, type?: string ): this;
+    lockUnlockElm( lock: boolean ): this;
+    alert( cfg: AlertConfig ): void;
+    prompt( cfg: PromptConfig ): void;
+    confirm( cfg: ConfirmConfig ): void;
+    validate( $arg?: JQuery<HTMLElement>, allow_invalid?: boolean ): Dct<any> | void;
+    validateKeyup( $arg: JQuery<HTMLElement>, async?: boolean ): void;
+    createDropDown( obj: string | { id: string; title: string }[] ): string;
+    _xhr( cfg: JQuery.AjaxSettings, s: ( rs: {
+        error: boolean;
+        response: any;
+    } ) => void, e: ( rs: {
+        error: boolean;
+        response: any;
+        jqXHR?: JQuery.jqXHR<any>;
+        textStatus?: string;
+    } ) => void ): JQuery.jqXHR<any>;
+    xhr( config: XHRConfig ): JQuery.jqXHR<any>;
+    populateDetail( data: Dct<any>, cb?: ( status: string, $owner: JQuery<HTMLElement> ) => void, $owner?: JQuery<HTMLElement> ): void;
+    populateMaster( row: Dct<any> ): void;
+    printPreview( id: string | ( ( pctx: IPageContext ) => void ), val: any ): IPageContext;
+    print( cb: ( pctx: IPageContext, status: string, index: any ) => void, index: any ): void;
+    delete( cb: ( pctx: IPageContext, status: string, index: number | string ) => void ): void;
+    clear(): IPageContext;
+    getSearchObj( $inst?: JQuery<HTMLElement>, type?: string ): void;
+    searchObjModify?: ( obj: any[] | Dct<any> ) => void;
+    clean( cb?: () => void ): IPageContext;
+    save( cb: () => void, formobj?: Dct<any>, confirmMsg?: string ): void;
+    search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
+    __onSearchDataModify?: ( data: Dct<any>[] ) => void;
+    loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
+    readonly notification: INotification;
+}
+export declare class PageContext implements IPageContext {
+    public readonly _query: Dct<any>;
     public readonly isdialog: boolean;
     public readonly $ui: JQuery<HTMLElement>;
     public readonly reg: IPageRegInfo;
     public readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
+    public readonly notification: INotification;
+    private readonly ___callback: ( () => void )[];
     private readonly destroy_event: ( () => void )[];
     private readonly drop_srch_map: Dct<string>;
     private readonly dispose_prop: { key: string; type: string; }[];
     private readonly source: { param: any[]; map: Dct<any> }[];
+    private readonly children: Dct<any>;
     constructor();
     private postmortem(): void;
     private get_interactive(): JQuery<HTMLElement>;
@@ -122,18 +189,19 @@ export declare class PageContext {
             fire( evt: string ): ( e: any ) => void;
         }
     };
+    private readonly __data_navigate: boolean;
     public getElem(): JQuery<HTMLElement>;
     public onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
     public onRender( req: ReqFunc, query: Dct<any> ): void;
     public onDispose(): void;
-    public getDependancy(): PageContext[];
-    public enable_disable( t: 'enable' | 'disable', field?: string[] ): void;
-    public dump_obj( obj: Dct<any> ): void;
-    public dependancy_resolve( params: any ): void;
+    public getDependancy(): IPageContext[];
+    public enableDisable( t: 'enable' | 'disable', field?: string[] ): void;
+    public dumpObj( obj: Dct<any> ): void;
+    public dependancyResolve( params: any ): void;
     public onTransportRequest( request: any ): void;
-    public quote_literal( value?: string ): string;
-    public create_query( obj: Dct<string> ): string;
-    public set_dispose_prop( keys: ( Dct<any>[] ) | string, type?: string ): this;
+    public quoteLiteral( value?: string ): string;
+    public createQuery( obj: Dct<string> ): string;
+    public setDisposeProp( keys: ( Dct<any>[] ) | string, type?: string ): this;
     public lockUnlockElm( lock: boolean ): this;
     public alert( cfg: AlertConfig ): void;
     public prompt( cfg: PromptConfig ): void;
@@ -152,14 +220,19 @@ export declare class PageContext {
     } ) => void ): JQuery.jqXHR<any>;
     public xhr( config: XHRConfig ): JQuery.jqXHR<any>;
     public populateDetail( data: Dct<any>, cb?: ( status: string, $owner: JQuery<HTMLElement> ) => void, $owner?: JQuery<HTMLElement> ): void;
-}
-declare class PageConfig extends PageContext {
-    private readonly cmd: ISQLCommand;
-    private readonly fm: IFormInfo;
-    constructor();
-    private customEvent( req: ReqFunc ): void;
-    public onReady( pageCtx: PageContext, query: Dct<any> ): void;
+    public populateMaster( row: Dct<any> ): void;
+    public printPreview( id: string | ( ( pctx: IPageContext ) => void ), val: any ): IPageContext;
+    public print( cb: ( pctx: IPageContext, status: string, index: any ) => void, index: any ): void;
+    public delete( cb: ( pctx: IPageContext, status: string, index: number | string ) => void ): void;
+    public clear(): IPageContext;
+    public getSearchObj( $inst?: JQuery<HTMLElement>, type?: string ): void;
+    public searchObjModify?: ( obj: any[] | Dct<any> ) => void;
+    public clean( cb?: () => void ): IPageContext;
+    public save( cb: () => void, formobj?: Dct<any>, confirmMsg?: string ): void;
+    public search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
+    public __onSearchDataModify?: ( data: Dct<any>[] ) => void;
+    public loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
 }
 export declare interface IWeb {
-    page( config: PageConfig ): void;
+    page( config: IPageConfig ): void;
 }
