@@ -39,7 +39,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="index.d.ts" />
     <TypeScriptCompile Include="sow-framework.d.ts" />
-    <TypeScriptCompile Include="sow-web-ui.d.ts" />
+    <TypeScriptCompile Include="sow-core.d.ts" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

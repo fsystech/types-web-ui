@@ -6,7 +6,10 @@
 * See the accompanying LICENSE file for terms.
 */
 // 11:18 PM 7/18/2020
-import { Dct } from './index';
+export declare interface Dct<T> {
+	[id: string]: T | undefined;
+}
+export declare interface HTMLElement{}
 declare interface IAssembler {
 	Class<T>( ...args: T[] ): T;
 	Class<T>( arg1: T ): T;
@@ -41,7 +44,7 @@ export declare interface ISow {
 	registerNamespace( name: string, callback: () => [IModules, Dct<any>, string[]] ): ISow;
 	mapPageNamespace(): void;
 	define<T>( name: string, fun: ( () => T ) | Dct<T> ): ISow;
-	Web: import( './sow-web-ui' ).IWeb;
+	Web: import( './sow-core' ).IWeb;
 	usingNamespace( name: string ): ISow;
 	Assembler: Assembler;
 	hook( name: string ): IHook;

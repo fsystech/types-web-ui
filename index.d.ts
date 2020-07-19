@@ -2,7 +2,7 @@
 // Project: https://safeonline.world/
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 
-export declare interface Dct<T> {
+declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
 declare interface Object {
@@ -15,10 +15,10 @@ declare interface String {
 declare interface StringConstructor {
 	format( ...args: any[] ): string;
 }
-export declare interface HTMLElement {
+declare interface HTMLElement {
 
 }
-export declare interface JQuery<TElement = HTMLElement> {
+declare interface JQuery<TElement = HTMLElement> {
 	exit(): this;
 	enable(): this;
 	disable(): this;

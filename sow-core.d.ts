@@ -7,7 +7,7 @@
 */
 // 11:18 PM 7/18/2020
 import * as JQuery from 'jquery';
-import { Dct, HTMLElement } from './index';
+import { Dct, HTMLElement } from './sow-framework';
 declare type ReqFunc = { ( run: () => void ): void };
 declare interface IPageRegInfo {
     window_interactive?: boolean;
