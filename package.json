@@ -1,0 +1,26 @@
+{
+  "name": "@types/sow-web-ui",
+  "version": "0.0.1",
+  "description": "sow-web-ui",
+  "main": "",
+  "author": {
+    "name": "Safe Online World Ltd.",
+    "email": "safeonlineworld@gmail.com",
+    "url": "https://github.com/safeonlineworld/@types/sow-web-ui/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/safeonlineworld/@types/sow-web-ui.git"
+  },
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean"
+  },
+  "devDependencies": {
+    "@types/jquery": "^3.5.0",
+    "@types/jqueryui": "^1.12.13",
+    "@types/node": "^8.0.14",
+    "typescript": "^3.2.2"
+  }
+}
