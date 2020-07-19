@@ -6,6 +6,7 @@
 * See the accompanying LICENSE file for terms.
 */
 // 11:18 PM 7/18/2020
+import { Dct } from './index';
 declare interface IAssembler {
 	Class<T>( ...args: T[] ): T;
 	Class<T>( arg1: T ): T;

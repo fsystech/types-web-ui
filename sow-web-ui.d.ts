@@ -1,4 +1,5 @@
 // @ts-check
+/// <reference no-default-lib="true"/>
 //#!/usr/bin/env node
 /**
 * Copyright (c) 2018, SOW ( https://safeonline.world, https://www.facebook.com/safeonlineworld). (https://github.com/safeonlineworld/cwserver) All rights reserved.
@@ -6,6 +7,8 @@
 * See the accompanying LICENSE file for terms.
 */
 // 11:18 PM 7/18/2020
+import * as JQuery from 'jquery';
+import { Dct, HTMLElement } from './index';
 declare type ReqFunc = { ( run: () => void ): void };
 declare interface IPageRegInfo {
     window_interactive?: boolean;
@@ -91,7 +94,7 @@ type ConfirmConfig = {
     content?: string[] | string;
     confirm: ( inst: JQuery<HTMLElement> ) => void;
     onContentReady?: () => void;
-    cancel: ( msg: string, inst: JQuery<HTMLElement> ) => void;
+    cancel: ( msg: string, inst: JQuery<any> ) => void;
 };
 type XHRConfig = {
     uri: string;
@@ -117,13 +120,12 @@ export declare class PageContext {
     private getMap( key: string ): void;
     private _: {
         event: {
-            fire( evt: string ): ( e: EventListener ) => void;
+            fire( evt: string ): ( e: any ) => void;
         }
     };
     public getElem(): JQuery<HTMLElement>;
     public onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
     public onRender( req: ReqFunc, query: Dct<any> ): void;
-    public onReady( pageCtx: PageContext, query: Dct<any> ): void;
     public onDispose(): void;
     public getDependancy(): PageContext[];
     public enable_disable( t: 'enable' | 'disable', field?: string[] ): void;
@@ -157,6 +159,7 @@ declare class PageConfig extends PageContext {
     private readonly fm: IFormInfo;
     constructor();
     private customEvent( req: ReqFunc ): void;
+    public onReady( pageCtx: PageContext, query: Dct<any> ): void;
 }
 export declare interface IWeb {
     page( config: PageConfig ): void;
