@@ -1,5 +1,4 @@
 // @ts-check
-/// <reference no-default-lib="true"/>
 //#!/usr/bin/env node
 /**
 * Copyright (c) 2018, SOW ( https://safeonline.world, https://www.facebook.com/safeonlineworld). (https://github.com/safeonlineworld/cwserver) All rights reserved.
