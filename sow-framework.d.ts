@@ -78,8 +78,12 @@ export declare interface ISow {
 	};
 	/** Show notification */
 	Show: IShow;
+	/** Loading animation */
 	loader: {
+		/** Show loading animation */
 		show(): void;
+		/** Hide loading animation */
 		hide(): void;
-	}
+	};
+	check_privacy(): void;
 }
