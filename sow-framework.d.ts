@@ -78,4 +78,8 @@ export declare interface ISow {
 	};
 	/** Show notification */
 	Show: IShow;
+	loader: {
+		show(): void;
+		hide(): void;
+	}
 }

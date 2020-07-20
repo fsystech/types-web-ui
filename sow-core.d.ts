@@ -35,6 +35,7 @@ declare interface IPageRegInfo {
             template: string;
             header?: string[];
             poperty?: string[];
+            tablesorter?: boolean;
             detail_event?: boolean;
             onRender(): void;
             beforeRender?: ( data: any ) => void;
@@ -59,100 +60,123 @@ declare interface IPageConfig {
     onReady( pageCtx: IPageContext, query: Dct<any> ): void;
     onDispose( pageCtx: IPageContext ): void;
 }
+declare type CommandConf = {
+    sp: string;
+    module: string;
+    validate: boolean;
+};
 declare interface ISQLCommand {
-    iu: Dct<any>;
-    d: Dct<any>;
-    s: {
+    readonly iu?: CommandConf;
+    readonly d?: CommandConf;
+    readonly s?: {
+        def_type?: string;
         type: string;
-        sp: string;
+        sp?: string;
+        sql?: string | ( ( pageCtx: IPageContext ) => void );
         validate: boolean;
         module: string;
-    } | Dct<any>;
-    __dd: Dct<any>;
-    lq: Dct<any>;
+        table?: string;
+        schema?: string;
+    };
+    readonly __dd?: CommandConf;
+    readonly lq?: CommandConf;
 }
 export declare type ElementInfo = {
     /** Define the type of element */
-    t: string;
+    readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'switch' | 'html' | 'widget';
     /** this is element name */
-    name: string;
+    readonly name: string;
     /** Can use this element when search tigger ? */
-    src?: boolean;
+    readonly src?: boolean;
     /** Use this rules for this element validation */
-    rules?: string | Dct<any>;
+    readonly rules?: { m?: string, max?: number, min?: number, required?: boolean };
     /** Custom style for this element */
-    style?: string;
+    readonly style?: string;
     /** Define sql field name. It will use while perform search/update/insert (Like as your db table column name e.g. id or schema.id) */
-    sql?: string;
+    readonly sql?: string;
     /** Define this element width (bootstrap col width 12/1) */
-    w: number;
+    readonly w: number;
     /** this element accept drop */
-    dropable?: boolean;
+    readonly dropable?: boolean;
     /** this element accept drag */
-    dragable?: boolean;
+    readonly dragable?: boolean;
     /** this element custom class */
-    cls?: string;
+    readonly cls?: string;
     /** This is element label */
-    title: string;
+    readonly title: string;
     /** Cust element HTML */
-    html?: string | ( () => string );
+    readonly html?: string | ( () => string );
     /** Element attribute */
-    attr?: string;
+    readonly attr?: string;
     /** It will use while you allow dragable or dropable this element */
-    z_index?: number;
+    readonly z_index?: number;
     /** Is this element disabled ? */
-    disabled?: boolean;
+    readonly disabled?: boolean;
     /** each value add custom data-event-your-value attribute  */
-    event?: Dct<string>;
+    readonly event?: Dct<string>;
     /** it will use while your element type is switch. You can use on|off */
-    text?: string;
+    readonly text?: string;
     /** Element placeholder */
-    p?: string;
+    readonly p?: string;
     /** Define this element is read only */
-    read_only?: boolean;
+    readonly read_only?: boolean;
     /** Use this external link for this element */
-    external_link?: string;
+    readonly external_link?: string;
     /** Set default value for this element */
-    default_value?: string;
+    readonly default_value?: string;
+    /** widget key. It will be effect in widget element */
+    readonly widget?: string;
+    /** It will be effect while your element type is dropdown*/
+    readonly source?: ( ( pageCtx: IPageContext ) => void ) | 'OWN' | { drop_type: string; load?: boolean };
 };
-declare interface IFormInfo {
-    tabs: {
-        header: Dct<any>;
-        footer: Dct<any>;
+export declare interface IWidget {
+    readonly title: string;
+    readonly key: string;
+    readonly collapse: boolean;
+    readonly fields: Dct<ElementInfo>[];
+}
+export declare interface IFormInfo {
+    readonly tabs?: {
+        readonly header?: Dct<ElementInfo>[];
+        readonly footer?: Dct<ElementInfo>[];
     };
-    header: Dct<ElementInfo>[];
-    footer: Dct<ElementInfo>[];
+    readonly header?: Dct<ElementInfo>[];
+    readonly footer?: Dct<ElementInfo>[];
+    readonly widget?: {
+        readonly header?: IWidget;
+        readonly footer?: IWidget;
+    };
 }
 declare type AlertConfig = {
-    icon?: string;
-    title?: string; content: string;
-    text?: string;
-    btnClass?: string;
-    ok?: () => void;
+    readonly icon?: string;
+    readonly title?: string; content: string;
+    readonly text?: string;
+    readonly btnClass?: string;
+    readonly ok?: () => void;
 };
 declare type PromptConfig = {
-    icon?: string;
-    title?: string;
-    required?: boolean;
-    content?: string[] | string;
-    ok: ( val: any ) => void;
-    cancel: () => void;
+    readonly icon?: string;
+    readonly title?: string;
+    readonly required?: boolean;
+    readonly content?: string[] | string;
+    readonly ok: ( val: any ) => void;
+    readonly cancel: () => void;
 };
 declare type ConfirmConfig = {
-    icon?: string;
-    title?: string;
-    required?: boolean;
-    content?: string[] | string;
-    confirm: ( inst: JQuery<HTMLElement> ) => void;
-    onContentReady?: () => void;
-    cancel: ( msg: string, inst: JQuery<any> ) => void;
+    readonly icon?: string;
+    readonly title?: string;
+    readonly required?: boolean;
+    readonly content?: string[] | string;
+    readonly confirm: ( inst: JQuery<HTMLElement> ) => void;
+    readonly onContentReady?: () => void;
+    readonly cancel: ( msg: string, inst: JQuery<any> ) => void;
 };
 declare type XHRConfig = {
-    uri: string;
-    def: Dct<any>;
-    sp: string;
-    validate: boolean;
-    module: string;
+    readonly uri: string;
+    readonly def: Dct<any>;
+    readonly sp: string;
+    readonly validate: boolean;
+    readonly module: string;
     done( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } ): void;
     fail( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } | string ): void;
 };
@@ -167,6 +191,7 @@ declare interface IPageContext {
     readonly reg: IPageRegInfo;
     readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
     readonly _query: Dct<any>;
+    readonly notification: INotification;
     getElem(): JQuery<HTMLElement>;
     onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
     onRender( req: ReqFunc, query: Dct<any> ): void;
@@ -209,7 +234,6 @@ declare interface IPageContext {
     search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
     __onSearchDataModify?: ( data: Dct<any>[] ) => void;
     loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
-    readonly notification: INotification;
 }
 export declare class PageContext implements IPageContext {
     public readonly _query: Dct<any>;
@@ -226,6 +250,7 @@ export declare class PageContext implements IPageContext {
     private readonly children: Dct<any>;
     private readonly _navigator?: Dct<( $owner: JQuery<HTMLElement> ) => void>;
     private readonly cmd: ISQLCommand;
+    private readonly fm: Dct<ElementInfo>;
     constructor();
     private postmortem(): void;
     private get_interactive(): JQuery<HTMLElement>;
