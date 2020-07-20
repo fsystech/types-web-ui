@@ -21,9 +21,9 @@ declare interface IAssembler {
 	extend<T, S>( dest: T | ( () => T ), source: S | ( () => S ) ): T & S;
 	Closure( ...args: ( () => void )[] ): IAssembler;
 }
-declare interface Assembler {
-	new(): Assembler;
-	Create: IAssembler;
+declare class Assembler {
+	public readonly Create: IAssembler;
+	constructor();
 }
 declare interface IHook {
 	hook( schema?: string ): IHook;
@@ -31,9 +31,32 @@ declare interface IHook {
 	fire( evt: string, args: any[] ): IHook;
 	firea( evt: string, args: any[] ): IHook;
 }
+declare interface IHookFunc {
+	( name: string ): IHook;
+	remove( evt: string ): IHook;
+}
 declare interface Ihub {
 	getServerProxy(): string[];
 	socket(): any;
+}
+declare interface IShow {
+	/** Hide all open notification */
+	h(): IShow;
+	/** Show information notification
+	 * @param {string|void} msg
+	 * @returns {IShow}
+	 */
+	i( msg?: string ): this;
+	/** Show success notification
+	 * @param {string|void} msg
+	 * @returns {IShow}
+	 */
+	s( msg?: string ): this;
+	/** Show error notification
+	 * @param {string|void} msg
+	 * @returns {IShow}
+	 */
+	e( msg?: string ): this;
 }
 declare type ModuleRequire = ( name: string ) => any;
 declare type IModules = { [id: string]: [( require: ModuleRequire, module: IAssembler, exports: Dct<any> ) => Dct<any>, Dct<any>] };
@@ -47,10 +70,12 @@ export declare interface ISow {
 	Web: import( './sow-core' ).IWeb;
 	usingNamespace( name: string ): ISow;
 	Assembler: Assembler;
-	hook( name: string ): IHook;
+	hook: IHookFunc;
 	App: {
 		name: string;
 		app_type_const: string;
 		theme_skin_key: string;
 	};
+	/** Show notification */
+	Show: IShow;
 }

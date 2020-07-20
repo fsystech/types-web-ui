@@ -71,13 +71,57 @@ declare interface ISQLCommand {
     __dd: Dct<any>;
     lq: Dct<any>;
 }
+export declare type ElementInfo = {
+    /** Define the type of element */
+    t: string;
+    /** this is element name */
+    name: string;
+    /** Can use this element when search tigger ? */
+    src?: boolean;
+    /** Use this rules for this element validation */
+    rules?: string | Dct<any>;
+    /** Custom style for this element */
+    style?: string;
+    /** Define sql field name. It will use while perform search/update/insert (Like as your db table column name e.g. id or schema.id) */
+    sql?: string;
+    /** Define this element width (bootstrap col width 12/1) */
+    w: number;
+    /** this element accept drop */
+    dropable?: boolean;
+    /** this element accept drag */
+    dragable?: boolean;
+    /** this element custom class */
+    cls?: string;
+    /** This is element label */
+    title: string;
+    /** Cust element HTML */
+    html?: string | ( () => string );
+    /** Element attribute */
+    attr?: string;
+    /** It will use while you allow dragable or dropable this element */
+    z_index?: number;
+    /** Is this element disabled ? */
+    disabled?: boolean;
+    /** each value add custom data-event-your-value attribute  */
+    event?: Dct<string>;
+    /** it will use while your element type is switch. You can use on|off */
+    text?: string;
+    /** Element placeholder */
+    p?: string;
+    /** Define this element is read only */
+    read_only?: boolean;
+    /** Use this external link for this element */
+    external_link?: string;
+    /** Set default value for this element */
+    default_value?: string;
+};
 declare interface IFormInfo {
     tabs: {
         header: Dct<any>;
         footer: Dct<any>;
     };
-    header: any[];
-    footer: any[];
+    header: Dct<ElementInfo>[];
+    footer: Dct<ElementInfo>[];
 }
 declare type AlertConfig = {
     icon?: string;
@@ -178,8 +222,10 @@ export declare class PageContext implements IPageContext {
     private readonly destroy_event: ( () => void )[];
     private readonly drop_srch_map: Dct<string>;
     private readonly dispose_prop: { key: string; type: string; }[];
-    private readonly source: { param: any[]; map: Dct<any> }[];
+    private readonly source: { param: any[]; map: Dct<any> };
     private readonly children: Dct<any>;
+    private readonly _navigator?: Dct<( $owner: JQuery<HTMLElement> ) => void>;
+    private readonly cmd: ISQLCommand;
     constructor();
     private postmortem(): void;
     private get_interactive(): JQuery<HTMLElement>;
@@ -232,6 +278,7 @@ export declare class PageContext implements IPageContext {
     public search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
     public __onSearchDataModify?: ( data: Dct<any>[] ) => void;
     public loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
+    private dispose(): void;
 }
 export declare interface IWeb {
     page( config: IPageConfig ): void;
