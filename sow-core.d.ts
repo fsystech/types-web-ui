@@ -55,6 +55,10 @@ declare interface IPageRegInfo {
         disabledButtons?: string[];
         enabled?: string[];
         reload?: ( pagctx: IPageContext, cb: () => void ) => void;
+        clean?: {
+            before?: ( pagctx: IPageContext ) => void;
+            after?: ( pagctx: IPageContext ) => void
+        };
     };
     button: {
         footer: {
@@ -96,6 +100,18 @@ declare interface ISQLCommand {
     readonly __dd?: CommandConf;
     readonly lq?: CommandConf;
 }
+export declare type ExternalLink = {
+    param: string[];
+    dependency?: string;
+    route: string;
+    width: string;
+    height: string;
+    position?: { my?: string, at?: string },
+    modal: boolean;
+    resizable: boolean,
+    done?: ( t: string ) => void;
+    fail?: () => void;
+}
 export declare type ElementInfo = {
     /** Define the type of element */
     readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'switch' | 'html' | 'widget';
@@ -136,7 +152,7 @@ export declare type ElementInfo = {
     /** Define this element is read only */
     readonly read_only?: boolean;
     /** Use this external link for this element */
-    readonly external_link?: string;
+    readonly external_link?: string | ( ( conf: ExternalLink, pageCtx: IPageContext ) => ExternalLink );
     /** Set default value for this element */
     readonly default_value?: string;
     /** widget key. It will be effect in widget element */
@@ -149,7 +165,7 @@ declare type SourceType = {
     add_new: string;
     search_poperty: string;
     drop_type?: "selectize"; load?: boolean;
-    drop_def?: DropDef | ( ( pageCtx: IPageContext, def: ( look: DropDef ) => void ) => void );
+    drop_def?: DropDef | ( ( obj: Dct<any>, pageCtx: IPageContext, def: ( look: DropDef ) => void ) => void );
 };
 export declare interface IWidget {
     readonly title: string;
@@ -216,7 +232,7 @@ declare interface IPageContext {
     readonly elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
     readonly _query: IRequest;
     readonly notification: INotification;
-    $ui(): JQueryUI.Dialog<HTMLElement>;
+    $ui(): Dialog;
     require( fn: string | ( () => void ), b?: string ): any;
     getElem(): JQuery<HTMLDivElement>;
     onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
@@ -257,7 +273,7 @@ declare interface IPageContext {
     clear(): IPageContext;
     getSearchObj( $inst?: JQuery<HTMLDivElement>, type?: string ): void;
     searchObjModify?: ( obj: any[] | Dct<any> ) => void;
-    clean( cb?: () => void ): IPageContext;
+    clean( cb?: ( status: string ) => void ): IPageContext;
     save( cb: () => void, formobj?: Dct<any>, confirmMsg?: string ): void;
     search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
     __onSearchDataModify?: ( data: Dct<any>[] ) => void;
@@ -274,7 +290,8 @@ export declare interface INavigator {
     setData( data: Dct<any>[], $tabel: JQuery<HTMLDivElement>, nPopulate?: boolean ): INavigator;
     enable(): INavigator;
     disable(): INavigator;
-    changeIndex(): INavigator;
+    changeIndex( row: Dct<any>): INavigator;
+    delete(): void;
     data_backward( $el: JQuery<HTMLElement> ): INavigator;
     data_backward_last( $el: JQuery<HTMLElement> ): INavigator;
     data_forward( $el: JQuery<HTMLElement> ): INavigator;
@@ -294,7 +311,7 @@ export declare class PageContext implements IPageContext {
     public readonly _query: IRequest;
     public readonly isdialog: boolean;
     public readonly isDisposed: boolean;
-    public $ui(): JQueryUI.Dialog;
+    public $ui(): Dialog;
     public readonly reg: IPageRegInfo;
     public readonly elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
     public readonly notification: INotification;
@@ -314,7 +331,7 @@ export declare class PageContext implements IPageContext {
     private readonly fm: Dct<ElementInfo>;
     constructor();
     private postmortem(): void;
-    private get_interactive(): JQuery<HTMLDivElement>;
+    private getInteractive(): Dialog;
     private getMap( key: string ): void;
     private _: {
         event: {
@@ -363,7 +380,7 @@ export declare class PageContext implements IPageContext {
     public print( cb: ( pctx: IPageContext, status: string, index: any ) => void, index: any ): void;
     public delete( cb: ( pctx: IPageContext, status: string, index: number | string ) => void ): void;
     public clear(): IPageContext;
-    public getSearchObj( $inst?: JQuery<HTMLDivElement>, type?: string ): void;
+    public getSearchObj( $inst?: JQuery<HTMLDivElement>, type?: string ): Dct<any>;
     public searchObjModify?: ( obj: any[] | Dct<any> ) => void;
     public clean( cb?: () => void ): IPageContext;
     public save( cb: () => void, formobj?: Dct<any>, confirmMsg?: string ): void;
@@ -383,7 +400,7 @@ declare interface InternalWorker {
 }
 declare type ISqlDef = { ( pageCtx: IPageContext, pv: string, obj: Dct<any> ):void | Dct<any> | string};
 export declare interface IWebUI {
-    renderView( route: string, $elm: JQuery<HTMLDivElement>, __cb: ( status: string ) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string ): void;
+    renderView( route: string, $elm: JQuery<HTMLDivElement>, __cb: ( status: string ) => void, isdialog?: boolean, ___$ui?: Dialog, __container_key?: string ): void;
     render( fm: IFormInfo, $elm: JQuery<HTMLElement> ): {
         fields: Dct<ElementInfo>;
         sql_def: Dct<ISqlDef>

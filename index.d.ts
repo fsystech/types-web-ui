@@ -52,12 +52,16 @@ interface ExceptionConstructor extends ErrorConstructor {
 	readonly prototype: Exception;
 }
 declare var Exception: ExceptionConstructor;
-declare interface HTMLElement {}
-declare interface JQuery<TElement = HTMLElement> {
+declare interface HTMLElement { }
+declare interface JQuery<TElement = any> {
 	exit(): this;
 	enable(): this;
 	disable(): this;
 	htmla( obj: any ): this;
+}
+declare interface Dialog {
+	destroy(): void;
+	___destroy(): void;
 }
 declare function _get_route( url: string ): string;
 declare function to_number( obj: any ): number;
