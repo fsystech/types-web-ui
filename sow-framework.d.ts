@@ -86,4 +86,7 @@ export declare interface ISow {
 		hide(): void;
 	};
 	check_privacy(): void;
+	onXHRError( jqXHR: JQueryXHR, statusCode: number, textStatus: string ): {
+		fw: boolean; emsg?: string; status_code: number; status_description?: string;
+	};
 }

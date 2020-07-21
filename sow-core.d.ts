@@ -12,6 +12,19 @@ declare namespace JQuery {
 }
 declare type ReqFuncs = { xhr: JQueryXHR };
 declare type ReqFunc = { ( name?: string, b?: string ): void };
+declare type SearchDetail = {
+    show: boolean;
+    template: string;
+    header?: string[];
+    poperty?: string[];
+    tablesorter?: boolean;
+    detail_event?: boolean | {
+        on_page_ready: ( pagctx: IPageContext ) => void;
+    };
+    onRender(): void;
+    beforeRender?: ( data: any ) => void;
+    dump?: ( pagctx: IPageContext, $owner: JQuery<HTMLDivElement>, resp: Dct<any> ) => void;
+};
 declare interface IPageRegInfo {
     template?: string;
     window_interactive?: boolean;
@@ -27,25 +40,14 @@ declare interface IPageRegInfo {
     title: string;
     info: {
         primary_key: {
-            id: undefined;
+            id: string;
             value: string | number;
         };
         src_key: string[];
         navigator?: boolean;
         has_master: boolean;
         has_detail: boolean;
-        search_detail: {
-            show: boolean;
-            template: string;
-            header?: string[];
-            poperty?: string[];
-            tablesorter?: boolean;
-            detail_event?: boolean | {
-                on_page_ready: ( pagctx: IPageContext ) => void;
-            };
-            onRender(): void;
-            beforeRender?: ( data: any ) => void;
-        };
+        search_detail: SearchDetail | ( ( pageCtx: IPageContext ) => SearchDetail );
     };
     toolbar?: {
         disabled?: boolean;
@@ -63,6 +65,7 @@ declare interface IPageRegInfo {
     } | Dct<any>;
     dynamic_report: boolean;
     report: ( event: any ) => void;
+    print_settings: () => void;
 }
 declare interface IPageConfig {
     readonly reg: IPageRegInfo;
@@ -125,7 +128,7 @@ export declare type ElementInfo = {
     /** Is this element disabled ? */
     readonly disabled?: boolean;
     /** each value add custom data-event-your-value attribute  */
-    readonly event?: Dct<string>;
+    readonly event?: Dct<( pageCtx: IPageContext, e: JQueryEventObject, $owner: JQuery<HTMLElement> ) => void>;
     /** it will use while your element type is switch. You can use on|off */
     readonly text?: string;
     /** Element placeholder */
@@ -196,8 +199,10 @@ declare type XHRConfig = {
     readonly sp: string;
     readonly validate: boolean;
     readonly module: string;
+    readonly data_required?: boolean;
+    abort?: ( status: string, xhr: JQueryXHR, textStatus?: string, error?: string ) => void;
     done( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } ): void;
-    fail( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } | string ): void;
+    fail( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } | string, xhr?: JQueryXHR, textStatus?: string, error?: string ): void;
 };
 declare interface INotification {
     clean(): void;
@@ -207,11 +212,11 @@ declare interface INotification {
 export declare type IRequest = { route: string; original: string; param: Dct<any> };
 declare interface IPageContext {
     readonly isdialog: boolean;
-    readonly $ui: JQueryUI.Dialog;
     readonly reg: IPageRegInfo;
     readonly elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
     readonly _query: IRequest;
     readonly notification: INotification;
+    $ui(): JQueryUI.Dialog<HTMLElement>;
     require( fn: string | ( () => void ), b?: string ): any;
     getElem(): JQuery<HTMLDivElement>;
     onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
@@ -219,7 +224,7 @@ declare interface IPageContext {
     customEvent( req: ReqFunc ): void;
     onReady( pageCtx: IPageContext, query: Dct<any> ): void;
     onDispose(): void;
-    getDependancy(): IPageContext[];
+    getDependancy(): string[];
     enableDisable( t: 'enable' | 'disable', field?: string[] ): void;
     dumpObj( obj: Dct<any> ): void;
     dependancy_resolve( params: any ): void;
@@ -247,7 +252,7 @@ declare interface IPageContext {
     populateDetail( data: Dct<any>, cb?: ( status: string, $owner: JQuery<HTMLDivElement> ) => void, $owner?: JQuery<HTMLDivElement> ): void;
     populateMaster( row: Dct<any> ): void;
     printPreview( id: string | ( ( pctx: IPageContext ) => void ), val: any ): IPageContext;
-    print( cb: ( pctx: IPageContext, status: string, index: any ) => void, index: any ): void;
+    print( cb: ( pctx: IPageContext, status: string, index?: any ) => void, index: any ): void;
     delete( cb: ( pctx: IPageContext, status: string, index: number | string ) => void ): void;
     clear(): IPageContext;
     getSearchObj( $inst?: JQuery<HTMLDivElement>, type?: string ): void;
@@ -276,34 +281,32 @@ export declare interface INavigator {
     data_forward_last( $el: JQuery<HTMLElement> ): INavigator;
     dispose(): INavigator;
 }
-/**
- * Same as jQuery v3 `JQuery.EventHandlerBase`.
- */
-export type JQueryEventHandlerBase<TContext, T> = ( this: TContext, t: T, ...args: any[] ) => void | false;
-type JQEventHandler = JQueryEventHandlerBase<HTMLElement, Event<HTMLElement, HTMLElement>>;
+export declare type ISource = {
+    param: any[];
+    map: Dct<{
+        add_new: string;
+        owner: string;
+        drop_type: "select" | string;
+        drop_def: DropDef;
+    }[]>
+};
 export declare class PageContext implements IPageContext {
     public readonly _query: IRequest;
     public readonly isdialog: boolean;
-    public readonly $ui: JQueryUI.Dialog;
+    public readonly isDisposed: boolean;
+    public $ui(): JQueryUI.Dialog;
     public readonly reg: IPageRegInfo;
     public readonly elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
     public readonly notification: INotification;
+    private readonly sql_def: Dct<ISqlDef>;
     private readonly ___callback: ( () => void )[];
     private readonly destroy_event: ( () => void )[];
     private readonly drop_srch_map: Dct<string>;
     private readonly dispose_prop: { key: string; type: string; }[];
-    private readonly source: {
-        param: any[];
-        map: Dct<{
-            add_new: string;
-            owner: string;
-            drop_type: "select" | string;
-            drop_def: DropDef;
-        }[]>
-    };
+    private readonly source: ISource;
     private readonly children: Dct<{
         click?: ( pageCtx: IPageContext ) => void;
-        param?: any[];
+        param?: string[] | ( ( pageCtx: IPageContext ) => string[] );
         route?: string;
     }>;
     private readonly _navigator?: INavigator;
@@ -315,12 +318,13 @@ export declare class PageContext implements IPageContext {
     private getMap( key: string ): void;
     private _: {
         event: {
-            fire( evt: string ): ( e: JQEventHandler ) => void;
+            fire( evt: string ): ( e: JQueryEventObject ) => void;
         }
     };
     private readonly __data_navigate: boolean;
     private readonly ajax?: JQueryXHR[];
     private readonly data_map?: Dct<any>;
+    private prepare( containerKey: string ): void;
     public require( name?: string, b?: string ): any;
     public getElem(): JQuery<HTMLDivElement>;
     public onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
@@ -328,8 +332,8 @@ export declare class PageContext implements IPageContext {
     public onReady( pageCtx: IPageContext, query: Dct<any> ): void;
     public onRender( req: ReqFunc, query: Dct<any> ): void;
     public onDispose(): void;
-    public getDependancy(): IPageContext[];
-    public enableDisable( t: 'enable' | 'disable', field?: string[] ): void;
+    public getDependancy(): string[];
+    public enableDisable( t: 'e' | 'd' | 'enable' | 'disable', field?: string[] ): void;
     public dumpObj( obj: Dct<any> ): void;
     public dependancyResolve( params: any ): void;
     public onTransportRequest( request: IRequest ): void;
@@ -377,8 +381,41 @@ export declare class PageContext implements IPageContext {
 declare interface InternalWorker {
     [id: string]: ( ...args: any[] ) => InternalWorker;
 }
+declare type ISqlDef = { ( pageCtx: IPageContext, pv: string, obj: Dct<any> ):void | Dct<any> | string};
+export declare interface IWebUI {
+    renderView( route: string, $elm: JQuery<HTMLDivElement>, __cb: ( status: string ) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string ): void;
+    render( fm: IFormInfo, $elm: JQuery<HTMLElement> ): {
+        fields: Dct<ElementInfo>;
+        sql_def: Dct<ISqlDef>
+    };
+    getTemplateName( route ): string | void;
+    transportRequest( route: string, obj?: IRequest ): IWebUI;
+    resolve( opt: { url: string; route: string; done: () => void } ): boolean;
+    routeIsRegistred( route: string ): boolean;
+    getRouteCtx( route: string, check?: boolean ): boolean | IPageContext;
+    regDependency( opt: { dependency: string; url: string } ): void;
+    assign( opt: IPageConfig, dependency: string ): IWebUI;
+    postmortem(): IWebUI;
+    dispose( route: string, cb: void | ( ( status: string ) => void ) ): IWebUI;
+    destroy( route: string, cb: void | ( ( status: string ) => void ) ): IWebUI;
+}
 export declare interface IWeb {
     page( config: IPageConfig ): void;
+    UI: IWebUI;
+    Template: {
+        script: {
+            has( identity: string ): boolean;
+            remove( identity: string ): boolean;
+            parse( identity: string, text: string, cb: () => void ): void;
+            register( identity: string, func: () => void ): void;
+            run( identity: string, data: string, cb: ( str: string ) => void ): this;
+            parse( tname: string, data: string, next: () => void ): void
+        }
+    };
+    userInfo: {
+        roleId: string;
+        loginId: string;
+    };
     Ext: {
         export( need?: string[] ): InternalWorker;
     };
