@@ -278,6 +278,7 @@ declare interface IPageContext {
     search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
     __onSearchDataModify?: ( data: Dct<any>[] ) => void;
     loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
+    saveObjModify?: ( obj: Dct<any> ) => void;
 }
 export declare interface INavigator {
     dispose(): void;
@@ -394,6 +395,7 @@ export declare class PageContext implements IPageContext {
         isValid: ( key: string ) => boolean;
     };
     private regWidget( selector: string ): void;
+    public saveObjModify?: ( obj: Dct<any> ) => { error: boolean };
 }
 declare interface InternalWorker {
     [id: string]: ( ...args: any[] ) => InternalWorker;
