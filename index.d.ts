@@ -32,7 +32,7 @@ declare interface StringConstructor {
 	format( ...args: any[] ): string;
 }
 declare interface Console {
-	elog( e: Error, wt: boolean ): void;
+	elog( e: Error | Exception | string , wt?: boolean ): void;
 }
 declare interface NodeList {
 	remove(): this;

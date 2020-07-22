@@ -69,6 +69,7 @@ export declare interface ISow {
 	define<T>( name: string, fun: ( () => T ) | Dct<T> ): ISow;
 	Web: import( './sow-core' ).IWeb;
 	usingNamespace( name: string ): ISow;
+	unloadNamespace( name: string ): ISow;
 	Assembler: Assembler;
 	hook: IHookFunc;
 	App: {
@@ -85,8 +86,10 @@ export declare interface ISow {
 		/** Hide loading animation */
 		hide(): void;
 	};
-	check_privacy(): void;
-	onXHRError( jqXHR: JQueryXHR, statusCode: number, textStatus: string ): {
+	check_privacy(): string;
+	onXHRError( jqXHR: JQueryXHR, statusCode: number, textStatus?: string ): {
 		fw: boolean; emsg?: string; status_code: number; status_description?: string;
 	};
+	JSON( obj: any ): any[];
+	parse_param( obj: any ): Dct<any>;
 }
