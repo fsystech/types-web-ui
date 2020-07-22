@@ -60,7 +60,11 @@ declare interface JQuery<TElement = any> {
 	htmla( obj: any ): this;
 }
 declare interface Dialog {
+	isOpen(): boolean;
+    close: any;
 	destroy(): void;
+	state(): string;
+	restore(): void;
 	___destroy(): void;
 }
 declare function _get_route( url: string ): string;

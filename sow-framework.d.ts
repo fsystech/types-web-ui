@@ -29,7 +29,7 @@ declare interface IHook {
 	hook( schema?: string ): IHook;
 	add( name: string, fn: ( ...args: any[] ) => void ): IHook;
 	fire( evt: string, args: any[] ): IHook;
-	firea( evt: string, args: any[] ): IHook;
+	firea( ...args: any[] ): IHook;
 }
 declare interface IHookFunc {
 	( name: string ): IHook;
@@ -60,6 +60,9 @@ declare interface IShow {
 }
 declare type ModuleRequire = ( name: string ) => any;
 declare type IModules = { [id: string]: [( require: ModuleRequire, module: IAssembler, exports: Dct<any> ) => Dct<any>, Dct<any>] };
+declare interface IDate {
+	get(): string;
+}
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
 	hub: Ihub;
@@ -86,10 +89,11 @@ export declare interface ISow {
 		/** Hide loading animation */
 		hide(): void;
 	};
-	check_privacy(): string;
+	checkPrivacy(): string;
 	onXHRError( jqXHR: JQueryXHR, statusCode: number, textStatus?: string ): {
 		fw: boolean; emsg?: string; status_code: number; status_description?: string;
 	};
 	JSON( obj: any ): any[];
-	parse_param( obj: any ): Dct<any>;
+	parseParam( obj: any ): Dct<any>;
+	date: IDate;
 }
