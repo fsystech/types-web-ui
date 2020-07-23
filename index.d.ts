@@ -84,6 +84,7 @@ declare interface JQuery<TElement = any> {
 	disable(): this;
 	htmla( obj: any ): this;
 	slimScroll( cfg: SlimScrollConfig ): this;
+	tablesorter(): this;
 	fancybox( cfg: any ): this;
 	Lazy( cfg: any ): this;
 	prop( name: string ): string | void;
@@ -94,6 +95,9 @@ declare interface JQuery<TElement = any> {
 }
 interface JQueryStatic {
 	makeArray<T>( arg1: T[], arg2: T[] ): T[];
+	confirm( ...args: any[] ): JQuery<HTMLElement>;
+	alert( ...args: any[] ): JQuery<HTMLElement>;
+	dialog( ...args: any[] ): JQuery<HTMLElement>;
 }
 declare interface DialogExtendOption {
 	closable?: boolean;

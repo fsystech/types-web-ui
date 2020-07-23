@@ -18,17 +18,17 @@ declare type SearchDetail = {
     detail_event?: boolean | {
         on_page_ready: ( pagctx: IPageContext ) => void;
     };
-    onRender(): void;
+    onRender( pagctx: IPageContext, $owner: JQuery<HTMLElement> ): void;
     beforeRender?: ( data: any ) => void;
     dump?: ( pagctx: IPageContext, $owner: JQuery<HTMLDivElement>, resp: Dct<any> ) => void;
 };
 export declare interface IPageRegInfo {
-    template?: string;
+    template?: string | 'SRC__DEFAULT__';
     window_interactive?: boolean;
     window?: ( pageCtx: IPageContext ) => {
-        maximize( evt: any, dlg: any ): void;
-        minimize( evt: any, dlg: any ): void;
-        restore( evt: any, dlg: any ): void;
+        maximize( evt: JQueryEventObject, dlg: JQueryUI.Dialog ): void;
+        minimize( evt: JQueryEventObject, dlg: JQueryUI.Dialog ): void;
+        restore( evt: JQueryEventObject, dlg: JQueryUI.Dialog ): void;
     };
     event_array?: string[];
     route: string;
@@ -44,7 +44,7 @@ export declare interface IPageRegInfo {
         navigator?: boolean;
         has_master: boolean;
         has_detail: boolean;
-        search_detail: SearchDetail | ( ( pageCtx: IPageContext ) => SearchDetail );
+        search_detail: SearchDetail;
     };
     toolbar?: {
         disabled?: boolean;
@@ -70,7 +70,7 @@ export declare interface IPageRegInfo {
     } | Dct<any>;
     dynamic_report: boolean;
     report: ( event: any ) => void;
-    print_settings: () => void;
+    print_settings?: () => void;
 }
 declare interface IPageConfig {
     readonly reg: IPageRegInfo;
@@ -94,8 +94,8 @@ export declare interface ISQLCommand {
     readonly iu?: CommandConf;
     readonly d?: CommandConf;
     readonly s?: {
-        def_type?: string;
-        type: string;
+        def_type?: 'query';
+        type?: 'SQL' | 'SP';
         sp?: string;
         sql?: string | ( ( pageCtx: IPageContext, obj?: Dct<any> ) => string );
         validate: boolean;
@@ -463,7 +463,7 @@ export declare interface IWeb {
             remove( identity: string ): boolean;
             parse( identity: string, text: string, cb: () => void ): void;
             register( identity: string, func: () => void ): void;
-            run( identity: string, data: string, cb: ( str: string ) => void ): this;
+            run( identity: string, data: any, cb: ( str: string ) => void ): this;
             parse( tname: string, data: string, next: () => void ): void
         }
     };
