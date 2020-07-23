@@ -53,11 +53,47 @@ interface ExceptionConstructor extends ErrorConstructor {
 }
 declare var Exception: ExceptionConstructor;
 declare interface HTMLElement { }
+declare type SlimScrollConfig = {
+	width?: string;
+	height?: string;
+	start?: string;
+	scrollTo?: string;
+	size?: string;
+	color?: string;
+	position?: string;
+	distance?: string;
+	opacity?: number;
+	alwaysVisible?: boolean;
+	disableFadeOut?: boolean;
+	railVisible?: boolean;
+	railColor?: string;
+	railOpacity?: number;
+	railDraggable?: boolean;
+	railClass?: string;
+	barClass?: string;
+	wrapperClass?: string;
+	allowPageScroll?: boolean;
+	wheelStep?: number;
+	touchScrollStep?: number;
+	borderRadius?: string;
+	railBorderRadius?: string;
+};
 declare interface JQuery<TElement = any> {
 	exit(): this;
 	enable(): this;
 	disable(): this;
 	htmla( obj: any ): this;
+	slimScroll( cfg: SlimScrollConfig ): this;
+	fancybox( cfg: any ): this;
+	Lazy( cfg: any ): this;
+	prop( name: string ): string | void;
+	attr( name: string ): string | void;
+	val(): string | void;
+	html( n: number ): this;
+	html( val: JQuery<HTMLElement> ): this;
+}
+interface JQueryStatic {
+	makeArray<T>( arg1: T[], arg2: T[] ): T[];
 }
 declare interface DialogExtendOption {
 	closable?: boolean;
@@ -95,6 +131,10 @@ namespace JQueryUI {
 		___destroy(): void;
 	}
 }
+declare interface IEmojify {
+	run( $elem: HTMLElement ): void;
+}
 declare function _get_route( url: string ): string;
 declare function to_number( obj: any ): number;
 declare var Sow: import( './sow-framework' ).ISow;
+declare var emojify: IEmojify;

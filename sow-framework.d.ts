@@ -68,6 +68,11 @@ declare type ModuleRequire = ( name: string ) => any;
 declare type IModules = { [id: string]: [( require: ModuleRequire, module: IAssembler, exports: Dct<any> ) => Dct<any>, Dct<any>] };
 declare interface IDate {
 	get(): string;
+	getLocal( offset: string, now?: Date ): Date;
+	getMap(): {
+		month: { [id: number]: string };
+		day: { [id: number]: string };
+	}
 }
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
@@ -103,4 +108,8 @@ export declare interface ISow {
 	parseParam( obj: any ): Dct<any>;
 	date: IDate;
 	currentPage(): string;
+	sound: {
+		message(): this;
+		notification(): this;
+	}
 }
