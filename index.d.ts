@@ -59,13 +59,41 @@ declare interface JQuery<TElement = any> {
 	disable(): this;
 	htmla( obj: any ): this;
 }
-declare interface Dialog {
-	isOpen(): boolean;
-    close: any;
-	destroy(): void;
-	state(): string;
-	restore(): void;
-	___destroy(): void;
+declare interface DialogExtendOption {
+	closable?: boolean;
+	maximizable?: boolean;
+	minimizable?: boolean;
+	collapsable?: boolean;
+	titlebar?: boolean;
+	minimizeLocation?: string;
+	icons?: Dct<string>;
+	load?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	beforeCollapse?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	beforeMaximize?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	beforeMinimize?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	beforeRestore?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	collapse?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	maximize?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	minimize?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+	restore?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
+}
+namespace JQueryUI {
+	interface Widget {
+		( config: JQueryUI.DialogOptions, $container: JQuery<HTMLElement> ): Dialog;
+	}
+	interface UI {
+		dialogExtend( opt: DialogExtendOption, elem: JQuery<HTMLElement> ): Dialog;
+	}
+	interface Dialog {
+		open(): Dialog;
+		element: JQuery<HTMLElement>;
+		isOpen(): boolean;
+		close(): any;
+		destroy(): void;
+		state(): "minimized" | "collapsed";
+		restore(): void;
+		___destroy(): void;
+	}
 }
 declare function _get_route( url: string ): string;
 declare function to_number( obj: any ): number;

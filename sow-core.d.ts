@@ -227,6 +227,18 @@ declare type XHRConfig = {
     done( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } ): void;
     fail( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } | string, xhr?: JQueryXHR, textStatus?: string, error?: string ): void;
 };
+export declare type DatabaseRequestConfig = {
+    route: string;
+    uri?: string;
+    def: Dct<any>;
+    conf: {
+        sp: string;
+        validate: boolean;
+        module: string;
+    };
+    done( data: { ret_val: number; ret_msg: string; ret_data_table: any } ): void;
+    fail( jqXHR: JQueryXHR, textStatus?: string, error?: string ): void;
+};
 declare interface INotification {
     clean(): void;
     exit( $el?: JQuery<HTMLDivElement> ): void;
@@ -243,7 +255,7 @@ declare interface IPageContext {
     readonly _query: IRequest;
     readonly __data_navigate: boolean;
     readonly notification: INotification;
-    $ui(): Dialog | void;
+    $ui(): JQueryUI.Dialog | void;
     // require( fn: string | ( () => void ), b?: string ): any;
     getElem(): JQuery<HTMLDivElement>;
     onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
@@ -320,7 +332,7 @@ export declare class PageContext implements IPageContext {
     public readonly _query: IRequest;
     public readonly isdialog: boolean;
     public readonly isDisposed: boolean;
-    public $ui(): Dialog | void;
+    public $ui(): JQueryUI.Dialog | void;
     public readonly reg: IPageRegInfo;
     private readonly cmd: ISQLCommand;
     private readonly pageEvent: IPageEvent;
@@ -340,7 +352,7 @@ export declare class PageContext implements IPageContext {
     }>;
     private readonly _navigator?: INavigator;
     private readonly fm: Dct<ElementInfo>;
-    constructor( route: string, $elm: JQuery<HTMLDivElement>, __cb: ( status: string ) => void, isdialog: boolean, ___$ui?: Dialog );
+    constructor( route: string, $elm: JQuery<HTMLDivElement>, __cb: ( status: string ) => void, isdialog: boolean, ___$ui?: JQueryUI.Dialog );
     private postmortem(): void;
     private getInteractive(): Dialog;
     private _: {
@@ -410,7 +422,7 @@ declare interface InternalWorker {
 }
 export declare type ISqlDef = { ( pageCtx: IPageContext, pv: string, obj: Dct<any> ):void | Dct<any> | string};
 export declare interface IWebUI {
-    renderView( route: string, $elm: JQuery<HTMLDivElement>, __cb: ( status: string ) => void, isdialog?: boolean, ___$ui?: Dialog, __container_key?: string ): void;
+    renderView( route: string, $elm: JQuery<HTMLDivElement>, __cb: ( status: string ) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string ): void;
     getTemplateName( route ): string | void;
     transportRequest( route: string, obj?: IRequest ): IWebUI;
     resolve( opt: { url: string; route: string; done: () => void } ): boolean;
