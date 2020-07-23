@@ -6,6 +6,7 @@
 * See the accompanying LICENSE file for terms.
 */
 // 11:18 PM 7/18/2020
+import { OpenNewWindowConfig } from './sow-core';
 export declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
@@ -26,9 +27,14 @@ declare class Assembler {
 	constructor();
 }
 declare interface IHook {
+	hook( schema: "__web__page" ): IHook;
 	hook( schema?: string ): IHook;
+	add( name: "__open__new", fn: ( cfg: OpenNewWindowConfig ) => void ): IHook;
+	add( name: "on_route_change", fn: ( a: string, $b: JQuery<HTMLElement>, script?: string, c?: ( status: string ) => void, isdialog?: boolean, $ui?: Dialog ) => void ): IHook;
 	add( name: string, fn: ( ...args: any[] ) => void ): IHook;
 	fire( evt: string, args: any[] ): IHook;
+	fire( evt: "__open__new", args: OpenNewWindowConfig[] ): IHook;
+	firea( evt: "on_route_change", a: string, $b: JQuery<HTMLElement>, script?: string, c?: ( status: string ) => void, isdialog?: boolean, $ui?: Dialog );
 	firea( ...args: any[] ): IHook;
 }
 declare interface IHookFunc {
@@ -96,4 +102,5 @@ export declare interface ISow {
 	JSON( obj: any ): any[];
 	parseParam( obj: any ): Dct<any>;
 	date: IDate;
+	currentPage(): string;
 }

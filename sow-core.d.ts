@@ -429,9 +429,18 @@ export declare interface IWebUI {
     getTemplate( templ?: string, cb: ( status: string, template: string ) => void ): void;
 }
 export declare type OpenNewWindowConfig = {
-    draggable?: boolean; modal?: boolean; resizable?: boolean;
+    dependency?: string;
+    draggable?: boolean;
+    modal?: boolean;
+    resizable?: boolean;
     autoOpen?: boolean;
-    url: string; route: string; done?: ( ...args: any[] ) => void
+    url?: string;
+    route: string;
+    height?: string;
+    width?: string;
+    position?: { my?: string, at?: string };
+    done?: ( ...args: any[] ) => void;
+    fail?: ( ...args: any[] ) => void;
 };
 export declare interface IWeb {
     page( config: IPageConfig ): void;
