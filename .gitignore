@@ -1,6 +1,6 @@
 node_modules
 !.gitignore
-package-lock.json
 **/log
 **/.vs
 **/obj/Debug
+package-lock.json

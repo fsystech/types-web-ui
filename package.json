@@ -23,5 +23,7 @@
     "@types/node": "^8.0.14",
     "typescript": "^3.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cwserver": "git+https://github.com/safeonlineworld/cwserver.git"
+  }
 }

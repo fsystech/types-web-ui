@@ -97,7 +97,7 @@ declare interface JQuery<TElement = any> {
 	html( val: JQuery<HTMLElement> ): this;
 	tablesorter_destroy(): void;
 }
-interface JQueryStatic {
+declare interface JQueryStatic {
 	makeArray<T>( arg1: T[], arg2: T[] ): T[];
 	confirm( ...args: any[] ): JQuery<HTMLElement>;
 	alert( ...args: any[] ): JQuery<HTMLElement>;
@@ -143,9 +143,10 @@ namespace JQueryUI {
 declare interface IEmojify {
 	run( $elem: HTMLElement ): void;
 }
-declare interface IContext { }
 declare function _get_route( url: string ): string;
 declare function to_number( obj: any ): number;
+/** Safe Online World Ltd. Web UI core Framework */
 declare var Sow: import( './sow-framework' ).ISow;
 declare var emojify: IEmojify;
-declare var ctx: IContext;
+/** ctx can be define in back-end template engine */
+declare var ctx: import( 'cwserver' ).IContext;
