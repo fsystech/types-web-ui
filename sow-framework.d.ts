@@ -44,6 +44,7 @@ declare interface IHookFunc {
 declare interface Ihub {
 	getServerProxy(): string[];
 	socket(): any;
+	init( needMsgInit?: boolean ): void;
 }
 declare interface IShow {
 	/** Hide all open notification */
