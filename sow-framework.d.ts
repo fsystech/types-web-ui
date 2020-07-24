@@ -7,10 +7,6 @@
 */
 // 11:18 PM 7/18/2020
 import { OpenNewWindowConfig } from './sow-core';
-export declare interface Dct<T> {
-	[id: string]: T | undefined;
-}
-export declare interface HTMLElement{}
 declare interface IAssembler {
 	Class<T>( ...args: T[] ): T;
 	Class<T>( arg1: T ): T;
@@ -46,6 +42,13 @@ declare interface Ihub {
 	socket(): any;
 	init( needMsgInit?: boolean ): void;
 }
+declare interface IDataMap {
+	set<T>( mom: T, child?: any, value?: any ): IDataMap;
+	get( mom?: string, child?: any, deep?: boolean, deeper?: boolean ): any;
+	push( mom: string, child: any, value?: any ): IDataMap;
+	clean(): IDataMap;
+	clear(): IDataMap;
+}
 declare interface IShow {
 	/** Hide all open notification */
 	h(): IShow;
@@ -75,12 +78,17 @@ declare interface IDate {
 		day: { [id: number]: string };
 	}
 }
+declare interface IData {
+	export(): IDataMap;
+}
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
 	hub: Ihub;
 	async( callback: ( ...args: any[] ) => void, ms: number | void ): void;
 	registerNamespace( name: string, callback: () => [IModules, Dct<any>, string[]] ): ISow;
 	mapPageNamespace(): void;
+	reRegisterNamespace( name: string ): ISow;
+	exportNamespace( name: string ): any;
 	define<T>( name: string, fun: ( () => T ) | Dct<T> ): ISow;
 	Web: import( './sow-core' ).IWeb;
 	usingNamespace( name: string ): ISow;
@@ -112,5 +120,10 @@ export declare interface ISow {
 	sound: {
 		message(): this;
 		notification(): this;
-	}
+	};
+	store: IDataMap;
+	Data: {
+		new(): IData;
+		readonly prototype: IData;
+	};
 }

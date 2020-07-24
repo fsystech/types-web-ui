@@ -52,7 +52,9 @@ interface ExceptionConstructor extends ErrorConstructor {
 	readonly prototype: Exception;
 }
 declare var Exception: ExceptionConstructor;
-declare interface HTMLElement { }
+declare interface HTMLElement {
+	tablesorter_destroy(): void;
+}
 declare type SlimScrollConfig = {
 	width?: string;
 	height?: string;
@@ -88,10 +90,12 @@ declare interface JQuery<TElement = any> {
 	fancybox( cfg: any ): this;
 	Lazy( cfg: any ): this;
 	prop( name: string ): string | void;
+	prop( name: "checked" ): boolean;
 	attr( name: string ): string | void;
 	val(): string | void;
 	html( n: number ): this;
 	html( val: JQuery<HTMLElement> ): this;
+	tablesorter_destroy(): void;
 }
 interface JQueryStatic {
 	makeArray<T>( arg1: T[], arg2: T[] ): T[];
@@ -138,7 +142,9 @@ namespace JQueryUI {
 declare interface IEmojify {
 	run( $elem: HTMLElement ): void;
 }
+declare interface IContext { }
 declare function _get_route( url: string ): string;
 declare function to_number( obj: any ): number;
 declare var Sow: import( './sow-framework' ).ISow;
 declare var emojify: IEmojify;
+declare var ctx: IContext;
