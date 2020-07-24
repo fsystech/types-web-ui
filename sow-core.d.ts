@@ -11,16 +11,17 @@ import * as JQuery from 'jquery';
 declare type ReqFuncs = { xhr: JQueryXHR };
 declare type ReqFunc = { ( name?: string, b?: string ): void };
 declare type SearchDetail = {
+    [id: string]: any;
     show: boolean;
     template: string;
-    header?: string[];
-    poperty?: string[];
+    header?: any[];
+    poperty?: any[];
     tablesorter?: boolean;
     detail_event?: boolean | {
         on_page_ready: ( pagctx: IPageContext ) => void;
     };
     onRender( pagctx: IPageContext, $owner: JQuery<HTMLElement> ): void;
-    beforeRender?: ( data: any ) => void;
+    beforeRender?: ( pagctx: IPageContext, data: any ) => void;
     dump?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement>, resp: Dct<any> ) => void;
 };
 export declare interface IPageRegInfo {
@@ -172,6 +173,11 @@ declare type DropDef = {
     url?: string; sp: ( ( pageCtx: IPageContext ) => void ) | string;
 };
 declare type SourceType = {
+    query?: string;
+    schema?: string;
+    table?: string;
+    poperty?: string;
+    type?: "SQL" | "SP";
     add_new?: string;
     search_poperty: string;
     drop_type?: "selectize"; load?: boolean;
