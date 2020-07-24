@@ -53,7 +53,7 @@ interface ExceptionConstructor extends ErrorConstructor {
 }
 declare var Exception: ExceptionConstructor;
 declare interface HTMLElement {
-	tablesorter_destroy(): void;
+	tablesorter_destroy?: () => void;
 }
 declare type SlimScrollConfig = {
 	width?: string;
