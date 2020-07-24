@@ -102,6 +102,7 @@ interface JQueryStatic {
 	confirm( ...args: any[] ): JQuery<HTMLElement>;
 	alert( ...args: any[] ): JQuery<HTMLElement>;
 	dialog( ...args: any[] ): JQuery<HTMLElement>;
+	contextMenu( ...args: any[] ): JQuery<HTMLElement>;
 }
 declare interface DialogExtendOption {
 	closable?: boolean;

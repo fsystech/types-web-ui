@@ -53,20 +53,20 @@ declare interface IShow {
 	/** Hide all open notification */
 	h(): IShow;
 	/** Show information notification
-	 * @param {string|void} msg
+	 * @param {any} msg
 	 * @returns {IShow}
 	 */
-	i( msg?: string ): this;
+	i( msg?: any ): this;
 	/** Show success notification
-	 * @param {string|void} msg
+	 * @param {any} msg
 	 * @returns {IShow}
 	 */
-	s( msg?: string ): this;
+	s( msg?: any ): this;
 	/** Show error notification
-	 * @param {string|void} msg
+	 * @param {any} msg
 	 * @returns {IShow}
 	 */
-	e( msg?: string ): this;
+	e( msg?: any ): this;
 }
 declare type ModuleRequire = ( name: string ) => any;
 declare type IModules = { [id: string]: [( require: ModuleRequire, module: IAssembler, exports: Dct<any> ) => Dct<any>, Dct<any>] };

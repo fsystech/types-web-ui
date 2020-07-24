@@ -123,7 +123,7 @@ export declare type ElementInfo = {
     /** Define the type of element */
     readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'switch' | 'html' | 'widget';
     /** this is element name */
-    readonly name: string;
+    readonly name?: string;
     /** Can use this element when search tigger ? */
     readonly src?: boolean;
     /** Use this rules for this element validation */
@@ -141,7 +141,7 @@ export declare type ElementInfo = {
     /** this element custom class */
     readonly cls?: string;
     /** This is element label */
-    readonly title: string;
+    readonly title?: string;
     /** Cust element HTML */
     readonly html?: string | ( () => string );
     /** Element attribute */
@@ -166,14 +166,16 @@ export declare type ElementInfo = {
     readonly widget?: string;
     /** It will be effect while your element type is dropdown*/
     readonly source?: ( ( pageCtx: IPageContext ) => SourceType ) | 'OWN' | SourceType;
-    readonly drop_type: "select" | "selectize" | string;
+    readonly drop_type?: "select" | "selectize" | string;
 };
-declare type DropDef = { method: "GET" | "POST", url: string, sp: ( ( pageCtx: IPageContext ) => void ) | string };
+declare type DropDef = {
+    url?: string; sp: ( ( pageCtx: IPageContext ) => void ) | string;
+};
 declare type SourceType = {
-    add_new: string;
+    add_new?: string;
     search_poperty: string;
     drop_type?: "selectize"; load?: boolean;
-    drop_def?: DropDef | ( ( obj: Dct<any>, pageCtx: IPageContext, def: ( look: DropDef ) => void ) => void );
+    drop_def?: DropDef | ( ( obj: Dct<any>, pageCtx: IPageContext, lookup: ( look: DropDef ) => void ) => void );
 };
 export declare interface IWidget {
     readonly title: string;
@@ -218,7 +220,7 @@ declare type ConfirmConfig = {
     cancel: ( msg: string, inst: JQuery<any> ) => void;
 };
 declare type XHRConfig = {
-    readonly uri: string;
+    readonly uri?: string;
     readonly def: Dct<any>;
     readonly sp: string;
     readonly validate: boolean;
@@ -251,6 +253,7 @@ declare interface IPageContext {
     readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
     readonly _query: IRequest;
     readonly notification: INotification;
+    readonly destroy_event: ( () => void )[];
     __data_navigate: boolean;
     prepare( containerKey: string ): void;
     $ui(): JQueryUI.Dialog | void;
