@@ -20,7 +20,10 @@ declare interface IAssembler {
 }
 declare class Assembler {
 	public readonly Create: IAssembler;
-	constructor();
+}
+export declare interface AssemblerConstructor {
+    new(  ): Assembler;
+    readonly prototype: Assembler;
 }
 declare interface IHook {
 	hook( schema: "__web__page" ): IHook;
@@ -93,7 +96,7 @@ export declare interface ISow {
 	Web: import( './sow-core' ).IWeb;
 	usingNamespace( name: string ): ISow;
 	unloadNamespace( name: string ): ISow;
-	Assembler: Assembler;
+	Assembler: AssemblerConstructor;
 	hook: IHookFunc;
 	App: {
 		name: string;
@@ -118,8 +121,8 @@ export declare interface ISow {
 	date: IDate;
 	currentPage(): string;
 	sound: {
-		message(): this;
-		notification(): this;
+		message(): void;
+		notification(): void;
 	};
 	store: IDataMap;
 	Data: {

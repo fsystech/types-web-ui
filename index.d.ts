@@ -2,6 +2,8 @@
 // Project: https://safeonline.world/
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 
+/// <reference types="jquery"/>
+
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
@@ -45,8 +47,8 @@ declare interface Element {
 }
 declare interface Exception extends Error { }
 interface ExceptionConstructor extends ErrorConstructor {
-	new( message?: string, fileName?: string, lineNumber: string | number ): Exception;
-	( message?: string, fileName?: string, lineNumber: string | number ): Exception;
+	new( message?: string, fileName?: string, lineNumber?: string | number ): Exception;
+	( message?: string, fileName?: string, lineNumber?: string | number ): Exception;
 	new( message?: string ): Exception;
 	( message?: string ): Exception;
 	readonly prototype: Exception;
@@ -80,7 +82,7 @@ declare type SlimScrollConfig = {
 	borderRadius?: string;
 	railBorderRadius?: string;
 };
-declare interface JQuery<TElement = any> {
+declare interface JQuery<TElement = HTMLElement> {
 	exit(): this;
 	enable(): this;
 	disable(): this;
@@ -122,7 +124,7 @@ declare interface DialogExtendOption {
 	minimize?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
 	restore?: ( evt: JQueryEventObject, dlg: JQueryUI.Dialog ) => void;
 }
-namespace JQueryUI {
+declare namespace JQueryUI {
 	interface Widget {
 		( config: JQueryUI.DialogOptions, $container: JQuery<HTMLElement> ): Dialog;
 	}
@@ -145,6 +147,7 @@ declare interface IEmojify {
 }
 declare function _get_route( url: string ): string;
 declare function to_number( obj: any ): number;
+declare function setInterval( callback: ( ...args: any[] ) => void, ms: number, ...args: any[] ): number;
 /** Safe Online World Ltd. Web UI core Framework */
 declare var Sow: import( './sow-framework' ).ISow;
 declare var emojify: IEmojify;

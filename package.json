@@ -20,10 +20,9 @@
   "devDependencies": {
     "@types/jquery": "^3.5.0",
     "@types/jqueryui": "^1.12.13",
-    "@types/node": "^8.0.14",
+    "@types/node": "^8.10.62",
+    "cwserver": "git+https://github.com/safeonlineworld/cwserver.git",
     "typescript": "^3.2.2"
   },
-  "dependencies": {
-    "cwserver": "git+https://github.com/safeonlineworld/cwserver.git"
-  }
+  "dependencies": {}
 }
