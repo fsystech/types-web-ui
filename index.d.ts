@@ -98,6 +98,7 @@ declare interface JQuery<TElement = HTMLElement> {
 	html( n: number ): this;
 	html( val: JQuery<HTMLElement> ): this;
 	tablesorter_destroy(): void;
+	croppie(...args:any[]):Promise<HTMLCanvasElement>;
 }
 declare interface JQueryStatic {
 	makeArray<T>( arg1: T[], arg2: T[] ): T[];
@@ -105,7 +106,6 @@ declare interface JQueryStatic {
 	alert( ...args: any[] ): JQuery<HTMLElement>;
 	dialog( ...args: any[] ): JQuery<HTMLElement>;
 	contextMenu( ...args: any[] ): JQuery<HTMLElement>;
-	croppie(...args:any[]):Promise<HTMLCanvasElement>;
 }
 declare interface DialogExtendOption {
 	closable?: boolean;
