@@ -92,6 +92,7 @@ export declare interface ISow {
 	mapPageNamespace(): void;
 	reRegisterNamespace( name: string ): ISow;
 	exportNamespace( name: string ): any;
+	requirePublicModule(namespaceName:string, moduleName?:string ):any;
 	define<T>( name: string, fun: ( () => T ) | Dct<T> ): ISow;
 	Web: import( './sow-core' ).IWeb;
 	usingNamespace( name: string ): ISow;
