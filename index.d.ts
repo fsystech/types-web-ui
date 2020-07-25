@@ -105,6 +105,7 @@ declare interface JQueryStatic {
 	alert( ...args: any[] ): JQuery<HTMLElement>;
 	dialog( ...args: any[] ): JQuery<HTMLElement>;
 	contextMenu( ...args: any[] ): JQuery<HTMLElement>;
+	croppie(...args:any[]):Promise<HTMLCanvasElement>;
 }
 declare interface DialogExtendOption {
 	closable?: boolean;
