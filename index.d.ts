@@ -36,6 +36,9 @@ declare interface StringConstructor {
 declare interface Console {
 	elog( e: Error | Exception | string , wt?: boolean ): void;
 }
+declare interface FormData {
+	append( name: string, value: number, fileName?: string ): void;
+}
 declare interface NodeList {
 	remove(): this;
 }
@@ -56,6 +59,9 @@ interface ExceptionConstructor extends ErrorConstructor {
 declare var Exception: ExceptionConstructor;
 declare interface HTMLElement {
 	tablesorter_destroy?: () => void;
+	files?: FileList;
+	value?: any;
+	checked?: boolean;
 }
 declare type SlimScrollConfig = {
 	width?: string;
@@ -98,7 +104,7 @@ declare interface JQuery<TElement = HTMLElement> {
 	html( n: number ): this;
 	html( val: JQuery<HTMLElement> ): this;
 	tablesorter_destroy(): void;
-	croppie(...args:any[]):Promise<HTMLCanvasElement>;
+	croppie( ...args: any[] ): Promise<HTMLCanvasElement>;
 }
 declare interface JQueryStatic {
 	makeArray<T>( arg1: T[], arg2: T[] ): T[];
@@ -146,9 +152,14 @@ declare namespace JQueryUI {
 declare interface IEmojify {
 	run( $elem: HTMLElement ): void;
 }
+declare interface IGScript {
+	remove( what: string, next?: () => void ): void;
+	load( path: string, next?: () => void, isPackage?: boolean, module?: string ): void;
+}
 declare function _get_route( url: string ): string;
 declare function to_number( obj: any ): number;
 declare function setInterval( callback: ( ...args: any[] ) => void, ms: number, ...args: any[] ): number;
+declare var __script: IGScript;
 /** Safe Online World Ltd. Web UI core Framework */
 declare var Sow: import( './sow-framework' ).ISow;
 declare var emojify: IEmojify;

@@ -211,7 +211,7 @@ declare type AlertConfig = {
 declare type PromptConfig = {
     readonly icon?: string;
     readonly title?: string;
-    readonly required?: boolean;
+    readonly required?: boolean | Dct<any>;
     readonly content?: string[] | string;
     ok: ( val: any ) => void;
     cancel: () => void;

@@ -89,9 +89,11 @@ export declare interface ISow {
 	hub: Ihub;
 	async( callback: ( ...args: any[] ) => void, ms: number | void ): void;
 	registerNamespace( name: string, callback: () => [IModules, Dct<any>, string[]] ): ISow;
-	mapPageNamespace(): void;
+	mapPageNamespace( ...args: any[] ): ISow;
+	exportModule( name: string): any;
 	reRegisterNamespace( name: string ): ISow;
 	exportNamespace( name: string ): any;
+	namespaceExists( name: string ): boolean;
 	requirePublicModule(namespaceName:string, moduleName?:string ):any;
 	define<T>( name: string, fun: ( () => T ) | Dct<T> ): ISow;
 	Web: import( './sow-core' ).IWeb;
