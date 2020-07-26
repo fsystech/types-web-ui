@@ -321,7 +321,7 @@ export declare interface INavigator {
     setData( data: Dct<any>[], $tabel?: JQuery<HTMLElement>, nPopulate?: boolean ): INavigator;
     enable(): INavigator;
     disable(): INavigator;
-    changeIndex( row: number, cb?: () => void, is_table?: boolean ): INavigator;
+    changeIndex( row?: number, cb?: () => void, is_table?: boolean ): INavigator;
     delete( obj: Dct<any> ): void;
     data_backward( $el: JQuery<HTMLElement> ): INavigator;
     data_backward_last( $el: JQuery<HTMLElement> ): INavigator;
