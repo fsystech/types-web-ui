@@ -72,7 +72,7 @@ export declare interface IPageRegInfo {
     } | Dct<any>;
     dynamic_report: boolean;
     report: ( event: any ) => void;
-    print_settings?: () => void;
+    print_settings?: ( pagctx: IPageContext, primaryKey: string, index: any ) => void;
 }
 declare interface IPageConfig {
     readonly reg: IPageRegInfo;
@@ -322,7 +322,7 @@ export declare interface INavigator {
     enable(): INavigator;
     disable(): INavigator;
     changeIndex( row: number, cb?: () => void, is_table?: boolean ): INavigator;
-    delete(): void;
+    delete( obj: Dct<any> ): void;
     data_backward( $el: JQuery<HTMLElement> ): INavigator;
     data_backward_last( $el: JQuery<HTMLElement> ): INavigator;
     data_forward( $el: JQuery<HTMLElement> ): INavigator;
