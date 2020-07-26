@@ -245,9 +245,12 @@ export declare type DatabaseRequestConfig = {
     fail( jqXHR: JQueryXHR, textStatus?: string, error?: string ): void;
 };
 declare interface INotification {
-    clean( $el: JQuery<HTMLElement> ): void;
-    exit( $el?: JQuery<HTMLElement> ): void;
-    show( $el: JQuery<HTMLElement>, msg: string, cls?: string, interval?: number ): void;
+    /** Clean notification */
+    clean(): void;
+    /** Exit notification */
+    exit(): void;
+    /** Show notificaton */
+    show( msg: string, cls?: string, interval?: number ): void;
 }
 export declare type IRequest = {
     route: string; original: string; param: Dct<any>;
