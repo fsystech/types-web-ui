@@ -262,6 +262,7 @@ declare interface IPageContext {
     readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
     readonly _query: IRequest;
     readonly notification: INotification;
+    readonly $elm: JQuery<HTMLElement>;
     readonly destroy_event: ( () => void )[];
     __data_navigate: boolean;
     prepare( containerKey: string ): void;
@@ -346,6 +347,7 @@ export declare class PageContext implements IPageContext {
     public readonly isdialog: boolean;
     public readonly isDisposed: boolean;
     public $ui(): JQueryUI.Dialog | void;
+    public readonly $elm: JQuery<HTMLElement>;
     public readonly reg: IPageRegInfo;
     private readonly cmd: ISQLCommand;
     private readonly pageEvent: IPageEvent;
