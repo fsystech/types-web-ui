@@ -169,12 +169,12 @@ declare type DropzoneExtendConfig = {
 		url?: string;
 		addRemoveLinks?: boolean;
 		clickable?: boolean;
-		acceptedFiles?: string
+		acceptedFiles?: string;
+		maxFilesize?: number;
 	},
 	handler: string;
 	directory: string;
 	random_fname?: boolean;
-	maxFilesize?: number;
 	key?: string;
 };
 declare interface IDropzoneConstructor {
