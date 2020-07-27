@@ -154,6 +154,7 @@ declare interface IEmojify {
 }
 declare type DropzoneParam = { folder_name: string; delete_all?: boolean; generate_thumb?: boolean };
 declare interface IDropzoneExtend {
+	readonly is_created: boolean;
 	create( elem: HTMLElement ): IDropzoneExtend;
 	getDropzone(): IDropzoneExtend;
 	clean(): IDropzoneExtend;
@@ -183,10 +184,10 @@ declare interface IDropzoneConstructor {
 	get_template( msg: string ): string;
 	export( cfg: { dir: string; key: string; }, pageCtx: import( './sow-core' ).IPageContext ): IDropzoneExtend;
 	support: {
-		get_file_name(): string;
-		get_ext(): string;
-		get_path(): string;
-		toBase64(): string;
+		get_file_name( path: string ): string;
+		get_ext( path: string ): string;
+		get_path( root: string, path: string ): string;
+		toBase64( file: File ): string;
 	};
 }
 declare interface IGScript {
