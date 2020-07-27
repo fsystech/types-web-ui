@@ -152,6 +152,41 @@ declare namespace JQueryUI {
 declare interface IEmojify {
 	run( $elem: HTMLElement ): void;
 }
+declare type DropzoneParam = { folder_name: string; delete_all?: boolean; generate_thumb?: boolean };
+declare interface IDropzoneExtend {
+	create( elem: HTMLElement ): IDropzoneExtend;
+	getDropzone(): IDropzoneExtend;
+	clean(): IDropzoneExtend;
+	has_file(): boolean;
+	upload( param: DropzoneParam, next: ( error: boolean, description?: string ) => void ): void;
+	delete( param: DropzoneParam, next: ( error: boolean, description?: string ) => void ): void;
+	createGrid( path: string, files: File[] ): void;
+	load( param: DropzoneParam, next: () => void ): void;
+	dispose(): void;
+}
+declare type DropzoneExtendConfig = {
+	drop_zone: {
+		url?: string;
+		addRemoveLinks?: boolean;
+		clickable?: boolean;
+		acceptedFiles?: string[]
+	},
+	handler: string;
+	directory: string;
+	random_fname?: boolean;
+};
+declare interface IDropzoneConstructor {
+	new( cfg: DropzoneExtendConfig ): IDropzoneExtend;
+	readonly prototype: IDropzoneExtend;
+	get_template( msg: string ): string;
+	export( cfg: { dir: string; key: string; }, pageCtx: import( './sow-core' ).IPageContext ): IDropzoneExtend;
+	support: {
+		get_file_name(): string;
+		get_ext(): string;
+		get_path(): string;
+		toBase64(): string;
+	};
+}
 declare interface IGScript {
 	remove( what: string, next?: () => void ): void;
 	load( path: string, next?: () => void, isPackage?: boolean, module?: string ): void;
@@ -165,3 +200,4 @@ declare var Sow: import( './sow-framework' ).ISow;
 declare var emojify: IEmojify;
 /** ctx can be define in back-end template engine */
 declare var ctx: import( 'cwserver' ).IContext;
+declare var DropzoneExtend: IDropzoneConstructor;
