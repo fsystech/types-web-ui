@@ -174,6 +174,8 @@ declare type DropzoneExtendConfig = {
 	handler: string;
 	directory: string;
 	random_fname?: boolean;
+	maxFilesize?: number;
+	key?: string;
 };
 declare interface IDropzoneConstructor {
 	new( cfg: DropzoneExtendConfig ): IDropzoneExtend;
