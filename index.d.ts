@@ -169,7 +169,7 @@ declare type DropzoneExtendConfig = {
 		url?: string;
 		addRemoveLinks?: boolean;
 		clickable?: boolean;
-		acceptedFiles?: string[]
+		acceptedFiles?: string
 	},
 	handler: string;
 	directory: string;
