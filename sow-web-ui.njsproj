@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <Content Include="LICENSE-DOCS.md" />
     <Content Include="package.json" />
     <Content Include="README.md" />
   </ItemGroup>

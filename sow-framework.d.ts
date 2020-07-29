@@ -84,17 +84,38 @@ declare interface IDate {
 declare interface IData {
 	export(): IDataMap;
 }
+interface IBrowser {
+	Promise: {
+		support: boolean;
+	};
+	blob: {
+		support: boolean;
+	};
+	workerThread: {
+		support: boolean;
+	};
+	compatibility: {
+		cssTransforms: boolean;
+		lineClamp: boolean;
+	};
+	dom: number;
+	name: string;
+	type: string;
+	version: number;
+	support( cfg: Dct<any> ): void;
+}
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
 	hub: Ihub;
 	async( callback: ( ...args: any[] ) => void, ms: number | void ): void;
 	registerNamespace( name: string, callback: () => [IModules, Dct<any>, string[]] ): ISow;
 	mapPageNamespace( ...args: any[] ): ISow;
-	exportModule( name: string): any;
+	exportModule( name: string ): any;
 	reRegisterNamespace( name: string ): ISow;
 	exportNamespace( name: string ): any;
+	mapNamespace( parent: string, child: string ): ISow;
 	namespaceExists( name: string ): boolean;
-	requirePublicModule(namespaceName:string, moduleName?:string ):any;
+	requirePublicModule( namespaceName: string, moduleName?: string ): any;
 	define<T>( name: string, fun: ( () => T ) | Dct<T> ): ISow;
 	Web: import( './sow-core' ).IWeb;
 	usingNamespace( name: string ): ISow;
@@ -132,4 +153,28 @@ export declare interface ISow {
 		new(): IData;
 		readonly prototype: IData;
 	};
+	Static: {
+		all( obj: Dct<any> ): any;
+		define( obj: Dct<any>, poperty: string, value: any ): any;
+		change( obj: Dct<any>, poperty: string, value: any ): any;
+	};
+	browser: IBrowser;
+	dom: {
+		isDesktop: boolean;
+		isHighDensity: boolean;
+		isRetina: boolean;
+		isSmartPhone: boolean;
+		isTablet: boolean;
+	};
+	export( nam: string ): any;
+	isArrayLike<T>( obj?: any ): obj is T[];
+	isDate( val: any ): val is Date;
+	isError( obj ): obj is Error;
+	isPlainObject<T>( obj?: any ): obj is Dct<T>;
+	multi: {
+		inherit( ...args: any[] ): any;
+	};
+	onRouterChange( event: Dct<any> ): void;
+	remove( name: string ): ISow;
+	require( name: string ): any;
 }
