@@ -263,6 +263,7 @@ declare interface IPageContext {
     readonly _query: IRequest;
     readonly notification: INotification;
     readonly $elm: JQuery<HTMLElement>;
+    readonly $container: JQuery<HTMLElement>;
     readonly destroy_event: ( () => void )[];
     __data_navigate: boolean;
     prepare( containerKey: string ): void;
@@ -348,7 +349,9 @@ export declare class PageContext implements IPageContext {
     public readonly isDisposed: boolean;
     public $ui(): JQueryUI.Dialog | void;
     public readonly $elm: JQuery<HTMLElement>;
+    public readonly $container: JQuery<HTMLElement>;
     public readonly reg: IPageRegInfo;
+    public readonly destroy_event: ( () => void )[];
     private readonly cmd: ISQLCommand;
     private readonly pageEvent: IPageEvent;
     public readonly elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
@@ -356,7 +359,6 @@ export declare class PageContext implements IPageContext {
     private readonly sql_def: Dct<ISqlDef>;
     private readonly ___callback: ( () => void )[];
     private readonly _cb: ( status: string ) => void;
-    private readonly destroy_event: ( () => void )[];
     private readonly drop_srch_map: Dct<string>;
     private readonly dispose_prop: { key: string; type: string; }[];
     private readonly source: ISource;
