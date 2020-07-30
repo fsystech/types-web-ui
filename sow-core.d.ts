@@ -262,12 +262,14 @@ declare interface IPageContext {
     readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
     readonly _query: IRequest;
     readonly notification: INotification;
+    /** @deprecated since v0.0.1 - use `$container` instead. */
     readonly $elm: JQuery<HTMLElement>;
     readonly $container: JQuery<HTMLElement>;
     readonly destroy_event: ( () => void )[];
     __data_navigate: boolean;
     prepare( containerKey: string ): void;
     $ui(): JQueryUI.Dialog | void;
+    /** @deprecated since v0.0.1 - use `$container` instead. */
     getElem(): JQuery<HTMLElement>;
     onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
     onDispose(): void;
