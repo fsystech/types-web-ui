@@ -62,6 +62,14 @@ export declare interface IPageRegInfo {
             before?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement> ) => void;
             after?: ( pagctx: IPageContext, resp: any, isUpdate: boolean ) => void;
         };
+        delete?: {
+            before?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement> ) => void;
+            after?: ( pagctx: IPageContext, resp: any ) => void;
+        };
+        search?: {
+            before?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement> ) => void;
+            after?: ( pagctx: IPageContext, resp: any ) => void;
+        };
     };
     button: {
         footer: {
