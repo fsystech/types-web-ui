@@ -223,3 +223,129 @@ declare type OpenNewWindowConfig = import( './sow-core' ).OpenNewWindowConfig;
 declare type DatabaseRequestConfig = import( './sow-core' ).DatabaseRequestConfig;
 declare type IProxyServer = import( './sow-chat-ui' ).IProxyServer;
 declare type ChatUICore = import( './sow-chat-ui' ).ICore;
+
+declare var ctx: import( 'cwserver' ).IContext;
+declare type XHandsontables = import( 'handsontable' ).default;
+declare interface HandsontableConstructor {
+	new( element: Element, options: import( 'handsontable' ).default.GridSettings ): XHandsontables;
+}
+declare var Handsontable: HandsontableConstructor;
+declare type IContext = import( 'cwserver' ).IContext;
+declare type ISession = import( 'cwserver' ).ISession;
+declare type IRequestc = import( 'cwserver' ).IRequest;
+declare type ISowServer = import( 'cwserver' ).ISowServer;
+declare type IoResult = import( 'cwserver' ).IoResult;
+declare type QResult = import( 'cwserver' ).QResult<NodeJS.Dict<any>>;
+declare type QueryResult = import( 'cwserver' ).QueryResult<NodeJS.Dict<any>>;
+declare type ISowSocketServer = import( 'cwserver' ).ISowSocketServer;
+declare type ISowSocketInfo = import( 'cwserver' ).ISowSocketInfo;
+declare type IPostedFileInfo = import( 'cwserver' ).IPostedFileInfo;
+declare type zlib = typeof import( 'zlib' );
+declare type Gzip = import( 'zlib' ).Gzip;
+declare type Agent = import( './agent' ).Agent;
+declare type SuperAgentStatic = import( 'superagent' ).SuperAgentStatic;
+declare interface IConnectionInfo {
+	host: string; port: number; user: string; database: string; password: string;
+}
+declare interface IUserSettings {
+	readonly theme_skin_key: string;
+	readonly app_type_const: string;
+	readonly menue_type_const: string;
+	readonly is_minified?: boolean | void;
+	readonly can_menu_modify?: boolean | void;
+	readonly user_name: string
+}
+declare interface IRouteRes {
+	total_url: number;
+	route: string;
+	us: IUserSettings
+}
+declare interface DBConfig {
+	sp: string;
+	module: string | void;
+	validate: boolean;
+}
+declare type DBConfigNext = ( result: { config: DBConfig; rules: Dct<any> | void, fromObject: Dct<any> } ) => void;
+declare interface QueryConfig {
+	sp: string;
+	form_object: Dct<any>
+}
+declare type QueryConfigNext = ( result: { config: QueryConfig; rules: Dct<any> | void } ) => void;
+declare interface IPages {
+	icon: string;
+	path: string;
+	title: string;
+	is_label: boolean;
+	label_id: number;
+	parent_id: number;
+	menu_order: number;
+	show_in_nav: boolean;
+	content_type: string;
+	app_resources_id: number;
+	has_shoutcut: boolean;
+	shortcut_css: string | void
+}
+declare interface IRoutObj {
+	_pages: IPages[]; _user_settings: IUserSettings;
+}
+declare interface IDashBoradPathInfo {
+	href: string;
+	imgDir: string;
+	labelId: number;
+	isLabel: boolean;
+	isShortcuts: boolean;
+}
+declare interface IReplacedPage {
+	path: string; new_icon_path: string, old_icon_path: string;
+}
+declare interface IAppPage {
+	app_resources_id: number;
+	path: string;
+	ext: string
+	content_type: string;
+	title: string;
+	label_id: any;
+	menu_order: any;
+	show_in_nav: any;
+	nav_module_cd: any;
+}
+declare interface ILocation {
+	is_local: boolean;
+	ip: string;
+	country_name: string;
+	country_code: string;
+	continent_name: string;
+	zip: string;
+	region_name: string;
+	city: string;
+	location: Dct<any>;
+	success: boolean;
+	error?: string;
+	ret_val: number;
+	currency_converter: number;
+	browser?: string;
+	is_mobile?: boolean;
+}
+declare interface IGeoPlugin {
+	geoplugin_request: string;
+	geoplugin_status: number;
+	geoplugin_delay: string;
+	geoplugin_credit: string;
+	geoplugin_city: string;
+	geoplugin_region: string;
+	geoplugin_regionName: string;
+	geoplugin_countryCode: string;
+	geoplugin_countryName: string;
+	geoplugin_continentName: string;
+	geoplugin_currencyConverter: number;
+}
+declare interface IBrowserInfo {
+	name: string; version: number; type: string
+}
+declare type LinkPreview = {
+	title?: string;
+	description: string;
+	error: boolean;
+	image?: string;
+	url: string;
+};
