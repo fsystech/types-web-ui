@@ -201,6 +201,23 @@ declare var __script: IGScript;
 /** Safe Online World Ltd. Web UI core Framework */
 declare var Sow: import( './sow-framework' ).ISow;
 declare var emojify: IEmojify;
-/** ctx can be define in back-end template engine */
-declare var ctx: import( 'cwserver' ).IContext;
 declare var DropzoneExtend: IDropzoneConstructor;
+declare type PageContext = import( './sow-core' ).PageContext;
+declare type PageContexConstructor = import( './sow-core' ).PageContexConstructor;
+declare type ElementInfo = import( './sow-core' ).ElementInfo;
+declare type IFormInfo = import( './sow-core' ).IFormInfo;
+declare type INavigator = import( './sow-core' ).INavigator;
+declare type IRequest = import( './sow-core' ).IRequest;
+declare type IPageConfig = import( './sow-core' ).IPageConfig;
+declare type ISource = import( './sow-core' ).ISource;
+declare type AlertConfig = import( './sow-core' ).AlertConfig;
+declare type PromptConfig = import( './sow-core' ).PromptConfig;
+declare type ConfirmConfig = import( './sow-core' ).ConfirmConfig
+declare type XHRConfig = import( './sow-core' ).XHRConfig;
+declare type IPageContext = import( './sow-core' ).IPageContext
+declare type IPageRegInfo = import( './sow-core' ).IPageRegInfo
+declare type ISQLCommand = import( './sow-core' ).ISQLCommand;
+declare type IPageEvent = import( './sow-core' ).IPageEvent
+declare type ISqlDef = import( './sow-core' ).ISqlDef;
+declare type OpenNewWindowConfig = import( './sow-core' ).OpenNewWindowConfig;
+declare type DatabaseRequestConfig = import( './sow-core' ).DatabaseRequestConfig;
