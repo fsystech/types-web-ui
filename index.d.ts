@@ -219,7 +219,6 @@ declare type IPageRegInfo = import( './sow-core' ).IPageRegInfo
 declare type ISQLCommand = import( './sow-core' ).ISQLCommand;
 declare type IPageEvent = import( './sow-core' ).IPageEvent
 declare type ISqlDef = import( './sow-core' ).ISqlDef;
-declare type IPageConfig = import( './sow-core' ).IPageConfig;
 declare type OpenNewWindowConfig = import( './sow-core' ).OpenNewWindowConfig;
 declare type DatabaseRequestConfig = import( './sow-core' ).DatabaseRequestConfig;
 declare type IProxyServer = import( './sow-chat-ui' ).IProxyServer;
