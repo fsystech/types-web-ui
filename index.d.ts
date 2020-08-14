@@ -223,7 +223,7 @@ declare type OpenNewWindowConfig = import( './sow-core' ).OpenNewWindowConfig;
 declare type DatabaseRequestConfig = import( './sow-core' ).DatabaseRequestConfig;
 declare type IProxyServer = import( './sow-chat-ui' ).IProxyServer;
 declare type ChatUICore = import( './sow-chat-ui' ).ICore;
-
+/** ctx can be define in back-end template engine */
 declare var ctx: import( 'cwserver' ).IContext;
 declare type XHandsontables = import( 'handsontable' ).default;
 declare interface HandsontableConstructor {

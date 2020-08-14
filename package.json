@@ -23,8 +23,9 @@
     "@types/jqueryui": "^1.12.13",
     "@types/node": "^8.10.62",
     "@types/superagent": "^4.1.9",
-    "cwserver": "git+https://github.com/safeonlineworld/cwserver.git",
     "typescript": "^3.2.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "cwserver": "git+https://github.com/safeonlineworld/cwserver.git"
+  }
 }
