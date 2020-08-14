@@ -105,8 +105,8 @@ interface IBrowser {
 	support( cfg: Dct<any> ): void;
 }
 declare interface IBrowserWindow {
-	/** Reg/Remove resize event */
-	onResize( type: string | ( () => void) ): string;
+	/** Reg/Remove browser window resize event */
+	onResize( type: string | ( () => void ) ): string | void;
 }
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
