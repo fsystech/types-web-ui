@@ -228,6 +228,7 @@ declare var ctx: import( 'cwserver' ).IContext;
 declare type XHandsontables = import( 'handsontable' ).default;
 declare interface HandsontableConstructor {
 	new( element: Element, options: import( 'handsontable' ).default.GridSettings ): XHandsontables;
+	readonly prototype: XHandsontables;
 }
 declare var Handsontable: HandsontableConstructor;
 declare type IContext = import( 'cwserver' ).IContext;
