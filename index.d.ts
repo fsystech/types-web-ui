@@ -225,10 +225,10 @@ declare type IProxyServer = import( './sow-chat-ui' ).IProxyServer;
 declare type ChatUICore = import( './sow-chat-ui' ).ICore;
 /** ctx can be define in back-end template engine */
 declare var ctx: import( 'cwserver' ).IContext;
-declare type XHandsontables = import( 'handsontable' ).default;
+declare type XHandsontable = import( 'handsontable' ).default;
 declare interface HandsontableConstructor {
-	new( element: Element, options: import( 'handsontable' ).default.GridSettings ): XHandsontables;
-	readonly prototype: XHandsontables;
+	new( element: Element, options: import( 'handsontable' ).default.GridSettings ): XHandsontable;
+	readonly prototype: XHandsontable;
 }
 declare var Handsontable: HandsontableConstructor;
 declare type IContext = import( 'cwserver' ).IContext;
