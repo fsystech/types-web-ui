@@ -7,6 +7,7 @@
 */
 // 11:18 PM 7/18/2020
 import { OpenNewWindowConfig } from './sow-core';
+import HandsonTable from 'handsontable';
 declare interface IAssembler {
 	Class<T>( ...args: T[] ): T;
 	Class<T>( arg1: T ): T;
@@ -108,6 +109,11 @@ declare interface IBrowserWindow {
 	/** Reg/Remove browser window resize event */
 	onResize( type: string | ( () => void ) ): string | void;
 }
+declare interface IHotTable {
+	createColumnWidth( hotSettings:HandsonTable.GridSettings, containerWidth:number): number[];
+	/** Resize Handsontable after 300ms */
+	resize( hot: HandsonTable, orgWidths: number[], $elm: JQuery<HTMLElement> ): void;
+}
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
 	hub: Ihub;
@@ -182,6 +188,5 @@ export declare interface ISow {
 	onRouterChange( event: Dct<any> ): void;
 	remove( name: string ): ISow;
 	require( name: string ): any;
-	/** Resize Handsontable after 300ms */
-	resizeHot( hot: import( 'handsontable' ).default, orgWidths: number[], $elm: JQuery<HTMLElement> ): void;
+	hot: IHotTable;
 }
