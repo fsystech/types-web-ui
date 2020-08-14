@@ -104,9 +104,14 @@ interface IBrowser {
 	version: number;
 	support( cfg: Dct<any> ): void;
 }
+declare interface IBrowserWindow {
+	/** Reg/Remove resize event */
+	onResize( type: string | ( () => void) ): string;
+}
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
 	hub: Ihub;
+	Window: IBrowserWindow;
 	async( callback: ( ...args: any[] ) => void, ms: number | void ): void;
 	registerNamespace( name: string, callback: () => [IModules, Dct<any>, string[]] ): ISow;
 	mapPageNamespace( ...args: any[] ): ISow;
