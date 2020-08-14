@@ -183,5 +183,5 @@ export declare interface ISow {
 	remove( name: string ): ISow;
 	require( name: string ): any;
 	/** Resize Handsontable after 300ms */
-	resizeHot( hot: import( 'handsontable' ).default, $elm: JQuery<HTMLElement> ): void;
+	resizeHot( hot: import( 'handsontable' ).default, orgWidths: number[], $elm: JQuery<HTMLElement> ): void;
 }
