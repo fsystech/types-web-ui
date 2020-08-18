@@ -189,4 +189,5 @@ export declare interface ISow {
 	remove( name: string ): ISow;
 	require( name: string ): any;
 	hot: IHotTable;
+	widgetTemplate():string;
 }

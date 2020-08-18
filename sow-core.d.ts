@@ -4,7 +4,7 @@
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 
 /// <reference types="jquery"/>
-
+/// <reference types="node"/>
 import * as JQuery from 'jquery';
 // import { Dct } from './sow-framework';
 
@@ -22,7 +22,7 @@ declare type SearchDetail = {
     };
     onRender( pagctx: IPageContext, $owner: JQuery<HTMLElement> ): void;
     beforeRender?: ( pagctx: IPageContext, data: any ) => void;
-    dump?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement>, resp: Dct<any> ) => void;
+    dump?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement>, resp: any ) => void;
 };
 export declare interface IPageRegInfo {
     template?: string | 'SRC__DEFAULT__';
@@ -128,26 +128,36 @@ export declare type ExternalLink = {
     done?: ( t: string ) => void;
     fail?: () => void;
 }
+/** Form element config */
 export declare type ElementInfo = {
-    /** Define the type of element */
+    /** Define the type of `element` */
     readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'switch' | 'html' | 'widget';
     /** this is element name */
     readonly name?: string;
     /** Can use this element when search tigger ? */
     readonly src?: boolean;
-    /** Use this rules for this element validation */
-    readonly rules?: { m?: string, max?: number, min?: number, required?: boolean };
-    /** Custom style for this element */
+    /** Use this rules for this element `validation` */
+    readonly rules?: {
+        /** Ensure this value data type*/
+        m?: 'text'|'number'|'boolean',
+        /** Maximum length of value */
+        max?: number,
+        /** Minimum length of value */
+        min?: number,
+        /** Is this required */
+        required?: boolean 
+    };
+    /** Custom `style` for this element */
     readonly style?: string;
-    /** Define sql field name. It will use while perform search/update/insert (Like as your db table column name e.g. id or schema.id) */
+    /** Define sql field name. It will use while perform `search/update/insert` (Like as your db table column name e.g. `id` or `schema.id`) */
     readonly sql?: string;
-    /** Define this element width (bootstrap col width 12/1) */
+    /** Define this element width (`bootstrap col width 12/1`) */
     readonly w: number;
-    /** this element accept drop */
+    /** this element accept `drop` */
     readonly dropable?: boolean;
     /** this element accept drag */
     readonly dragable?: boolean;
-    /** this element custom class */
+    /** this element custom `class` */
     readonly cls?: string;
     /** This is element label */
     readonly title?: string;
@@ -155,26 +165,27 @@ export declare type ElementInfo = {
     readonly html?: string | ( () => string );
     /** Element attribute */
     readonly attr?: string;
-    /** It will use while you allow dragable or dropable this element */
+    /** It will use while you allow `dragable` or `dropable` this `element` */
     readonly z_index?: number;
     /** Is this element disabled ? */
     readonly disabled?: boolean;
-    /** each value add custom data-event-your-value attribute  */
+    /** each value add custom `data-event-your-value` attribute  */
     readonly event?: Dct<( pageCtx: IPageContext, e: JQueryEventObject, $owner: JQuery<HTMLElement> ) => void>;
     /** it will use while your element type is switch. You can use on|off */
     readonly text?: string;
-    /** Element placeholder */
+    /** Element `placeholder` */
     readonly p?: string;
-    /** Define this element is read only */
+    /** Define this element is `read only` */
     readonly read_only?: boolean;
     /** Use this external link for this element */
     readonly external_link?: string | ( ( conf: ExternalLink, pageCtx: IPageContext ) => ExternalLink );
-    /** Set default value for this element */
-    readonly default_value?: string;
-    /** widget key. It will be effect in widget element */
+    /** Set default value for this `element`. If this is true then this attribute `data-default-value="false"` will be set in element */
+    readonly default_value?: boolean;
+    /** widget key. It will be effect in `widget element` */
     readonly widget?: string;
-    /** It will be effect while your element type is dropdown*/
+    /** It will be effect while your element type is `dropdown`*/
     readonly source?: ( ( pageCtx: IPageContext ) => SourceType ) | 'OWN' | SourceType;
+    /** Define the dropdown type. It will be effect while your element type is `dropdown` */
     readonly drop_type?: "select" | "selectize" | string;
 };
 declare type DropDef = {
@@ -187,9 +198,17 @@ declare type SourceType = {
     poperty?: string;
     type?: "SQL" | "SP";
     add_new?: string;
-    search_poperty: string;
-    drop_type?: "selectize"; load?: boolean;
-    drop_def?: DropDef | ( ( obj: Dct<any>, pageCtx: IPageContext, lookup: ( look: DropDef ) => void ) => void );
+    search_poperty?: string;
+    drop_type?: "selectize";
+    load?: boolean;
+    drop_def?: DropDef | {
+        maxItems: number;
+        valueField: string;
+        labelField: string;
+        searchField: string;
+        create: boolean;
+        preload: boolean;
+     } | ( ( obj: Dct<any>, pageCtx: IPageContext, lookup: ( look: DropDef ) => void ) => void );
 };
 export declare interface IWidget {
     readonly title: string;
@@ -198,15 +217,19 @@ export declare interface IWidget {
     readonly fields: Dct<ElementInfo>[];
 }
 export declare interface IFormInfo {
-    readonly tabs?: {
-        readonly header?: Dct<ElementInfo>[];
-        readonly footer?: Dct<ElementInfo>[];
+    tabs?: {
+        header?: Dct<ElementInfo>[];
+        footer?: Dct<ElementInfo>[];
     };
-    readonly header?: Dct<ElementInfo>[];
-    readonly footer?: Dct<ElementInfo>[];
-    readonly widget?: {
-        readonly header?: IWidget;
-        readonly footer?: IWidget;
+    header?: Dct<ElementInfo>[];
+    footer?: Dct<ElementInfo>[];
+    widget?: {
+        header?: IWidget[];
+        footer?: IWidget[];
+        settings?:{
+            header:Dct<{ title:string; collapse:boolean; }>;
+            footer:Dct<{ title:string; collapse:boolean; }>;
+        }
     };
 }
 declare type AlertConfig = {
@@ -261,7 +284,9 @@ declare interface INotification {
     show( msg: string, cls?: string, interval?: number ): void;
 }
 export declare type IRequest = {
-    route: string; original: string; param: Dct<any>;
+    route: string;
+    original: string;
+    param: Dct<any>;
     populate: <T>( reqObj?: Dct<T> ) => Dct<T>;
 };
 declare interface IPageContext {

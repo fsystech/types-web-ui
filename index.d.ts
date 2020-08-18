@@ -3,6 +3,7 @@
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 
 /// <reference types="jquery"/>
+/// <reference types="node"/>
 
 declare interface Dct<T> {
 	[id: string]: T | undefined;
@@ -97,10 +98,10 @@ declare interface JQuery<TElement = HTMLElement> {
 	tablesorter(): this;
 	fancybox( cfg: any ): this;
 	Lazy( cfg: any ): this;
-	prop( name: string ): string | void;
+	prop( name: string ): string;
 	prop( name: "checked" ): boolean;
-	attr( name: string ): string | void;
-	val(): string | void;
+	attr( name: string ): string;
+	val(): string;
 	html( n: number ): this;
 	html( val: JQuery<HTMLElement> ): this;
 	tablesorter_destroy(): void;
@@ -236,8 +237,8 @@ declare type ISession = import( 'cwserver' ).ISession;
 declare type IRequestc = import( 'cwserver' ).IRequest;
 declare type ISowServer = import( 'cwserver' ).ISowServer;
 declare type IoResult = import( 'cwserver' ).IoResult;
-declare type QResult = import( 'cwserver' ).QResult<NodeJS.Dict<any>>;
-declare type QueryResult = import( 'cwserver' ).QueryResult<NodeJS.Dict<any>>;
+declare type QResult = import( 'cwserver' ).QResult<Dct<any>>;
+declare type QueryResult = import( 'cwserver' ).QueryResult<Dct<any>>;
 declare type ISowSocketServer = import( 'cwserver' ).ISowSocketServer;
 declare type ISowSocketInfo = import( 'cwserver' ).ISowSocketInfo;
 declare type IPostedFileInfo = import( 'cwserver' ).IPostedFileInfo;
