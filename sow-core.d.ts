@@ -128,6 +128,16 @@ export declare type ExternalLink = {
     done?: ( t: string ) => void;
     fail?: () => void;
 }
+export declare type ElementRules = {
+    /** Ensure this value data type*/
+    m?: 'text'|'numeric'|'boolean'|'url'|'date'|'email'|'mobile',
+    /** Maximum length of value */
+    max?: number,
+    /** Minimum length of value */
+    min?: number,
+    /** Is this required */
+    required?: boolean 
+}
 /** Form element config */
 export declare type ElementInfo = {
     /** Define the type of `element` */
@@ -137,16 +147,7 @@ export declare type ElementInfo = {
     /** Can use this element when search tigger ? */
     readonly src?: boolean;
     /** Use this rules for this element `validation` */
-    readonly rules?: {
-        /** Ensure this value data type*/
-        m?: 'text'|'number'|'boolean',
-        /** Maximum length of value */
-        max?: number,
-        /** Minimum length of value */
-        min?: number,
-        /** Is this required */
-        required?: boolean 
-    };
+    readonly rules?: ElementRules;
     /** Custom `style` for this element */
     readonly style?: string;
     /** Define sql field name. It will use while perform `search/update/insert` (Like as your db table column name e.g. `id` or `schema.id`) */
@@ -342,10 +343,10 @@ declare interface IPageContext {
     clean( cb?: ( status: string ) => void ): IPageContext;
     save( cb: ( status: string, retVal?: number, isUpdate?: boolean ) => void, formobj?: Dct<any>, confirmMsg?: string ): void;
     search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
-    __onSearchDataModify?: <T>( data: Dct<T>[] ) => Dct<T>[];
+    __onSearchDataModify?: ( data: Dct<any>[] ) => Dct<any>[];
     loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
-    saveObjModify?: <T>( obj: Dct<T> ) => { error: boolean; msg?: string };
-    beforeSearch?: <T>( obj: Dct<T> ) => Dct<T>;
+    saveObjModify?: ( obj: Dct<any> ) => { error: boolean; msg?: string };
+    beforeSearch?: ( obj: Dct<any> ) => Dct<any>;
 }
 export declare interface INavigator {
     getData(): Dct<any>;
@@ -456,7 +457,7 @@ export declare class PageContext implements IPageContext {
     public clean( cb?: (status:string) => void ): IPageContext;
     public save( cb: ( status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string ): void;
     public search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
-    public __onSearchDataModify?: <T>( data: Dct<T>[] ) => Dct<T>[];
+    public __onSearchDataModify?: ( data: Dct<any>[] ) => Dct<any>[];
     public loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
     public dispose(): void;
     private dragable: {
@@ -465,8 +466,8 @@ export declare class PageContext implements IPageContext {
         isValid: ( key: string ) => boolean;
     };
     private regWidget( selector: string ): void;
-    public saveObjModify?: <T>( obj: Dct<T> ) => { error: boolean; msg?: string };
-    public beforeSearch?: <T>( obj: Dct<T> ) => Dct<T>;
+    public saveObjModify?: ( obj: Dct<any> ) => { error: boolean; msg?: string };
+    public beforeSearch?: ( obj: Dct<any> ) => Dct<any>;
     public resolve( opt: { url: string; route: string; done: () => void } ): void;
 }
 declare interface InternalWorker {

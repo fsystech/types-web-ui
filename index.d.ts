@@ -206,6 +206,7 @@ declare var DropzoneExtend: IDropzoneConstructor;
 declare type PageContext = import( './sow-core' ).PageContext;
 declare type PageContexConstructor = import( './sow-core' ).PageContexConstructor;
 declare type ElementInfo = import( './sow-core' ).ElementInfo;
+declare type ElementRules = import( './sow-core' ).ElementRules;
 declare type IFormInfo = import( './sow-core' ).IFormInfo;
 declare type INavigator = import( './sow-core' ).INavigator;
 declare type IRequest = import( './sow-core' ).IRequest;
@@ -224,6 +225,12 @@ declare type OpenNewWindowConfig = import( './sow-core' ).OpenNewWindowConfig;
 declare type DatabaseRequestConfig = import( './sow-core' ).DatabaseRequestConfig;
 declare type IProxyServer = import( './sow-chat-ui' ).IProxyServer;
 declare type ChatUICore = import( './sow-chat-ui' ).ICore;
+declare interface PageContextConstructor{
+	new( req:IRequest, $elm:JQuery<HTMLElement>, __cb:(status:string)=>void, isdialog:boolean, ___$ui:JQueryUI.Dialog|void ): PageContext;
+	readonly prototype: PageContext;
+}
+/** Create new `Web Page Context` */
+declare var WebPageContext: PageContexConstructor;
 /** ctx can be define in back-end template engine */
 declare var ctx: import( 'cwserver' ).IContext;
 declare type XHandsontable = import( 'handsontable' ).default;
@@ -350,4 +357,4 @@ declare type LinkPreview = {
 	error: boolean;
 	image?: string;
 	url: string;
-};
+}
