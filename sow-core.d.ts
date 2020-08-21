@@ -86,6 +86,7 @@ declare interface IPageConfig {
     readonly reg: IPageRegInfo;
     readonly cmd: ISQLCommand;
     readonly fm: IFormInfo;
+    beforeRegEvent?:( pageCtx: IPageContext ) => void;
     customEvent( pageCtx: IPageContext ): void;
     onReady( pageCtx: IPageContext ): void;
     onDispose( pageCtx: IPageContext ): void;
@@ -94,6 +95,7 @@ export declare interface IPageEvent {
     customEvent( pageCtx: IPageContext ): void;
     onReady( pageCtx: IPageContext ): void;
     onDispose( pageCtx: IPageContext ): void;
+    beforeRegEvent( pageCtx: IPageContext ): void;
 }
 declare type CommandConf = {
     sp?: string;
@@ -209,7 +211,7 @@ declare type SourceType = {
         searchField: string;
         create: boolean;
         preload: boolean;
-     } | ( ( obj: Dct<any>, pageCtx: IPageContext, lookup: ( look: DropDef ) => void ) => void );
+     } | ( ( obj: Dct<any>, pageCtx: IPageContext, lookup: ( look: DropDef ) => Dct<any> ) => void );
 };
 export declare interface IWidget {
     readonly title: string;

@@ -105,6 +105,7 @@ declare interface JQuery<TElement = HTMLElement> {
 	html( n: number ): this;
 	html( val: JQuery<HTMLElement> ): this;
 	tablesorter_destroy(): void;
+	cloneTo( target: JQuery<HTMLElement> ):this;
 	croppie( ...args: any[] ): Promise<HTMLCanvasElement>;
 }
 declare interface JQueryStatic {
