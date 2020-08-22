@@ -8,7 +8,7 @@
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
-declare interface Object {
+declare interface ObjectConstructor {
 	extend<T, S>( dest: T, source: S, noCopy?: boolean ): T & S;
 	clone<T>( source: T ): T;
 	copy<T, S>( dest: T, source: S ): T & S;
