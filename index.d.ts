@@ -168,15 +168,15 @@ declare interface IDropzoneExtend {
 	dispose(): void;
 }
 declare type DropzoneExtendConfig = {
-	drop_zone: {
+	drop_zone?: {
 		url?: string;
 		addRemoveLinks?: boolean;
 		clickable?: boolean;
 		acceptedFiles?: string;
 		maxFilesize?: number;
 	},
-	handler: string;
-	directory: string;
+	handler?: string;
+	directory?: string;
 	random_fname?: boolean;
 	key?: string;
 };
@@ -184,7 +184,7 @@ declare interface IDropzoneConstructor {
 	new( cfg: DropzoneExtendConfig ): IDropzoneExtend;
 	readonly prototype: IDropzoneExtend;
 	get_template( msg?: string ): string;
-	export( cfg: { dir: string; key: string; }, pageCtx: import( './sow-core' ).IPageContext ): IDropzoneExtend;
+	export(cfg: { config: DropzoneExtendConfig; key: string; }, pageCtx: import( './sow-core' ).IPageContext ): IDropzoneExtend;
 	support: {
 		get_file_name( path: string ): string;
 		get_ext( path: string ): string;
