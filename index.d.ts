@@ -183,7 +183,7 @@ declare type DropzoneExtendConfig = {
 declare interface IDropzoneConstructor {
 	new( cfg: DropzoneExtendConfig ): IDropzoneExtend;
 	readonly prototype: IDropzoneExtend;
-	get_template( msg: string ): string;
+	get_template( msg?: string ): string;
 	export( cfg: { dir: string; key: string; }, pageCtx: import( './sow-core' ).IPageContext ): IDropzoneExtend;
 	support: {
 		get_file_name( path: string ): string;

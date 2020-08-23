@@ -219,10 +219,16 @@ export declare interface IWidget {
     readonly collapse: boolean;
     readonly fields: Dct<ElementInfo>[];
 }
+declare interface ITypeofTabs {
+    title: string;
+    key?: string;
+    active?: boolean;
+    fields: Dct<ElementInfo>[];
+}
 export declare interface IFormInfo {
     tabs?: {
-        header?: Dct<ElementInfo>[];
-        footer?: Dct<ElementInfo>[];
+        header?: ITypeofTabs[];
+        footer?: ITypeofTabs[];
     };
     header?: Dct<ElementInfo>[];
     footer?: Dct<ElementInfo>[];
@@ -348,7 +354,11 @@ declare interface IPageContext {
     __onSearchDataModify?: ( data: Dct<any>[] ) => Dct<any>[];
     loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
     saveObjModify?: ( obj: Dct<any> ) => { error: boolean; msg?: string };
-    beforeSearch?: ( obj: Dct<any> ) => Dct<any>;
+    beforeSearch?: (obj: Dct<any>) => Dct<any>;
+    /** This method will be throw if `DropzoneExtend.export` does not invoked yet */
+    clean_dropzone(): void;
+    /** This method will be throw if `DropzoneExtend.export` does not invoked yet */
+    dropzone_dispose(): void;
 }
 export declare interface INavigator {
     getData(): Dct<any>;
@@ -470,7 +480,9 @@ export declare class PageContext implements IPageContext {
     private regWidget( selector: string ): void;
     public saveObjModify?: ( obj: Dct<any> ) => { error: boolean; msg?: string };
     public beforeSearch?: ( obj: Dct<any> ) => Dct<any>;
-    public resolve( opt: { url: string; route: string; done: () => void } ): void;
+    public resolve(opt: { url: string; route: string; done: () => void }): void;
+    clean_dropzone(): void;
+    dropzone_dispose(): void;
 }
 declare interface InternalWorker {
     [id: string]: ( ...args: any[] ) => InternalWorker;
