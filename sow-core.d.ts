@@ -388,7 +388,7 @@ export declare type ISource = {
     }[]>
 };
 export declare interface PageContexConstructor {
-    new( route: string, $elm: JQuery<HTMLElement>, cb: ( status: string ) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog ): PageContext;
+    new( req: IRequest, $elm: JQuery<HTMLElement>, cb: ( status: string ) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog ): PageContext;
     readonly prototype: PageContext;
 }
 export declare class PageContext implements IPageContext {
@@ -506,6 +506,11 @@ export declare interface IWebUI {
     };
     openNew( opt: OpenNewWindowConfig ): void;
     getTemplate( templ?: string, cb?: ( status: string, template: string ) => void ): void;
+    /** Get dependancy of current page context */
+    getDependancy( route: string ): string[];
+    /** Remove Page Config */
+    removeConfig( route: string ): void;
+    getConfig( route: string ): IPageConfig | void;
 }
 export declare type OpenNewWindowConfig = {
     dependency?: string;
