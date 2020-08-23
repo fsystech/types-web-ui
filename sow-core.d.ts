@@ -304,15 +304,12 @@ declare interface IPageContext {
     readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
     readonly _query: IRequest;
     readonly notification: INotification;
-    /** @deprecated since v0.0.1 - use `$container` instead. */
-    readonly $elm: JQuery<HTMLElement>;
+    /** Page container */
     readonly $container: JQuery<HTMLElement>;
     readonly destroy_event: ( () => void )[];
     __data_navigate: boolean;
     prepare( containerKey: string ): void;
     $ui(): JQueryUI.Dialog | void;
-    /** @deprecated since v0.0.1 - use `$container` instead. */
-    getElem(): JQuery<HTMLElement>;
     onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
     onDispose(): void;
     getDependancy(): string[];
@@ -396,7 +393,6 @@ export declare class PageContext implements IPageContext {
     public readonly isdialog: boolean;
     public readonly isDisposed: boolean;
     public $ui(): JQueryUI.Dialog | void;
-    public readonly $elm: JQuery<HTMLElement>;
     public readonly $container: JQuery<HTMLElement>;
     public readonly reg: IPageRegInfo;
     public readonly destroy_event: ( () => void )[];
@@ -429,8 +425,6 @@ export declare class PageContext implements IPageContext {
     private readonly data_map?: Dct<any>;
     public __data_navigate: boolean;
     public prepare( containerKey: string ): void;
-    // public require( name?: string, b?: string ): any;
-    public getElem(): JQuery<HTMLElement>;
     public onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
     public onDispose(): void;
     public getDependancy(): string[];
