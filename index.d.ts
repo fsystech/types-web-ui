@@ -145,7 +145,7 @@ declare interface JQuery<TElement = HTMLElement> {
 	cloneTo(target: JQuery<HTMLElement>): this;
 	croppie(...args: any[]): Promise<HTMLCanvasElement>;
 	checked(): boolean;
-	checked(val: boolean): void;
+	checked(val: boolean): this;
 }
 declare interface JQueryStatic {
 	makeArray<T>(arg1: T[], arg2: T[]): T[];
