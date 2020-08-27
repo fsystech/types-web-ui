@@ -5,6 +5,8 @@
 /// <reference types="jquery"/>
 /// <reference types="node"/>
 
+import { InputFiles } from 'typescript';
+
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
@@ -127,25 +129,45 @@ declare type SlimScrollConfig = {
 	railBorderRadius?: string;
 };
 declare interface JQuery<TElement = HTMLElement> {
+	/** Destroy current context */
 	exit(): this;
+	/** Enable `HTMLElement`*/
 	enable(): this;
+	/** Disable `HTMLElement` */
 	disable(): this;
+	/** Set `HTML` `object` with `animation`*/
 	htmla(obj: any): this;
+	/** Skip browser default `Scroll` use `slimScroll`*/
 	slimScroll(cfg: SlimScrollConfig): this;
+	/** Get `Tablesorter` instance form current `HTMLElement`*/
 	tablesorter(): this;
+	/** Destroy `Tablesorter` instance*/
+	tablesorter_destroy(): void;
+	/** Initilize `fancybox` to this `HTMLElement`*/
 	fancybox(cfg: any): this;
+	/** Initilize `Lazy` to this `HTMLElement`*/
 	Lazy(cfg: any): this;
 	prop(name: string): string;
+	/** Get `Checkbox` value*/
 	prop(name: "checked"): boolean;
+	/** Get `Attribute` value */
 	attr(name: string): string;
+	/** Get `HTMLInputElement` value */
 	val(): string;
+	/** Set value to `HTMLDivElement` */
 	html(n: number): this;
+	/** Set value to `HTMLElement` */
 	html(val: JQuery<HTMLElement>): this;
-	tablesorter_destroy(): void;
+	/** Clone to `HTMLElement` with both of `Event` and `Attributes` */
 	cloneTo(target: JQuery<HTMLElement>): this;
+	/** Initilize `croppie` to this `HTMLElement`*/
 	croppie(...args: any[]): Promise<HTMLCanvasElement>;
+	/** Get `checkbox` value */
 	checked(): boolean;
+	/** Set `checkbox` value */
 	checked(val: boolean): this;
+	/** Add Image source from `FileReader` */
+	attr(src: 'src', val: ArrayBuffer | null): this;
 }
 declare interface JQueryStatic {
 	makeArray<T>(arg1: T[], arg2: T[]): T[];
