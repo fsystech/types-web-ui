@@ -166,7 +166,7 @@ declare interface JQuery<TElement = HTMLElement> {
 	/** Set `checkbox` value */
 	checked(val: boolean): this;
 	/** Add Image source from `FileReader` */
-	attr(src: 'src', val: ArrayBuffer | null): this;
+	attr(src: 'src', val: string | ArrayBuffer | null): this;
 }
 declare interface JQueryStatic {
 	makeArray<T>(arg1: T[], arg2: T[]): T[];
