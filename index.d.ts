@@ -147,6 +147,7 @@ declare interface JQuery<TElement = HTMLElement> {
 	fancybox(cfg: any): this;
 	/** Initilize `Lazy` to this `HTMLElement`*/
 	Lazy(cfg: any): this;
+	/** Get  *this `HTMLElement` `Attribute` value*/
 	prop(name: string): string;
 	/** Get `Checkbox` value*/
 	prop(name: "checked"): boolean;
