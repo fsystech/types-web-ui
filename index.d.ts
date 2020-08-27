@@ -5,8 +5,6 @@
 /// <reference types="jquery"/>
 /// <reference types="node"/>
 
-import { InputFiles } from 'typescript';
-
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
