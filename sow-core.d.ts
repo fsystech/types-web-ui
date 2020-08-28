@@ -143,7 +143,7 @@ export declare type ElementRules = {
 /** Form element config */
 export declare type ElementInfo = {
     /** Define the type of `element` */
-    readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'switch' | 'html' | 'widget';
+    readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'switch' | 'html' | 'widget' | 'multiple';
     /** this is element name */
     readonly name?: string;
     /** Can use this element when search tigger ? */
