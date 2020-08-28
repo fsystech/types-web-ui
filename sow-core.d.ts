@@ -197,7 +197,7 @@ export declare type DropDef = {
         maxItems?: number;
         valueField?: string;
         labelField?: string;
-        searchField?: string;
+        searchField?: string|any[];
         create?: boolean;
         preload?: boolean;
         persist?: boolean;
