@@ -9,7 +9,7 @@ import * as JQuery from 'jquery';
 // import { Dct } from './sow-framework';
 
 declare type ReqFuncs = { xhr: JQueryXHR };
-declare type ReqFunc = { ( name?: string, b?: string ): void };
+declare type ReqFunc = { (name?: string, b?: string): void };
 declare type SearchDetail = {
     [id: string]: any;
     show: boolean;
@@ -18,19 +18,19 @@ declare type SearchDetail = {
     poperty?: any[];
     tablesorter?: boolean;
     detail_event?: boolean | {
-        on_page_ready: ( pagctx: IPageContext ) => void;
+        on_page_ready: (pagctx: IPageContext) => void;
     };
-    onRender( pagctx: IPageContext, $owner: JQuery<HTMLElement> ): void;
-    beforeRender?: ( pagctx: IPageContext, data: any ) => void;
-    dump?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement>, resp: any ) => void;
+    onRender(pagctx: IPageContext, $owner: JQuery<HTMLElement>): void;
+    beforeRender?: (pagctx: IPageContext, data: any) => void;
+    dump?: (pagctx: IPageContext, $owner: JQuery<HTMLElement>, resp: any) => void;
 };
 export declare interface IPageRegInfo {
     template?: string | 'SRC__DEFAULT__';
     window_interactive?: boolean;
-    window?: ( pageCtx: IPageContext ) => {
-        maximize( evt: JQueryEventObject, dlg: JQueryUI.Dialog ): void;
-        minimize( evt: JQueryEventObject, dlg: JQueryUI.Dialog ): void;
-        restore( evt: JQueryEventObject, dlg: JQueryUI.Dialog ): void;
+    window?: (pageCtx: IPageContext) => {
+        maximize(evt: JQueryEventObject, dlg: JQueryUI.Dialog): void;
+        minimize(evt: JQueryEventObject, dlg: JQueryUI.Dialog): void;
+        restore(evt: JQueryEventObject, dlg: JQueryUI.Dialog): void;
     };
     event_array?: string[];
     route: string;
@@ -53,49 +53,49 @@ export declare interface IPageRegInfo {
         buttons?: string[];
         disabledButtons?: string[];
         enabled?: string[];
-        reload?: ( ( cb: ( pagctx: IPageContext ) => void, pagctx: IPageContext ) => void ) | boolean;
+        reload?: ((cb: (pagctx: IPageContext) => void, pagctx: IPageContext) => void) | boolean;
         clean?: {
-            before?: ( pagctx: IPageContext ) => void;
-            after?: ( pagctx: IPageContext ) => void
+            before?: (pagctx: IPageContext) => void;
+            after?: (pagctx: IPageContext) => void
         };
         save?: {
-            before?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement> ) => void;
-            after?: ( pagctx: IPageContext, resp: any, isUpdate: boolean ) => void;
+            before?: (pagctx: IPageContext, $owner: JQuery<HTMLElement>) => void;
+            after?: (pagctx: IPageContext, resp: any, isUpdate: boolean) => void;
         };
         delete?: {
-            before?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement> ) => void;
-            after?: ( pagctx: IPageContext, resp: any ) => void;
+            before?: (pagctx: IPageContext, $owner: JQuery<HTMLElement>) => void;
+            after?: (pagctx: IPageContext, resp: any) => void;
         };
         search?: {
-            before?: ( pagctx: IPageContext, $owner: JQuery<HTMLElement> ) => void;
-            after?: ( pagctx: IPageContext, resp: any ) => void;
+            before?: (pagctx: IPageContext, $owner: JQuery<HTMLElement>) => void;
+            after?: (pagctx: IPageContext, resp: any) => void;
         };
     };
     button: {
         footer: {
             align: string;
             title: string;
-            callback: ( e: any ) => void;
+            callback: (e: any) => void;
         };
     } | Dct<any>;
     dynamic_report: boolean;
-    report: ( event: any ) => void;
-    print_settings?: ( pagctx: IPageContext, primaryKey: string, index: any ) => void;
+    report: (event: any) => void;
+    print_settings?: (pagctx: IPageContext, primaryKey: string, index: any) => void;
 }
 declare interface IPageConfig {
     readonly reg: IPageRegInfo;
     readonly cmd: ISQLCommand;
     readonly fm: IFormInfo;
-    beforeRegEvent?:( pageCtx: IPageContext ) => void;
-    customEvent( pageCtx: IPageContext ): void;
-    onReady( pageCtx: IPageContext ): void;
-    onDispose( pageCtx: IPageContext ): void;
+    beforeRegEvent?: (pageCtx: IPageContext) => void;
+    customEvent(pageCtx: IPageContext): void;
+    onReady(pageCtx: IPageContext): void;
+    onDispose(pageCtx: IPageContext): void;
 }
 export declare interface IPageEvent {
-    customEvent( pageCtx: IPageContext ): void;
-    onReady( pageCtx: IPageContext ): void;
-    onDispose( pageCtx: IPageContext ): void;
-    beforeRegEvent( pageCtx: IPageContext ): void;
+    customEvent(pageCtx: IPageContext): void;
+    onReady(pageCtx: IPageContext): void;
+    onDispose(pageCtx: IPageContext): void;
+    beforeRegEvent(pageCtx: IPageContext): void;
 }
 declare type CommandConf = {
     sp?: string;
@@ -109,7 +109,7 @@ export declare interface ISQLCommand {
         def_type?: 'query';
         type?: 'SQL' | 'SP';
         sp?: string;
-        sql?: string | ( ( pageCtx: IPageContext, obj?: Dct<any> ) => string );
+        sql?: string | ((pageCtx: IPageContext, obj?: Dct<any>) => string);
         validate: boolean;
         module: string;
         table?: string;
@@ -127,18 +127,18 @@ export declare type ExternalLink = {
     position?: { my?: string, at?: string },
     modal: boolean;
     resizable: boolean,
-    done?: ( t: string ) => void;
+    done?: (t: string) => void;
     fail?: () => void;
 }
 export declare type ElementRules = {
     /** Ensure this value data type*/
-    m?: 'text'|'numeric'|'boolean'|'url'|'date'|'email'|'mobile',
+    m?: 'text' | 'numeric' | 'boolean' | 'url' | 'date' | 'email' | 'mobile',
     /** Maximum length of value */
     max?: number,
     /** Minimum length of value */
     min?: number,
     /** Is this required */
-    required?: boolean 
+    required?: boolean
 }
 /** Form element config */
 export declare type ElementInfo = {
@@ -165,7 +165,7 @@ export declare type ElementInfo = {
     /** This is element label */
     readonly title?: string;
     /** Cust element HTML */
-    readonly html?: string | ( () => string );
+    readonly html?: string | (() => string);
     /** Element attribute */
     readonly attr?: string;
     /** It will use while you allow `dragable` or `dropable` this `element` */
@@ -173,7 +173,7 @@ export declare type ElementInfo = {
     /** Is this element disabled ? */
     readonly disabled?: boolean;
     /** each value add custom `data-event-your-value` attribute  */
-    readonly event?: Dct<( pageCtx: IPageContext, e: JQueryEventObject, $owner: JQuery<HTMLElement> ) => void>;
+    readonly event?: Dct<(pageCtx: IPageContext, e: JQueryEventObject, $owner: JQuery<HTMLElement>) => void>;
     /** it will use while your element type is switch. You can use on|off */
     readonly text?: string;
     /** Element `placeholder` */
@@ -181,18 +181,28 @@ export declare type ElementInfo = {
     /** Define this element is `read only` */
     readonly read_only?: boolean;
     /** Use this external link for this element */
-    readonly external_link?: string | ( ( conf: ExternalLink, pageCtx: IPageContext ) => ExternalLink );
+    readonly external_link?: string | ((conf: ExternalLink, pageCtx: IPageContext) => ExternalLink);
     /** Set default value for this `element`. If this is true then this attribute `data-default-value="false"` will be set in element */
     readonly default_value?: boolean;
     /** widget key. It will be effect in `widget element` */
     readonly widget?: string;
     /** It will be effect while your element type is `dropdown`*/
-    readonly source?: ( ( pageCtx: IPageContext ) => SourceType ) | 'OWN' | SourceType;
+    readonly source?: ((pageCtx: IPageContext) => SourceType) | 'OWN' | SourceType;
     /** Define the dropdown type. It will be effect while your element type is `dropdown` */
     readonly drop_type?: "select" | "selectize" | string;
 };
 declare type DropDef = {
-    url?: string; sp: ( ( pageCtx: IPageContext ) => void ) | string;
+    url?: string; sp: ((pageCtx: IPageContext) => void) | string;
+    selectize_config?:{
+        maxItems: number;
+        valueField?: string;
+        labelField?: string;
+        searchField?: string;
+        create: boolean;
+        preload: boolean;
+        persist?: boolean;
+        delimiter?: string;
+    }
 };
 declare type SourceType = {
     query?: string;
@@ -213,7 +223,7 @@ declare type SourceType = {
         preload: boolean;
         persist?: boolean;
         delimiter?: string;
-     } | ( ( obj: Dct<any>, pageCtx: IPageContext, lookup: ( look: DropDef ) => Dct<any> ) => void );
+    } | ((obj: Dct<any>, pageCtx: IPageContext, lookup: (look: DropDef) => { dispose: () => void }) => void);
 };
 export declare interface IWidget {
     readonly title: string;
@@ -237,9 +247,9 @@ export declare interface IFormInfo {
     widget?: {
         header?: IWidget[];
         footer?: IWidget[];
-        settings?:{
-            header:Dct<{ title:string; collapse:boolean; }>;
-            footer:Dct<{ title:string; collapse:boolean; }>;
+        settings?: {
+            header: Dct<{ title: string; collapse: boolean; }>;
+            footer: Dct<{ title: string; collapse: boolean; }>;
         }
     };
 }
@@ -255,7 +265,7 @@ declare type PromptConfig = {
     readonly title?: string;
     readonly required?: boolean | Dct<any>;
     readonly content?: string[] | string;
-    ok: ( val: any ) => void;
+    ok: (val: any) => void;
     cancel: () => void;
 };
 declare type ConfirmConfig = {
@@ -263,9 +273,9 @@ declare type ConfirmConfig = {
     readonly title?: string;
     readonly required?: boolean;
     readonly content?: string[] | string;
-    confirm: ( inst: JQuery<HTMLElement> ) => void;
+    confirm: (inst: JQuery<HTMLElement>) => void;
     readonly onContentReady?: () => void;
-    cancel: ( msg: string, inst: JQuery<any> ) => void;
+    cancel: (msg: string, inst: JQuery<any>) => void;
 };
 declare type XHRConfig = {
     readonly uri?: string;
@@ -274,17 +284,17 @@ declare type XHRConfig = {
     readonly validate: boolean;
     readonly module: string;
     readonly data_required?: boolean;
-    abort?: ( status: string, xhr: JQueryXHR, textStatus?: string, error?: string ) => void;
-    done( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } ): void;
-    fail( rs: { ret_val: number; ret_msg: string; ret_data_table: any; } | string, xhr?: JQueryXHR, textStatus?: string, error?: string ): void;
+    abort?: (status: string, xhr: JQueryXHR, textStatus?: string, error?: string) => void;
+    done(rs: { ret_val: number; ret_msg: string; ret_data_table: any; }): void;
+    fail(rs: { ret_val: number; ret_msg: string; ret_data_table: any; } | string, xhr?: JQueryXHR, textStatus?: string, error?: string): void;
 };
 export declare type DatabaseRequestConfig = {
     route: string;
     uri?: string;
     def: Dct<any>;
     conf?: CommandConf;
-    done( data: { ret_val: number; ret_msg: string; ret_data_table: any } ): void;
-    fail( jqXHR: JQueryXHR, textStatus?: string, error?: string ): void;
+    done(data: { ret_val: number; ret_msg: string; ret_data_table: any }): void;
+    fail(jqXHR: JQueryXHR, textStatus?: string, error?: string): void;
 };
 declare interface INotification {
     /** Clean notification */
@@ -292,13 +302,13 @@ declare interface INotification {
     /** Exit notification */
     exit(): void;
     /** Show notificaton */
-    show( msg: string, cls?: string, interval?: number ): void;
+    show(msg: string, cls?: string, interval?: number): void;
 }
 export declare type IRequest = {
     route: string;
     original: string;
     param: Dct<any>;
-    populate: <T>( reqObj?: Dct<T> ) => Dct<T>;
+    populate: <T>(reqObj?: Dct<T>) => Dct<T>;
 };
 declare interface IPageContext {
     readonly isdialog: boolean;
@@ -308,51 +318,51 @@ declare interface IPageContext {
     readonly notification: INotification;
     /** Page container */
     readonly $container: JQuery<HTMLElement>;
-    readonly destroy_event: ( () => void )[];
+    readonly destroy_event: (() => void)[];
     __data_navigate: boolean;
-    prepare( containerKey: string ): void;
+    prepare(containerKey: string): void;
     $ui(): JQueryUI.Dialog | void;
-    onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
+    onSearch(data?: any, cb?: (...args: any[]) => void): void;
     onDispose(): void;
     getDependancy(): string[];
-    enableDisable( t: 'enable' | 'disable', field?: string[] ): void;
-    dumpObj( obj: Dct<any> ): void;
-    dependancyResolve( params: any ): void;
-    onTransportRequest( request: IRequest ): void;
-    quoteLiteral( value?: string ): string;
-    createQuery( obj: Dct<string> ): string;
-    setDisposeProp( keys: ( Dct<any>[] ) | string, type?: string ): void;
-    lockUnlockElm( lock: boolean ): void;
-    alert( cfg: AlertConfig ): void;
-    prompt( cfg: PromptConfig ): void;
-    confirm( cfg: ConfirmConfig ): void;
-    validate( $arg?: JQuery<HTMLElement>, allow_invalid?: boolean ): Dct<any> | void;
-    validateKeyup( $arg: JQuery<HTMLElement>, async?: boolean ): void;
-    createDropDown( obj: string | { id: string; title: string }[] ): string;
-    _xhr( cfg: JQueryAjaxSettings, s: ( rs: {
+    enableDisable(t: 'enable' | 'disable', field?: string[]): void;
+    dumpObj(obj: Dct<any>): void;
+    dependancyResolve(params: any): void;
+    onTransportRequest(request: IRequest): void;
+    quoteLiteral(value?: string): string;
+    createQuery(obj: Dct<string>): string;
+    setDisposeProp(keys: (Dct<any>[]) | string, type?: string): void;
+    lockUnlockElm(lock: boolean): void;
+    alert(cfg: AlertConfig): void;
+    prompt(cfg: PromptConfig): void;
+    confirm(cfg: ConfirmConfig): void;
+    validate($arg?: JQuery<HTMLElement>, allow_invalid?: boolean): Dct<any> | void;
+    validateKeyup($arg: JQuery<HTMLElement>, async?: boolean): void;
+    createDropDown(obj: string | { id: string; title: string }[]): string;
+    _xhr(cfg: JQueryAjaxSettings, s: (rs: {
         error: boolean;
         response: any;
-    } ) => void, e: ( rs: {
+    }) => void, e: (rs: {
         error: boolean;
         response: any;
         jqXHR?: JQueryXHR;
         textStatus?: string;
-    } ) => void ): JQueryXHR;
-    xhr( config: XHRConfig ): JQueryXHR;
-    populateDetail( data: Dct<any>, cb?: ( status: string, $owner?: JQuery<HTMLElement> ) => void, $owner?: JQuery<HTMLElement> ): void;
-    populateMaster( row: Dct<any> ): void;
-    printPreview( id: string | ( ( pctx: IPageContext ) => void ), val: any ): IPageContext;
-    print( cb: ( pctx: IPageContext, status: string, index?: any ) => void, index: any ): void;
-    delete( cb: ( status: string, index: number | string ) => void ): void;
+    }) => void): JQueryXHR;
+    xhr(config: XHRConfig): JQueryXHR;
+    populateDetail(data: Dct<any>, cb?: (status: string, $owner?: JQuery<HTMLElement>) => void, $owner?: JQuery<HTMLElement>): void;
+    populateMaster(row: Dct<any>): void;
+    printPreview(id: string | ((pctx: IPageContext) => void), val: any): IPageContext;
+    print(cb: (pctx: IPageContext, status: string, index?: any) => void, index: any): void;
+    delete(cb: (status: string, index: number | string) => void): void;
     clear(): IPageContext;
-    getSearchObj( $inst?: JQuery<HTMLElement>, type?: string ): void;
-    searchObjModify?: ( obj: any[] | Dct<any> ) => void;
-    clean( cb?: ( status: string ) => void ): IPageContext;
-    save( cb: ( status: string, retVal?: number, isUpdate?: boolean ) => void, formobj?: Dct<any>, confirmMsg?: string ): void;
-    search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
-    __onSearchDataModify?: ( data: Dct<any>[] ) => Dct<any>[];
-    loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
-    saveObjModify?: ( obj: Dct<any> ) => { error: boolean; msg?: string };
+    getSearchObj($inst?: JQuery<HTMLElement>, type?: string): void;
+    searchObjModify?: (obj: any[] | Dct<any>) => void;
+    clean(cb?: (status: string) => void): IPageContext;
+    save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string): void;
+    search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void;
+    __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
+    loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
+    saveObjModify?: (obj: Dct<any>) => { error: boolean; msg?: string };
     beforeSearch?: (obj: Dct<any>) => Dct<any>;
     /** This method will be throw if `DropzoneExtend.export` does not invoked yet */
     clean_dropzone(): void;
@@ -362,19 +372,19 @@ declare interface IPageContext {
 export declare interface INavigator {
     getData(): Dct<any>;
     populate(): INavigator;
-    populate_row( row: Dct<any>, cb: () => void ): INavigator;
-    update( row: Dct<any> ): INavigator;
+    populate_row(row: Dct<any>, cb: () => void): INavigator;
+    update(row: Dct<any>): INavigator;
     getDetail$(): JQuery<HTMLElement> | void;
     reset(): INavigator;
-    setData( data: Dct<any>[], $tabel?: JQuery<HTMLElement>, nPopulate?: boolean ): INavigator;
+    setData(data: Dct<any>[], $tabel?: JQuery<HTMLElement>, nPopulate?: boolean): INavigator;
     enable(): INavigator;
     disable(): INavigator;
-    changeIndex( row?: number, cb?: () => void, is_table?: boolean ): INavigator;
-    delete( obj: Dct<any> ): void;
-    data_backward( $el: JQuery<HTMLElement> ): INavigator;
-    data_backward_last( $el: JQuery<HTMLElement> ): INavigator;
-    data_forward( $el: JQuery<HTMLElement> ): INavigator;
-    data_forward_last( $el: JQuery<HTMLElement> ): INavigator;
+    changeIndex(row?: number, cb?: () => void, is_table?: boolean): INavigator;
+    delete(obj: Dct<any>): void;
+    data_backward($el: JQuery<HTMLElement>): INavigator;
+    data_backward_last($el: JQuery<HTMLElement>): INavigator;
+    data_forward($el: JQuery<HTMLElement>): INavigator;
+    data_forward_last($el: JQuery<HTMLElement>): INavigator;
     dispose(): INavigator;
 }
 export declare type ISource = {
@@ -387,7 +397,7 @@ export declare type ISource = {
     }[]>
 };
 export declare interface PageContexConstructor {
-    new( req: IRequest, $elm: JQuery<HTMLElement>, cb: ( status: string ) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog ): PageContext;
+    new(req: IRequest, $elm: JQuery<HTMLElement>, cb: (status: string) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog): PageContext;
     readonly prototype: PageContext;
 }
 export declare class PageContext implements IPageContext {
@@ -397,116 +407,116 @@ export declare class PageContext implements IPageContext {
     public $ui(): JQueryUI.Dialog | void;
     public readonly $container: JQuery<HTMLElement>;
     public readonly reg: IPageRegInfo;
-    public readonly destroy_event: ( () => void )[];
+    public readonly destroy_event: (() => void)[];
     private readonly cmd: ISQLCommand;
     private readonly pageEvent: IPageEvent;
     public readonly elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
     public readonly notification: INotification;
     private readonly sql_def: Dct<ISqlDef>;
-    private readonly ___callback: ( () => void )[];
-    private readonly _cb: ( status: string ) => void;
+    private readonly ___callback: (() => void)[];
+    private readonly _cb: (status: string) => void;
     private readonly drop_srch_map: Dct<string>;
     private readonly dispose_prop: { key: string; type: string; }[];
     private readonly source: ISource;
     private readonly children: Dct<{
-        click?: ( pageCtx: IPageContext ) => void;
-        param?: string[] | ( ( pageCtx: IPageContext ) => string[] );
+        click?: (pageCtx: IPageContext) => void;
+        param?: string[] | ((pageCtx: IPageContext) => string[]);
         route?: string;
     }>;
     private readonly _navigator?: INavigator;
     private readonly fm: Dct<ElementInfo>;
-    constructor( route: string, $elm: JQuery<HTMLElement>, __cb: ( status: string ) => void, isdialog: boolean, ___$ui?: JQueryUI.Dialog );
+    constructor(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog: boolean, ___$ui?: JQueryUI.Dialog);
     private postmortem(): void;
     private getInteractive(): JQueryUI.Dialog;
     private _: {
         event: {
-            fire( evt: string ): ( e: JQueryEventObject ) => void;
+            fire(evt: string): (e: JQueryEventObject) => void;
         }
     };
     private readonly ajax: JQueryXHR[];
     private readonly data_map?: Dct<any>;
     public __data_navigate: boolean;
-    public prepare( containerKey: string ): void;
-    public onSearch( data?: any, cb?: ( ...args: any[] ) => void ): void;
+    public prepare(containerKey: string): void;
+    public onSearch(data?: any, cb?: (...args: any[]) => void): void;
     public onDispose(): void;
     public getDependancy(): string[];
-    public enableDisable( t: 'e' | 'd' | 'enable' | 'disable', field?: string[] ): void;
-    public dumpObj( obj: Dct<any> ): void;
-    public dependancyResolve( params: any ): void;
-    public onTransportRequest( request: IRequest ): void;
-    public quoteLiteral( value?: string ): string;
-    public createQuery( obj: Dct<string> ): string;
-    public setDisposeProp( keys: ( Dct<any>[] ) | string, type?: string ): void;
-    public lockUnlockElm( lock: boolean ): void;
-    public alert( cfg: AlertConfig ): void;
-    public prompt( cfg: PromptConfig ): void;
-    public confirm( cfg: ConfirmConfig ): void;
-    public validate( $arg?: JQuery<HTMLElement>, allow_invalid?: boolean ): Dct<any> | void;
-    public validateKeyup( $arg: JQuery<HTMLInputElement>, async?: boolean ): void;
-    public createDropDown( obj: string | { id: string; title: string }[] ): string;
-    public _xhr( cfg: JQueryAjaxSettings, s: ( rs: {
+    public enableDisable(t: 'e' | 'd' | 'enable' | 'disable', field?: string[]): void;
+    public dumpObj(obj: Dct<any>): void;
+    public dependancyResolve(params: any): void;
+    public onTransportRequest(request: IRequest): void;
+    public quoteLiteral(value?: string): string;
+    public createQuery(obj: Dct<string>): string;
+    public setDisposeProp(keys: (Dct<any>[]) | string, type?: string): void;
+    public lockUnlockElm(lock: boolean): void;
+    public alert(cfg: AlertConfig): void;
+    public prompt(cfg: PromptConfig): void;
+    public confirm(cfg: ConfirmConfig): void;
+    public validate($arg?: JQuery<HTMLElement>, allow_invalid?: boolean): Dct<any> | void;
+    public validateKeyup($arg: JQuery<HTMLInputElement>, async?: boolean): void;
+    public createDropDown(obj: string | { id: string; title: string }[]): string;
+    public _xhr(cfg: JQueryAjaxSettings, s: (rs: {
         error: boolean;
         response: any;
-    } ) => void, e: ( rs: {
+    }) => void, e: (rs: {
         error: boolean;
         response: any;
         jqXHR?: JQueryXHR;
         textStatus?: string;
-    } ) => void ): JQueryXHR;
-    public xhr( config: XHRConfig ): JQueryXHR;
-    public populateDetail( data: Dct<any>, cb?: ( status: string, $owner?: JQuery<HTMLElement> ) => void, $owner?: JQuery<HTMLElement> ): void;
-    public populateMaster( row: Dct<any> ): void;
-    public printPreview( id: string | ( ( pctx: IPageContext ) => void ), val: any ): IPageContext;
-    public print( cb: ( pctx: IPageContext, status: string, index: any ) => void, index: any ): void;
-    public delete( cb: ( status: string, index: number | string ) => void ): void;
+    }) => void): JQueryXHR;
+    public xhr(config: XHRConfig): JQueryXHR;
+    public populateDetail(data: Dct<any>, cb?: (status: string, $owner?: JQuery<HTMLElement>) => void, $owner?: JQuery<HTMLElement>): void;
+    public populateMaster(row: Dct<any>): void;
+    public printPreview(id: string | ((pctx: IPageContext) => void), val: any): IPageContext;
+    public print(cb: (pctx: IPageContext, status: string, index: any) => void, index: any): void;
+    public delete(cb: (status: string, index: number | string) => void): void;
     public clear(): IPageContext;
-    public getSearchObj( $inst?: JQuery<HTMLElement>, type?: string ): Dct<any>;
-    public searchObjModify?: ( obj: any[] | Dct<any> ) => void;
-    public clean( cb?: (status:string) => void ): IPageContext;
-    public save( cb: ( status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string ): void;
-    public search( cb: ( status: string ) => void, obj?: Dct<any>, def?: Dct<any> ): void;
-    public __onSearchDataModify?: ( data: Dct<any>[] ) => Dct<any>[];
-    public loadDropDown( cb: ( status: string ) => void, sdestroy?: boolean ): void;
+    public getSearchObj($inst?: JQuery<HTMLElement>, type?: string): Dct<any>;
+    public searchObjModify?: (obj: any[] | Dct<any>) => void;
+    public clean(cb?: (status: string) => void): IPageContext;
+    public save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string): void;
+    public search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void;
+    public __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
+    public loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
     public dispose(): void;
     private dragable: {
         keys: JQuery<HTMLElement>[];
         invalid_count: number;
-        isValid: ( key: string ) => boolean;
+        isValid: (key: string) => boolean;
     };
-    private regWidget( selector: string ): void;
-    public saveObjModify?: ( obj: Dct<any> ) => { error: boolean; msg?: string };
-    public beforeSearch?: ( obj: Dct<any> ) => Dct<any>;
+    private regWidget(selector: string): void;
+    public saveObjModify?: (obj: Dct<any>) => { error: boolean; msg?: string };
+    public beforeSearch?: (obj: Dct<any>) => Dct<any>;
     public resolve(opt: { url: string; route: string; done: () => void }): void;
     clean_dropzone(): void;
     dropzone_dispose(): void;
 }
 declare interface InternalWorker {
-    [id: string]: ( ...args: any[] ) => InternalWorker;
+    [id: string]: (...args: any[]) => InternalWorker;
 }
-export declare type ISqlDef = { ( pageCtx: IPageContext, pv: string, obj: Dct<any> ):void | Dct<any> | string};
+export declare type ISqlDef = { (pageCtx: IPageContext, pv: string, obj: Dct<any>): void | Dct<any> | string };
 export declare interface IWebUI {
-    renderView( route: string, $elm: JQuery<HTMLElement>, __cb: ( status: string ) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string ): void;
-    getTemplateName( route ): string | void;
-    transportRequest( route: string, obj?: IRequest ): IWebUI;
-    resolve( opt: { url: string; route: string; done: () => void } ): boolean;
-    routeIsRegistred( route: string ): boolean;
-    getRouteCtx( route: string, check?: boolean ): boolean | IPageContext;
-    regDependency( opt: { dependency: string; url: string } ): void;
-    assign( opt: IPageConfig, dependency: string ): IWebUI;
+    renderView(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string): void;
+    getTemplateName(route): string | void;
+    transportRequest(route: string, obj?: IRequest): IWebUI;
+    resolve(opt: { url: string; route: string; done: () => void }): boolean;
+    routeIsRegistred(route: string): boolean;
+    getRouteCtx(route: string, check?: boolean): boolean | IPageContext;
+    regDependency(opt: { dependency: string; url: string }): void;
+    assign(opt: IPageConfig, dependency: string): IWebUI;
     postmortem(): IWebUI;
-    dispose( route: string, cb: void | ( ( status: string ) => void ) ): IWebUI;
-    destroy( route: string, cb: void | ( ( status: string ) => void ) ): IWebUI;
+    dispose(route: string, cb: void | ((status: string) => void)): IWebUI;
+    destroy(route: string, cb: void | ((status: string) => void)): IWebUI;
     script: {
-        remove( route: string ): void;
-        append( route: string, script?: string, cb?: ( status: string ) => void ): void;
+        remove(route: string): void;
+        append(route: string, script?: string, cb?: (status: string) => void): void;
     };
-    openNew( opt: OpenNewWindowConfig ): void;
-    getTemplate( templ?: string, cb?: ( status: string, template: string ) => void ): void;
+    openNew(opt: OpenNewWindowConfig): void;
+    getTemplate(templ?: string, cb?: (status: string, template: string) => void): void;
     /** Get dependancy of current page context */
-    getDependancy( route: string ): string[];
+    getDependancy(route: string): string[];
     /** Remove Page Config */
-    removeConfig( route: string ): void;
-    getConfig( route: string ): IPageConfig | void;
+    removeConfig(route: string): void;
+    getConfig(route: string): IPageConfig | void;
 }
 export declare type OpenNewWindowConfig = {
     dependency?: string;
@@ -519,19 +529,19 @@ export declare type OpenNewWindowConfig = {
     height?: string;
     width?: string;
     position?: { my?: string, at?: string };
-    done?: ( ...args: any[] ) => void;
-    fail?: ( ...args: any[] ) => void;
+    done?: (...args: any[]) => void;
+    fail?: (...args: any[]) => void;
 };
-declare interface ITemplateScript{
-    has( identity: string ): boolean;
-    remove( identity: string ): boolean;
-    parse( identity: string, text: string, cb: () => void ): void;
-    register( identity: string, func: () => void ): void;
-    run( identity: string, data: any, cb: ( str: string ) => void ): ITemplateScript;
-    parse( tname: string, data: string, next: () => void ): void
+declare interface ITemplateScript {
+    has(identity: string): boolean;
+    remove(identity: string): boolean;
+    parse(identity: string, text: string, cb: () => void): void;
+    register(identity: string, func: () => void): void;
+    run(identity: string, data: any, cb: (str: string) => void): ITemplateScript;
+    parse(tname: string, data: string, next: () => void): void
 }
 export declare interface IWeb {
-    page( config: IPageConfig ): void;
+    page(config: IPageConfig): void;
     UI: IWebUI;
     Template: {
         script: ITemplateScript;
@@ -541,9 +551,9 @@ export declare interface IWeb {
         loginId: string;
     };
     Ext: {
-        export( need?: string[] ): InternalWorker;
+        export(need?: string[]): InternalWorker;
     };
-    errorResponse( errorCode: string, $container: JQuery<HTMLElement>, oldResponse: string, cb?: () => void ): void;
-    onUnload( route: string, cb: void | ( ( status: string ) => void ) ): this;
-    destroy( route: string, cb: void | ( ( status: string ) => void ) ): this;
+    errorResponse(errorCode: string, $container: JQuery<HTMLElement>, oldResponse: string, cb?: () => void): void;
+    onUnload(route: string, cb: void | ((status: string) => void)): this;
+    destroy(route: string, cb: void | ((status: string) => void)): this;
 }
