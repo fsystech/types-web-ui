@@ -86,6 +86,11 @@ declare interface HTMLCollection {
 declare interface Element {
 	getAttributes(attrname: string): string | void;
 }
+declare interface Math{
+	abs(x: string): number;
+	round(x: string): number;
+}
+declare function parseInt(s: number, radix?: number): number;
 declare interface Exception extends Error { }
 interface ExceptionConstructor extends ErrorConstructor {
 	new(message?: string, fileName?: string, lineNumber?: string | number): Exception;
