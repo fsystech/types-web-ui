@@ -132,7 +132,7 @@ export declare type ExternalLink = {
 }
 export declare type ElementRules = {
     /** Ensure this value data type*/
-    m?: 'text' | 'numeric' | 'boolean' | 'url' | 'date' | 'email' | 'mobile',
+    m?: 'text' | 'numeric' | 'boolean' | 'url' | 'date' | 'email' | 'mobile' | 'multiple',
     /** Maximum length of value */
     max?: number,
     /** Minimum length of value */
