@@ -191,15 +191,15 @@ export declare type ElementInfo = {
     /** Define the dropdown type. It will be effect while your element type is `dropdown` */
     readonly drop_type?: "select" | "selectize" | string;
 };
-declare type DropDef = {
+export declare type DropDef = {
     url?: string; sp: ((pageCtx: IPageContext) => void) | string;
     selectize_config?:{
-        maxItems: number;
+        maxItems?: number;
         valueField?: string;
         labelField?: string;
         searchField?: string;
-        create: boolean;
-        preload: boolean;
+        create?: boolean;
+        preload?: boolean;
         persist?: boolean;
         delimiter?: string;
     }
