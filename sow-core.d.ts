@@ -206,11 +206,13 @@ declare type SourceType = {
     load?: boolean;
     drop_def?: DropDef | {
         maxItems: number;
-        valueField: string;
-        labelField: string;
-        searchField: string;
+        valueField?: string;
+        labelField?: string;
+        searchField?: string;
         create: boolean;
         preload: boolean;
+        persist?: boolean;
+        delimiter?: string;
      } | ( ( obj: Dct<any>, pageCtx: IPageContext, lookup: ( look: DropDef ) => Dct<any> ) => void );
 };
 export declare interface IWidget {
