@@ -119,14 +119,16 @@ export declare interface ISQLCommand {
     readonly lq?: CommandConf;
 }
 export declare type ExternalLink = {
-    param: string[];
+    param?: string[];
+    paramName?:string;
     dependency?: string;
     route: string;
     width: string;
     height: string;
     position?: { my?: string, at?: string },
     modal: boolean;
-    resizable: boolean,
+    resizable: boolean;
+    click?: ( pageCtx: IPageContext ) => void;
     done?: (t: string) => void;
     fail?: () => void;
 }
