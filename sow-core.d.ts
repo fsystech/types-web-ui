@@ -202,6 +202,7 @@ export declare type DropDef = {
         preload?: boolean;
         persist?: boolean;
         delimiter?: string;
+        plugins?:string[]
     }
 };
 declare type SourceType = {
