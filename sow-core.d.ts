@@ -364,7 +364,7 @@ declare interface IPageContext {
     searchObjModify?: (obj: any[] | Dct<any>) => void;
     clean(cb?: (status: string) => void): IPageContext;
     save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string): void;
-    search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void;
+    search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void | JQuery.jqXHR<any>;
     __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
     loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
     saveObjModify?: (obj: Dct<any>) => { error: boolean; msg?: string };
@@ -479,7 +479,7 @@ export declare class PageContext implements IPageContext {
     public searchObjModify?: (obj: any[] | Dct<any>) => void;
     public clean(cb?: (status: string) => void): IPageContext;
     public save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string): void;
-    public search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void;
+    public search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void | JQuery.jqXHR<any>;
     public __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
     public loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
     public dispose(): void;
