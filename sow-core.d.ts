@@ -325,6 +325,7 @@ declare interface IPageContext {
     readonly $container: JQuery<HTMLElement>;
     readonly destroy_event: (() => void)[];
     __data_navigate: boolean;
+    isDisabled: boolean;
     prepare(containerKey: string): void;
     $ui(): JQueryUI.Dialog | void;
     getInteractive(): JQueryUI.Dialog;
@@ -374,6 +375,8 @@ declare interface IPageContext {
     clean_dropzone(): void;
     /** This method will be throw if `DropzoneExtend.export` does not invoked yet */
     dropzone_dispose(): void;
+    /** If this `window` is `child` then `window` will be `shake` */
+    shake(): void;
 }
 export declare interface INavigator {
     getData(): Dct<any>;
@@ -440,6 +443,7 @@ export declare class PageContext implements IPageContext {
     };
     private readonly ajax: JQueryXHR[];
     private readonly data_map?: Dct<any>;
+    public isDisabled: boolean;
     public __data_navigate: boolean;
     public getInteractive(): JQueryUI.Dialog;
     public prepare(containerKey: string): void;
@@ -493,8 +497,9 @@ export declare class PageContext implements IPageContext {
     public saveObjModify?: (obj: Dct<any>) => { error: boolean; msg?: string };
     public beforeSearch?: (obj: Dct<any>) => Dct<any>;
     public resolve(opt: { url: string; route: string; done: () => void }): void;
-    clean_dropzone(): void;
-    dropzone_dispose(): void;
+    public clean_dropzone(): void;
+    public dropzone_dispose(): void;
+    public shake(): void;
 }
 declare interface InternalWorker {
     [id: string]: (...args: any[]) => InternalWorker;
@@ -507,7 +512,7 @@ export declare interface IWebUI {
     resolve(opt: { url: string; route: string; done: () => void }): boolean;
     routeIsRegistred(route: string): boolean;
     /** Set this route is `IPageContext` */
-    active(route: string): void;
+    active(route: string, e?: JQuery.ClickEvent): void;
     /** Get active `route` */
     active(): string;
     /** Get Active `IPageContext` */
