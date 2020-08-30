@@ -327,6 +327,7 @@ declare interface IPageContext {
     __data_navigate: boolean;
     prepare(containerKey: string): void;
     $ui(): JQueryUI.Dialog | void;
+    getInteractive(): JQueryUI.Dialog;
     onSearch(data?: any, cb?: (...args: any[]) => void): void;
     onDispose(): void;
     getDependency(): string[];
@@ -432,7 +433,6 @@ export declare class PageContext implements IPageContext {
     private readonly fm: Dct<ElementInfo>;
     constructor(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog: boolean, ___$ui?: JQueryUI.Dialog);
     private postmortem(): void;
-    private getInteractive(): JQueryUI.Dialog;
     private _: {
         event: {
             fire(evt: string): (e: JQueryEventObject) => void;
@@ -441,6 +441,7 @@ export declare class PageContext implements IPageContext {
     private readonly ajax: JQueryXHR[];
     private readonly data_map?: Dct<any>;
     public __data_navigate: boolean;
+    public getInteractive(): JQueryUI.Dialog;
     public prepare(containerKey: string): void;
     public onSearch(data?: any, cb?: (...args: any[]) => void): void;
     public onDispose(): void;
