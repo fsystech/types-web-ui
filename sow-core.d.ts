@@ -516,12 +516,20 @@ export declare interface IWebUI {
         append(route: string, script?: string, cb?: (status: string) => void): void;
     };
     openNew(opt: OpenNewWindowConfig): void;
+    /** Fetch the given template from server or mem cache */
     getTemplate(templ?: string, cb?: (status: string, template: string) => void): void;
     /** Get dependancy of current page context */
     getDependancy(route: string): string[];
     /** Remove Page Config */
     removeConfig(route: string): void;
+    /** Get the given route  `IPageConfig`*/
     getConfig(route: string): IPageConfig | void;
+    /** Open alert window. Initilized by `$.confirm` */
+    alert(cfg: AlertConfig): void;
+    /** Open prompt window. Initilized by `$.confirm` */
+    prompt(cfg: PromptConfig): void;
+    /** Open confirm window. Initilized by `$.confirm` */
+    confirm(cfg: ConfirmConfig): void;
 }
 export declare type OpenNewWindowConfig = {
     dependency?: string;
