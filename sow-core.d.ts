@@ -357,7 +357,7 @@ declare interface IPageContext {
     populateDetail(data: Dct<any>, cb?: (status: string, $owner?: JQuery<HTMLElement>) => void, $owner?: JQuery<HTMLElement>): void;
     populateMaster(row: Dct<any>): void;
     printPreview(id: string | ((pctx: IPageContext) => void), val: any): IPageContext;
-    print(cb: (pctx: IPageContext, status: string, index?: any) => void, index: any): void;
+    print(cb: (pctx: IPageContext, status: string, index?: any) => void, index?: any): void;
     delete(cb: (status: string, index: number | string) => void): void;
     clear(): IPageContext;
     getSearchObj($inst?: JQuery<HTMLElement>, type?: string): void;
