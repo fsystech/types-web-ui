@@ -506,7 +506,10 @@ export declare interface IWebUI {
     transportRequest(route: string, obj?: IRequest): IWebUI;
     resolve(opt: { url: string; route: string; done: () => void }): boolean;
     routeIsRegistred(route: string): boolean;
+    /** Check this `route` is exists */
     getRouteCtx(route: string, check?: boolean): boolean | IPageContext;
+    /** Check this `route`  `IPageContext`*/
+    getRouteCtx(route: string): IPageContext;
     regDependency(opt: { dependency: string; url: string }): void;
     assign(opt: IPageConfig, dependency: string): IWebUI;
     postmortem(): IWebUI;

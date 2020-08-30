@@ -217,7 +217,7 @@ declare namespace JQueryUI {
 		isOpen(): boolean;
 		close(): any;
 		destroy(): void;
-		state(): "minimized" | "collapsed";
+		state(): 'minimized' | 'collapsed' | 'normal';
 		restore(): void;
 		___destroy(): void;
 	}
