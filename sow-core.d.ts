@@ -329,10 +329,10 @@ declare interface IPageContext {
     $ui(): JQueryUI.Dialog | void;
     onSearch(data?: any, cb?: (...args: any[]) => void): void;
     onDispose(): void;
-    getDependancy(): string[];
+    getDependency(): string[];
     enableDisable(t: 'enable' | 'disable', field?: string[]): void;
     dumpObj(obj: Dct<any>): void;
-    dependancyResolve(params: any): void;
+    dependencyResolve(params: any): void;
     onTransportRequest(request: IRequest): void;
     quoteLiteral(value?: string): string;
     createQuery(obj: Dct<string>): string;
@@ -444,10 +444,10 @@ export declare class PageContext implements IPageContext {
     public prepare(containerKey: string): void;
     public onSearch(data?: any, cb?: (...args: any[]) => void): void;
     public onDispose(): void;
-    public getDependancy(): string[];
+    public getDependency(): string[];
     public enableDisable(t: 'e' | 'd' | 'enable' | 'disable', field?: string[]): void;
     public dumpObj(obj: Dct<any>): void;
-    public dependancyResolve(params: any): void;
+    public dependencyResolve(params: any): void;
     public onTransportRequest(request: IRequest): void;
     public quoteLiteral(value?: string): string;
     public createQuery(obj: Dct<string>): string;
@@ -519,7 +519,7 @@ export declare interface IWebUI {
     /** Fetch the given template from server or mem cache */
     getTemplate(templ?: string, cb?: (status: string, template: string) => void): void;
     /** Get dependancy of current page context */
-    getDependancy(route: string): string[];
+    getDependency(route: string): string[];
     /** Remove Page Config */
     removeConfig(route: string): void;
     /** Get the given route  `IPageConfig`*/
