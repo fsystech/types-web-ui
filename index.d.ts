@@ -12,6 +12,7 @@ declare type PageContext = import('./sow-core').PageContext;
 declare type PageContexConstructor = import('./sow-core').PageContexConstructor;
 declare type ElementInfo = import('./sow-core').ElementInfo;
 declare type ExternalLink = import('./sow-core').ExternalLink;
+declare type IPrintConfig = import('./sow-core').IPrintConfig;
 declare type ElementRules = import('./sow-core').ElementRules;
 declare type IFormInfo = import('./sow-core').IFormInfo;
 declare type INavigator = import('./sow-core').INavigator;

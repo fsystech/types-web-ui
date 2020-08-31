@@ -80,7 +80,22 @@ export declare interface IPageRegInfo {
     } | Dct<any>;
     dynamic_report: boolean;
     report: (event: any) => void;
-    print_settings?: (pagctx: IPageContext, primaryKey: string, index: any) => void;
+    /**
+     *  Create `Print Preview` accordingly `IPrintConfig`
+     *  
+     * `url: string;`
+     * `name?: string;`
+     * `specs?: string;`
+     * `parent_window?: boolean;`
+     * `self_print?: boolean;`
+    */
+    print_settings?: (pagctx: IPageContext, primaryKey: string, index: any) => IPrintConfig;
+}
+export declare interface IPrintConfig{
+    url: string; name?: string;
+    specs?: string;
+    parent_window?: boolean;
+    self_print?: boolean;
 }
 declare interface IPageConfig {
     readonly reg: IPageRegInfo;
