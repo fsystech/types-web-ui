@@ -393,8 +393,24 @@ declare var WebPageContext: PageContexConstructor;
 /** ctx can be define in back-end template engine */
 declare var ctx: IContext;
 declare type XHandsontable = import('handsontable').default;
-declare interface HandsontableConstructor {
+declare class HandsontableConstructor {
 	new(element: Element, options: import('handsontable').default.GridSettings): XHandsontable;
 	readonly prototype: XHandsontable;
+	static baseVersion: string;
+	static buildDate: string;
+	static packageName: 'handsontable';
+	static version: string;
+	static cellTypes: import('handsontable').default.CellTypes;
+	static languages: import('handsontable').default.I18n.Internationalization;
+	static dom: import('handsontable').default.Dom;
+	static editors: import('handsontable').default.Editors;
+	static helper: import('handsontable').default.Helper;
+	static hooks: import('handsontable').default.Hooks.Methods;
+	static plugins: import('handsontable').default.Plugins;
+	static renderers: import('handsontable').default.Renderers;
+	static validators: import('handsontable').default.Validators;
+	static Core: typeof import('handsontable').default.Core;
+	static EventManager: import('handsontable').default.EventManager;
+	static DefaultSettings: import('handsontable').default.GridSettings;
 }
 declare var Handsontable: HandsontableConstructor;
