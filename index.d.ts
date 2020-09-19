@@ -90,7 +90,7 @@ declare interface HTMLCollection {
 declare interface Element {
 	getAttributes(attrname: string): string | void;
 }
-declare interface Math{
+declare interface Math {
 	abs(x: string): number;
 	round(x: string): number;
 }
@@ -415,3 +415,15 @@ declare interface HandsontableConstructor {
 }
 /**`Handsontable` class `Constructor` Extend `Handsontable Class` */
 declare var Handsontable: HandsontableConstructor;
+
+declare interface INumberFormat {
+	quantity(val: any): string;
+	amount(val: any): string;
+	number: {
+		d(val: any, prussian?: number): number;
+		f(val: any): (format: string, roundingFunction?: (num: number) => number) => string;
+	};
+	toAcre(val: any): string;
+	toSft(val: any): string;
+}
+declare var format: INumberFormat;
