@@ -376,7 +376,7 @@ declare interface IPageContext {
     printPreview(id: string | ((pctx: IPageContext) => void), val: any): IPageContext;
     print(cb: (pctx: IPageContext, status: string, index?: any) => void, index?: any): void;
     delete(cb: (status: string, index: number | string) => void): void;
-    clear(): IPageContext;
+    clear($elem?:JQuery<HTMLElement>): IPageContext;
     getSearchObj($inst?: JQuery<HTMLElement>, type?: string): void;
     searchObjModify?: (obj: any[] | Dct<any>) => void;
     clean(cb?: (status: string) => void): IPageContext;
@@ -494,7 +494,7 @@ export declare class PageContext implements IPageContext {
     public printPreview(id: string | ((pctx: IPageContext) => void), val: any): IPageContext;
     public print(cb: (pctx: IPageContext, status: string, index: any) => void, index: any): void;
     public delete(cb: (status: string, index: number | string) => void): void;
-    public clear(): IPageContext;
+    public clear($elem?:JQuery<HTMLElement>): IPageContext;
     public getSearchObj($inst?: JQuery<HTMLElement>, type?: string): Dct<any>;
     public searchObjModify?: (obj: any[] | Dct<any>) => void;
     public clean(cb?: (status: string) => void): IPageContext;
