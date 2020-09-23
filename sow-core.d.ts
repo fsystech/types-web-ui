@@ -91,7 +91,7 @@ export declare interface IPageRegInfo {
     */
     print_settings?: (pagctx: IPageContext, primaryKey: string, index: any) => IPrintConfig;
 }
-export declare interface IPrintConfig{
+export declare interface IPrintConfig {
     url: string; name?: string;
     specs?: string;
     parent_window?: boolean;
@@ -134,8 +134,8 @@ export declare interface ISQLCommand {
     readonly lq?: CommandConf;
 }
 export declare type ExternalLink = {
-    param?: string[] | ( ( pageCtx: IPageContext ) => string[] );
-    paramName?:string;
+    param?: string[] | ((pageCtx: IPageContext) => string[]);
+    paramName?: string;
     dependency?: string;
     route: string;
     width: string;
@@ -143,7 +143,7 @@ export declare type ExternalLink = {
     position?: { my?: string, at?: string },
     modal: boolean;
     resizable: boolean;
-    click?: ( pageCtx: IPageContext ) => void;
+    click?: (pageCtx: IPageContext) => void;
     done?: (t: string) => void;
     fail?: () => void;
 }
@@ -212,16 +212,16 @@ export declare type ElementInfo = {
 };
 export declare type DropDef = {
     url?: string; sp: ((pageCtx: IPageContext) => void) | string;
-    selectize_config?:{
+    selectize_config?: {
         maxItems?: number;
         valueField?: string;
         labelField?: string;
-        searchField?: string|any[];
+        searchField?: string | any[];
         create?: boolean;
         preload?: boolean;
         persist?: boolean;
         delimiter?: string;
-        plugins?:string[]
+        plugins?: string[]
     }
 };
 declare type SourceType = {
@@ -376,11 +376,11 @@ declare interface IPageContext {
     printPreview(id: string | ((pctx: IPageContext) => void), val: any): IPageContext;
     print(cb: (pctx: IPageContext, status: string, index?: any) => void, index?: any): void;
     delete(cb: (status: string, index: number | string) => void): void;
-    clear($elem?:JQuery<HTMLElement>): IPageContext;
+    clear($elem?: JQuery<HTMLElement>): IPageContext;
     getSearchObj($inst?: JQuery<HTMLElement>, type?: string): void;
     searchObjModify?: (obj: any[] | Dct<any>) => void;
     clean(cb?: (status: string) => void): IPageContext;
-    save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string): void;
+    save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string, before?: () => void): void;
     search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void | JQuery.jqXHR<any>;
     __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
     loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
@@ -494,11 +494,11 @@ export declare class PageContext implements IPageContext {
     public printPreview(id: string | ((pctx: IPageContext) => void), val: any): IPageContext;
     public print(cb: (pctx: IPageContext, status: string, index: any) => void, index: any): void;
     public delete(cb: (status: string, index: number | string) => void): void;
-    public clear($elem?:JQuery<HTMLElement>): IPageContext;
+    public clear($elem?: JQuery<HTMLElement>): IPageContext;
     public getSearchObj($inst?: JQuery<HTMLElement>, type?: string): Dct<any>;
     public searchObjModify?: (obj: any[] | Dct<any>) => void;
     public clean(cb?: (status: string) => void): IPageContext;
-    public save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string): void;
+    public save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string, before?: () => void): void;
     public search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void | JQuery.jqXHR<any>;
     public __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
     public loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
