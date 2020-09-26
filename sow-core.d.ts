@@ -224,7 +224,7 @@ export declare interface ISelectizeConfig {
     optgroupField?: string;
     optgroupLabelField?: string;
     optgroupValueField?: string;
-    lockOptgroupOrder: true;
+    lockOptgroupOrder?: boolean;
     plugins?: string[];
 }
 export declare type DropDef = {
