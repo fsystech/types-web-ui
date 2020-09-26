@@ -32,6 +32,7 @@ declare type DropDef = import('./sow-core').DropDef;
 declare type IWebUI = import('./sow-core').IWebUI;
 declare type OpenNewWindowConfig = import('./sow-core').OpenNewWindowConfig;
 declare type DatabaseRequestConfig = import('./sow-core').DatabaseRequestConfig;
+declare type ISelectizeConfig = import('./sow-core').ISelectizeConfig;
 declare type IProxyServer = import('./sow-chat-ui').IProxyServer;
 declare type ChatUICore = import('./sow-chat-ui').ICore;
 
