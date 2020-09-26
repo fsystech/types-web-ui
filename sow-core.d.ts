@@ -210,19 +210,26 @@ export declare type ElementInfo = {
     /** Define the dropdown type. It will be effect while your element type is `dropdown` */
     readonly drop_type?: "select" | "selectize" | string;
 };
+declare interface ISelectizeConfig {
+    options?: any[];
+    optgroups?: any[];
+    maxItems?: number;
+    valueField?: string;
+    labelField?: string;
+    searchField?: string | any[];
+    create?: boolean;
+    preload?: boolean;
+    persist?: boolean;
+    delimiter?: string;
+    optgroupField?: string;
+    optgroupLabelField?: string;
+    optgroupValueField?: string;
+    lockOptgroupOrder: true;
+    plugins?: string[];
+}
 export declare type DropDef = {
     url?: string; sp: ((pageCtx: IPageContext) => void) | string;
-    selectize_config?: {
-        maxItems?: number;
-        valueField?: string;
-        labelField?: string;
-        searchField?: string | any[];
-        create?: boolean;
-        preload?: boolean;
-        persist?: boolean;
-        delimiter?: string;
-        plugins?: string[]
-    }
+    selectize_config?: ISelectizeConfig;
 };
 declare type SourceType = {
     query?: string;
@@ -234,16 +241,7 @@ declare type SourceType = {
     search_poperty?: string;
     drop_type?: "selectize";
     load?: boolean;
-    drop_def?: DropDef | {
-        maxItems: number;
-        valueField?: string;
-        labelField?: string;
-        searchField?: string;
-        create: boolean;
-        preload: boolean;
-        persist?: boolean;
-        delimiter?: string;
-    } | ((obj: Dct<any>, pageCtx: IPageContext, lookup: (look: DropDef) => { dispose: () => void }) => void);
+    drop_def?: DropDef | ISelectizeConfig | ((obj: Dct<any>, pageCtx: IPageContext, lookup: (look: DropDef) => { dispose: () => void }) => void);
 };
 export declare interface IWidget {
     readonly title: string;
@@ -417,7 +415,7 @@ export declare type ISource = {
         add_new: string;
         owner: string;
         drop_type: "select" | string;
-        drop_def: DropDef;
+        drop_def: DropDef | ISelectizeConfig;
     }[]>
 };
 export declare interface PageContexConstructor {
