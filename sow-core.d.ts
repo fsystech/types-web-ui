@@ -519,10 +519,15 @@ declare interface InternalWorker {
 }
 export declare type ISqlDef = { (pageCtx: IPageContext, pv: string, obj: Dct<any>): void | Dct<any> | string };
 export declare interface IWebUI {
+    /** Render given `route`, if already been registered */
     renderView(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string): void;
+    /** Get given `route` template name */
     getTemplateName(route): string | void;
+    /** Communicate current `IPageContext` to given `route` `IPageContext` */
     transportRequest(route: string, obj?: IRequest): IWebUI;
+    /** Reslove given `route`. If already has `IPageContext`  */
     resolve(opt: { url: string; route: string; done: () => void }): boolean;
+    /** Check given `route` is registred ? */
     routeIsRegistred(route: string): boolean;
     /** Set this route is `IPageContext` */
     active(route: string, e?: JQuery.ClickEvent): void;
@@ -536,13 +541,20 @@ export declare interface IWebUI {
     isRouteExists(route: string): boolean;
     /** Check this `route`  `IPageContext`*/
     getRouteCtx(route: string): IPageContext;
+    /** Register current `route` dependency. */
     regDependency(opt: { dependency: string; url: string }): void;
+    /** Add new web-page config */
     assign(opt: IPageConfig, dependency: string): IWebUI;
+    /** postmortem all `IPageContext` */
     postmortem(): IWebUI;
+    /** Dispose given `route` `IPageContext` with dependency */
     dispose(route: string, cb: void | ((status: string) => void)): IWebUI;
+    /** Destroy given `route` `IPageContext` with dependency */
     destroy(route: string, cb: void | ((status: string) => void)): IWebUI;
     script: {
+        /** Remove given `route` `script` `context` from `global` `isolate` */
         remove(route: string): void;
+        /** Run given `script` in current `document` with `global` `context`  */
         append(route: string, script?: string, cb?: (status: string) => void): void;
     };
     openNew(opt: OpenNewWindowConfig): void;
