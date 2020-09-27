@@ -530,6 +530,8 @@ export declare interface IWebUI {
     active(): string;
     /** Get Active `IPageContext` */
     getActiveCtx(): IPageContext;
+    /** Get Active `route` */
+    getActiveRoute(): string;
     /** Check this `route` is exists */
     isRouteExists(route: string): boolean;
     /** Check this `route`  `IPageContext`*/
