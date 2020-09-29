@@ -339,6 +339,7 @@ declare interface IPageContext {
     readonly destroy_event: (() => void)[];
     __data_navigate: boolean;
     isDisabled: boolean;
+    msgBoxOpenCount: number;
     prepare(containerKey: string): void;
     $ui(): JQueryUI.Dialog | void;
     getInteractive(): JQueryUI.Dialog;
@@ -456,6 +457,7 @@ export declare class PageContext implements IPageContext {
     };
     private readonly ajax: JQueryXHR[];
     private readonly data_map?: Dct<any>;
+    public msgBoxOpenCount: number;
     public isDisabled: boolean;
     public __data_navigate: boolean;
     public getInteractive(): JQueryUI.Dialog;
