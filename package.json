@@ -19,11 +19,11 @@
   },
   "devDependencies": {
     "@types/handsontable": "^0.35.0",
-    "@types/jquery": "^3.5.0",
+    "@types/jquery": "^3.5.1",
     "@types/jqueryui": "^1.12.13",
-    "@types/node": "^8.10.62",
-    "@types/superagent": "^4.1.9",
-    "typescript": "^3.2.2"
+    "@types/node": "^14.11.2",
+    "@types/superagent": "^4.1.10",
+    "typescript": "^4.0.3"
   },
   "dependencies": {
     "cwserver": "git+https://github.com/safeonlineworld/cwserver.git"
