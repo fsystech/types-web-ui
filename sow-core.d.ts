@@ -229,6 +229,7 @@ export declare interface ISelectizeConfig {
 }
 export declare type DropDef = {
     url?: string; sp: ((pageCtx: IPageContext) => void) | string;
+    param?: (pageCtx: IPageContext, obj: { query: string, vtype: string }) => Dct<any>;
     selectize_config?: ISelectizeConfig;
 };
 declare type SourceType = {
