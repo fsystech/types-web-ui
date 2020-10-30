@@ -422,7 +422,9 @@ declare interface INumberFormat {
 	amount(val: any): string;
 	number: {
 		d(val: any, prussian?: number): number;
-		f(val: any): (format: string, roundingFunction?: (num: number) => number) => string;
+		f(val: any): {
+			format(format: string, roundingFunction?: (num: number) => number): string
+		};
 	};
 	toAcre(val: any): string;
 	toSft(val: any): string;
