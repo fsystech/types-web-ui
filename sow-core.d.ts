@@ -18,7 +18,8 @@ declare type SearchDetail = {
     poperty?: any[];
     tablesorter?: boolean;
     jQDataTable?: {
-        settings: DataTables.Settings
+        settings?: DataTables.Settings;
+        table?: DataTables.Api;
     };
     detail_event?: boolean | {
         on_page_ready: (pagctx: IPageContext) => void;
@@ -349,6 +350,7 @@ declare interface IPageContext {
     getInteractive(): JQueryUI.Dialog;
     onSearch(data?: any, cb?: (...args: any[]) => void): void;
     onDispose(): void;
+    destroyDetailTable(): void;
     getDependency(): string[];
     enableDisable(t: 'enable' | 'disable', field?: string[]): void;
     dumpObj(obj: Dct<any>): void;
@@ -468,6 +470,7 @@ export declare class PageContext implements IPageContext {
     public prepare(containerKey: string): void;
     public onSearch(data?: any, cb?: (...args: any[]) => void): void;
     public onDispose(): void;
+    public destroyDetailTable(): void;
     public getDependency(): string[];
     public enableDisable(t: 'e' | 'd' | 'enable' | 'disable', field?: string[]): void;
     public dumpObj(obj: Dct<any>): void;
