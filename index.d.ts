@@ -197,15 +197,15 @@ declare interface DialogExtendOption {
 	titlebar?: boolean;
 	minimizeLocation?: string;
 	icons?: Dct<string>;
-	load?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	beforeCollapse?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	beforeMaximize?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	beforeMinimize?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	beforeRestore?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	collapse?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	maximize?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	minimize?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
-	restore?: (evt: JQueryEventObject, dlg: JQueryUI.Dialog) => void;
+	load?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	beforeCollapse?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	beforeMaximize?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	beforeMinimize?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	beforeRestore?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	collapse?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	maximize?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	minimize?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
+	restore?: (evt: JQuery.Event, dlg: JQueryUI.Dialog) => void;
 }
 declare namespace JQueryUI {
 	interface Widget {

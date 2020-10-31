@@ -17,6 +17,9 @@ declare type SearchDetail = {
     header?: any[];
     poperty?: any[];
     tablesorter?: boolean;
+    jQDataTable?: {
+        settings: DataTables.Settings
+    };
     detail_event?: boolean | {
         on_page_ready: (pagctx: IPageContext) => void;
     };
@@ -28,9 +31,9 @@ export declare interface IPageRegInfo {
     template?: string | 'SRC__DEFAULT__';
     window_interactive?: boolean;
     window?: (pageCtx: IPageContext) => {
-        maximize(evt: JQueryEventObject, dlg: JQueryUI.Dialog): void;
-        minimize(evt: JQueryEventObject, dlg: JQueryUI.Dialog): void;
-        restore(evt: JQueryEventObject, dlg: JQueryUI.Dialog): void;
+        maximize(evt: JQuery.Event, dlg: JQueryUI.Dialog): void;
+        minimize(evt: JQuery.Event, dlg: JQueryUI.Dialog): void;
+        restore(evt: JQuery.Event, dlg: JQueryUI.Dialog): void;
     };
     event_array?: string[];
     route: string;
@@ -190,7 +193,7 @@ export declare type ElementInfo = {
     /** Is this element disabled ? */
     readonly disabled?: boolean;
     /** each value add custom `data-event-your-value` attribute  */
-    readonly event?: Dct<(pageCtx: IPageContext, e: JQueryEventObject, $owner: JQuery<HTMLElement>) => void>;
+    readonly event?: Dct<(pageCtx: IPageContext, e: JQuery.Event, $owner: JQuery<HTMLElement>) => void>;
     /** it will use while your element type is switch. You can use on|off */
     readonly text?: string;
     /** Element `placeholder` */
@@ -453,7 +456,7 @@ export declare class PageContext implements IPageContext {
     private postmortem(): void;
     private _: {
         event: {
-            fire(evt: string): (e: JQueryEventObject) => void;
+            fire(evt: string): (e: JQuery.Event) => void;
         }
     };
     private readonly ajax: JQueryXHR[];
