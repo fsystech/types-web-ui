@@ -18,6 +18,7 @@ declare type SearchDetail = {
     poperty?: any[];
     tablesorter?: boolean;
     jQDataTable?: {
+        addDefaultButtons?: boolean;
         settings?: DataTables.Settings;
         table?: DataTables.Api;
     };
