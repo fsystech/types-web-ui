@@ -609,6 +609,9 @@ export declare interface IWeb {
     UI: IWebUI;
     Template: {
         script: ITemplateScript;
+        getSet: {
+            [id: string]: ($elm?: JQuery<HTMLElement>) => undefined | string
+        }
     };
     userInfo: {
         roleId: string;
