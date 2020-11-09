@@ -113,6 +113,8 @@ declare interface IHotTable {
 	createColumnWidth(hotSettings: HandsonTable.GridSettings, containerWidth: number): number[];
 	/** Resize Handsontable after 300ms */
 	resize(hot: HandsonTable, orgWidths: number[], $elm: JQuery<HTMLElement>): void;
+	/** Extend `cleanHandsonTable`, `loadDetail` and `createEmptyDataSet` in `IPageContext.IExHandsonTable` -> `accessor` `IPageContext.hot`*/
+	extend(pageCtx: IPageContext, hot: XHandsontable, settings: import('handsontable').default.GridSettings, minLength: number): void;
 }
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';

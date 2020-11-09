@@ -413,8 +413,6 @@ declare interface HandsontableConstructor {
 	Core: typeof import('handsontable').default.Core;
 	EventManager: import('handsontable').default.EventManager;
 	DefaultSettings: import('handsontable').default.GridSettings;
-	/** Extend `cleanHandsonTable`, `loadDetail` and `createEmptyDataSet` in `IPageContext.IExHandsonTable` -> `accessor` `IPageContext.hot`*/
-	extend(pageCtx: IPageContext, hot: XHandsontable, settings: import('handsontable').default.GridSettings, minLength: number): void;
 }
 /**`Handsontable` class `Constructor` Extend `Handsontable Class` */
 declare var Handsontable: HandsontableConstructor;
