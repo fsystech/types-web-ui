@@ -413,6 +413,7 @@ declare interface HandsontableConstructor {
 	Core: typeof import('handsontable').default.Core;
 	EventManager: import('handsontable').default.EventManager;
 	DefaultSettings: import('handsontable').default.GridSettings;
+	extend(pageCtx: IPageContext, hot: XHandsontable, settings: import('handsontable').default.GridSettings): void;
 }
 /**`Handsontable` class `Constructor` Extend `Handsontable Class` */
 declare var Handsontable: HandsontableConstructor;
