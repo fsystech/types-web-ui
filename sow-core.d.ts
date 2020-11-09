@@ -335,9 +335,12 @@ export declare type IRequest = {
     populate: <T>(reqObj?: Dct<T>) => Dct<T>;
 };
 export declare interface IExHandsonTable {
+    /** Clean `HandsonTable` with empty `dataSet` */
     cleanHandsonTable(): void;
+    /** Invoke `hot.loadData`. If `data.length` < `minLength` then create remaining empty line*/
     loadDetail(data: any[]): void;
-    createEmptyDataSet(count: number, settings: import('handsontable').default.GridSettings, data: any[]): void;
+    /** create empty `DataSet` for `handsontable` */
+    createEmptyDataSet(count: number, data: any[]): void;
 }
 declare interface IPageContext {
     readonly isdialog: boolean;
