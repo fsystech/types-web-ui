@@ -334,6 +334,11 @@ export declare type IRequest = {
     param: Dct<any>;
     populate: <T>(reqObj?: Dct<T>) => Dct<T>;
 };
+export declare interface IExHandsonTable {
+    cleanHandsonTable(): void;
+    loadDetail(data: any[]): void;
+    createEmptyDataSet(count: number, settings: import('handsontable').default.GridSettings, data: any[]): void;
+}
 declare interface IPageContext {
     readonly isdialog: boolean;
     readonly reg: IPageRegInfo;
@@ -346,6 +351,7 @@ declare interface IPageContext {
     __data_navigate: boolean;
     isDisabled: boolean;
     msgBoxOpenCount: number;
+    hot: IExHandsonTable;
     prepare(containerKey: string): void;
     $ui(): JQueryUI.Dialog | void;
     getInteractive(): JQueryUI.Dialog;
@@ -523,6 +529,7 @@ export declare class PageContext implements IPageContext {
     public clean_dropzone(): void;
     public dropzone_dispose(): void;
     public shake(): void;
+    public hot: IExHandsonTable;
 }
 declare interface InternalWorker {
     [id: string]: (...args: any[]) => InternalWorker;
