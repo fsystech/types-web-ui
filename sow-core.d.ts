@@ -31,7 +31,8 @@ declare type SearchDetail = {
 };
 export declare interface IPageRegInfo {
     template?: string | 'SRC__DEFAULT__';
-    keepMeEnable: boolean;
+    /** Keep Enabled Parent Window While Opening Child By Me */
+    keepMeEnable?: boolean;
     window_interactive?: boolean;
     window?: (pageCtx: IPageContext) => {
         maximize(evt: JQuery.Event, dlg: JQueryUI.Dialog): void;
