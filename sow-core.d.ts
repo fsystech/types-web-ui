@@ -31,6 +31,7 @@ declare type SearchDetail = {
 };
 export declare interface IPageRegInfo {
     template?: string | 'SRC__DEFAULT__';
+    keepMeEnable: boolean;
     window_interactive?: boolean;
     window?: (pageCtx: IPageContext) => {
         maximize(evt: JQuery.Event, dlg: JQueryUI.Dialog): void;
