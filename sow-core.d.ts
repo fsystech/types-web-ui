@@ -341,6 +341,8 @@ export declare interface IExHandsonTable {
     loadDetail(data: any[]): void;
     /** create empty `DataSet` for `handsontable` */
     createEmptyDataSet(count: number, data: any[]): void;
+    /** Resize `HandsonTable` */
+    resize(): void;
 }
 declare interface IPageContext {
     readonly isdialog: boolean;
