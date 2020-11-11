@@ -542,6 +542,25 @@ declare interface InternalWorker {
     [id: string]: (...args: any[]) => InternalWorker;
 }
 export declare type ISqlDef = { (pageCtx: IPageContext, pv: string, obj: Dct<any>): void | Dct<any> | string };
+// 12:37 AM 11/12/2020 by rajib chy
+export declare interface IWatermark {
+    /** Clear `Watermark` from given `HTMLElement`*/
+    clear($elem: JQuery<HTMLElement>): void;
+    /** Set `Accepted` `Watermark` in given `HTMLElement`*/
+    accepted($elem: JQuery<HTMLElement>): void;
+    /** Set `Rejected` `Watermark` in given `HTMLElement`*/
+    rejected($elem: JQuery<HTMLElement>): void;
+    /** Set `Transferred` `Watermark` in given `HTMLElement`*/
+    transferred($elem: JQuery<HTMLElement>): void;
+    /** Set `Checked` `Watermark` in given `HTMLElement`*/
+    checked($elem: JQuery<HTMLElement>): void;
+    /** Set `Verified` `Watermark` in given `HTMLElement`*/
+    verified($elem: JQuery<HTMLElement>): void;
+    /** Set `Approved` `Watermark` in given `HTMLElement`*/
+    approved($elem: JQuery<HTMLElement>): void;
+    /** Set `Authorized` `Watermark` in given `HTMLElement`*/
+    authorized($elem: JQuery<HTMLElement>): void;
+}
 export declare interface IWebUI {
     /** Render given `route`, if already been registered */
     renderView(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string): void;
@@ -596,6 +615,8 @@ export declare interface IWebUI {
     prompt(cfg: PromptConfig): void;
     /** Open confirm window. Initilized by `$.confirm` */
     confirm(cfg: ConfirmConfig): void;
+    /** Add or Remove `Watermark` in `HTMLElement`*/
+    watermark: IWatermark;
 }
 export declare type OpenNewWindowConfig = {
     dependency?: string;
