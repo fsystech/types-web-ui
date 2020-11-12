@@ -78,7 +78,7 @@ export declare interface IPageRegInfo {
             after?: (pagctx: IPageContext, resp: any) => void;
         };
     };
-    button: {
+    button?: {
         footer: {
             align: string;
             title: string;
@@ -93,6 +93,7 @@ export declare interface IPageRegInfo {
      * `url: string;`
      * `name?: string;`
      * `specs?: string;`
+     * 
      * `parent_window?: boolean;`
      * `self_print?: boolean;`
     */
@@ -451,23 +452,24 @@ export declare class PageContext implements IPageContext {
     public readonly $container: JQuery<HTMLElement>;
     public readonly reg: IPageRegInfo;
     public readonly destroy_event: (() => void)[];
-    private readonly cmd: ISQLCommand;
-    private readonly pageEvent: IPageEvent;
-    public readonly elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
-    public readonly notification: INotification;
-    private readonly sql_def: Dct<ISqlDef>;
-    private readonly ___callback: (() => void)[];
-    private readonly _cb: (status: string) => void;
-    private readonly drop_srch_map: Dct<string>;
-    private readonly dispose_prop: { key: string; type: string; }[];
-    private readonly source: ISource;
-    private readonly children: Dct<{
+    private cmd: ISQLCommand;
+    private pageEvent: IPageEvent;
+    public elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
+    public notification: INotification;
+    private sql_def: Dct<ISqlDef>;
+    private ___callback: (() => void)[];
+    private _cb: (status: string) => void;
+    private drop_srch_map: Dct<string>;
+    private dispose_prop: { key: string; type: string; }[];
+    private source: ISource;
+    private children: Dct<{
         click?: (pageCtx: IPageContext) => void;
         param?: string[] | ((pageCtx: IPageContext) => string[]);
         route?: string;
     }>;
-    private readonly _navigator?: INavigator;
-    private readonly fm: Dct<ElementInfo>;
+    private _navigator?: INavigator;
+    private fm: Dct<ElementInfo>;
+    private isShaking: boolean;
     constructor(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog: boolean, ___$ui?: JQueryUI.Dialog);
     private postmortem(): void;
     private _: {
