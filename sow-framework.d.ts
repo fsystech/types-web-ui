@@ -144,6 +144,7 @@ export declare interface ISow {
 		interaction: {
 			org_id: string;
 			title: string;
+			role_id: string;
 		}
 	};
 	/** Show notification */
