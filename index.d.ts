@@ -288,7 +288,11 @@ declare interface IUserSettings {
 declare interface IRouteRes {
 	total_url: number;
 	route: string;
-	us: IUserSettings
+	us: IUserSettings;
+	interaction: {
+		org_id: string;
+		title: string;
+	};
 }
 declare interface DBConfig {
 	sp: string;
