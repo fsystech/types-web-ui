@@ -141,6 +141,10 @@ export declare interface ISow {
 		name: string;
 		app_type_const: string;
 		theme_skin_key: string;
+		interaction: {
+			org_id: string;
+			title: string;
+		}
 	};
 	/** Show notification */
 	Show: IShow;
