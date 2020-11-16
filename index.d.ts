@@ -271,7 +271,7 @@ declare interface IWebDatabaseConstructor {
 	 * Create `WebDatabase` instance
 	 * default api: /app/database/crud
 	 */
-	new(api: string): import('./sow-core').IWebDatabase;
+	new(api?: string): import('./sow-core').IWebDatabase;
 	readonly prototype: import('./sow-core').IWebDatabase;
 }
 declare interface IGScript {

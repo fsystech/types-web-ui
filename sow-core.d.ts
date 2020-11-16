@@ -368,6 +368,7 @@ declare interface IPageContext {
     isDisabled: boolean;
     msgBoxOpenCount: number;
     hot: IExHandsonTable;
+    /** Create communication with database by `XMLHTTPRequest` */
     db: IWebDatabase;
     prepare(containerKey: string): void;
     $ui(): JQueryUI.Dialog | void;
