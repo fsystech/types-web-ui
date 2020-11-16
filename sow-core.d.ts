@@ -347,6 +347,14 @@ export declare interface IExHandsonTable {
     /** Resize `HandsonTable` */
     resize(): void;
 }
+export declare interface IWebDatabase {
+    /** Close Connection */
+    close(key: string): void;
+    /** Execute query to database */
+    execute(query: string, obj: any[] | Dct<any>, next: (res: { ret_val: number; ret_msg: string; ret_data_table: any }) => void, validate?: boolean): string;
+    /** Dispose current `dbContext` */
+    dispose(): void;
+}
 declare interface IPageContext {
     readonly isdialog: boolean;
     readonly reg: IPageRegInfo;
@@ -360,6 +368,7 @@ declare interface IPageContext {
     isDisabled: boolean;
     msgBoxOpenCount: number;
     hot: IExHandsonTable;
+    db: IWebDatabase;
     prepare(containerKey: string): void;
     $ui(): JQueryUI.Dialog | void;
     getInteractive(): JQueryUI.Dialog;
@@ -479,6 +488,8 @@ export declare class PageContext implements IPageContext {
     };
     private readonly ajax: JQueryXHR[];
     private readonly data_map?: Dct<any>;
+    public hot: IExHandsonTable;
+    public db: IWebDatabase;
     public msgBoxOpenCount: number;
     public isDisabled: boolean;
     public __data_navigate: boolean;
@@ -538,7 +549,6 @@ export declare class PageContext implements IPageContext {
     public clean_dropzone(): void;
     public dropzone_dispose(): void;
     public shake(): void;
-    public hot: IExHandsonTable;
 }
 declare interface InternalWorker {
     [id: string]: (...args: any[]) => InternalWorker;

@@ -266,6 +266,14 @@ declare interface IDropzoneConstructor {
 		toBase64(file: File): string;
 	};
 }
+declare interface IWebDatabaseConstructor {
+	/**
+	 * Create `WebDatabase` instance
+	 * default api: /app/database/crud
+	 */
+	new(api: string): import('./sow-core').IWebDatabase;
+	readonly prototype: import('./sow-core').IWebDatabase;
+}
 declare interface IGScript {
 	remove(what: string, next?: () => void): void;
 	load(path: string, next?: () => void, isPackage?: boolean, module?: string): void;
@@ -385,6 +393,12 @@ declare type LinkPreview = {
 }
 /** Safe Online World Ltd. Web UI core Framework */
 declare var Sow: import('./sow-framework').ISow;
+/**
+ * Create `WebDatabase` instance
+ * 
+ * default api: /app/database/crud
+ */
+declare var WebDatabase: IWebDatabaseConstructor;
 declare var emojify: IEmojify;
 declare var DropzoneExtend: IDropzoneConstructor;
 /** This function can be defined while you `webpage-context.js`*/
