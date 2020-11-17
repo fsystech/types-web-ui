@@ -351,7 +351,7 @@ export declare interface IWebDatabase {
     /** Close Connection */
     close(key: string): void;
     /** Execute query to database */
-    execute(query: string, obj: any[] | Dct<any>, next: (res: { ret_val: number; ret_msg: string; ret_data_table: any }) => void, validate?: boolean): string;
+    execute(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
     /** Dispose current `dbContext` */
     dispose(): void;
 }
