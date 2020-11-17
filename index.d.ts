@@ -266,6 +266,12 @@ declare interface IDropzoneConstructor {
 		toBase64(file: File): string;
 	};
 }
+declare interface IWebDatabaseResponse {
+	ret_val: number;
+	ret_msg: string;
+	ret_data_table?: any;
+	status:'SUCCESS'|'ERROR'|'ABORTED'
+}
 declare interface IWebDatabaseConstructor {
 	/**
 	 * Create `WebDatabase` instance
