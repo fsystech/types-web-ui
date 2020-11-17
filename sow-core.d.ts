@@ -350,8 +350,10 @@ export declare interface IExHandsonTable {
 export declare interface IWebDatabase {
     /** Close Connection */
     close(key: string): void;
-    /** Execute query to database */
-    execute(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
+    /** Execute plain text query */
+    executeQuery(query: string, arr: any[], next: (res: IWebDatabaseResponse) => void): string;
+    /** Execute stored procedure to database */
+    executeIO(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
     /** Dispose current `dbContext` */
     dispose(): void;
 }
