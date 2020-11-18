@@ -270,7 +270,7 @@ declare interface IWebDatabaseResponse {
 	ret_val: number;
 	ret_msg: string;
 	ret_data_table?: any;
-	status:'SUCCESS'|'ERROR'|'ABORTED'
+	status: 'SUCCESS' | 'ERROR' | 'ABORTED'
 }
 declare interface IWebDatabaseConstructor {
 	/**
@@ -328,6 +328,8 @@ declare interface IPages {
 	parent_id: number;
 	menu_order: number;
 	show_in_nav: boolean;
+	show_in_dashboard: boolean;
+	is_enable: boolean;
 	content_type: string;
 	app_resources_id: number;
 	has_shoutcut: boolean;
