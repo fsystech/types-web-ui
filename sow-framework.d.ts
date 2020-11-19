@@ -73,7 +73,7 @@ declare interface IShow {
 	e(msg?: any): this;
 }
 declare type ModuleRequire = (name: string) => any;
-declare type IModules = { [id: string]: [(require: ModuleRequire, module: IAssembler, exports: Dct<any>) => Dct<any>, Dct<any>] };
+declare type IModules = { [id: string]: [(require: ModuleRequire, module: IAssembler, exports: Dct<any>) => any, Dct<any>] };
 declare interface IDate {
 	get(): string;
 	getLocal(offset: string, now?: Date): Date;
