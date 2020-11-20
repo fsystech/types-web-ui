@@ -103,6 +103,8 @@ interface IBrowser {
 	name: string;
 	type: string;
 	version: number;
+	/** Random number of UserAgent */
+	identity: number;
 	support(cfg: Dct<any>): void;
 }
 declare interface IBrowserWindow {
