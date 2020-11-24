@@ -212,7 +212,7 @@ export declare type ElementInfo = {
     /** widget key. It will be effect in `widget element` */
     readonly widget?: string;
     /** Default dropdown source data */
-    readonly data?: { id: any; value: any; selected?: boolean }[];
+    readonly data?: { id: any; title: any; selected?: boolean }[];
     /** It will be effect while your element type is `dropdown`*/
     readonly source?: ((pageCtx: IPageContext) => SourceType) | 'OWN' | SourceType;
     /** Define the dropdown type. It will be effect while your element type is `dropdown` */
