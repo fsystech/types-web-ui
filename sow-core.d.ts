@@ -245,7 +245,7 @@ declare type SourceType = {
     schema?: string;
     table?: string;
     poperty?: string;
-    type?: "SQL" | "SP";
+    type?: "SQL" | "SP" | "TABLE";
     add_new?: string;
     search_poperty?: string;
     drop_type?: "selectize";
