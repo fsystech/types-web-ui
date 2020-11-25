@@ -615,6 +615,7 @@ export declare interface IWebUI {
         /** Run given `script` in current `document` with `global` `context`  */
         append(route: string, script?: string, cb?: (status: string) => void): void;
     };
+    /** Create new `Child Window` */
     openNew(opt: OpenNewWindowConfig): void;
     /** Fetch the given template from server or mem cache */
     getTemplate(templ?: string, cb?: (status: string, template: string) => void): void;
@@ -632,6 +633,13 @@ export declare interface IWebUI {
     confirm(cfg: ConfirmConfig): void;
     /** Add or Remove `Watermark` in `HTMLElement`*/
     watermark: IWatermark;
+    /** `Web UI` Form generator */
+    form: {
+        /** Generate `form` from `Dct<ElementInfo>[]` */
+        generate(fm: Dct<ElementInfo>[]): { fields: Dct<ElementInfo>; sql_def: Dct<ISqlDef>; body: string; };
+        /** Render `form` according to `IFormInfo` in given `container` */
+        render(fm: IFormInfo, $elm: JQuery<HTMLElement>): { fields: Dct<ElementInfo>; sql_def: Dct<ISqlDef> };
+    }
 }
 export declare type OpenNewWindowConfig = {
     dependency?: string;
