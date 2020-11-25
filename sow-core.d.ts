@@ -576,6 +576,18 @@ export declare interface IWatermark {
     /** Set `Authorized` `Watermark` in given `HTMLElement`*/
     authorized($elem: JQuery<HTMLElement>): void;
 }
+interface IWebForm {
+    /** Generate `form` from `Dct<ElementInfo>[]` */
+    generate(fm: Dct<ElementInfo>[]): { fields: Dct<ElementInfo>; sql_def: Dct<ISqlDef>; body: string; };
+    /** Render `form` according to `IFormInfo` in given `container` */
+    render(fm: IFormInfo, $elm: JQuery<HTMLElement>): { fields: Dct<ElementInfo>; sql_def: Dct<ISqlDef> };
+}
+interface IPageContextScript {
+    /** Remove given `route` `script` `context` from `global` `isolate` */
+    remove(route: string): void;
+    /** Run given `script` in current `document` with `global` `context`  */
+    append(route: string, script?: string, cb?: (status: string) => void): void;
+}
 export declare interface IWebUI {
     /** Render given `route`, if already been registered */
     renderView(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string): void;
@@ -609,12 +621,7 @@ export declare interface IWebUI {
     dispose(route: string, cb: void | ((status: string) => void)): IWebUI;
     /** Destroy given `route` `IPageContext` with dependency */
     destroy(route: string, cb: void | ((status: string) => void)): IWebUI;
-    script: {
-        /** Remove given `route` `script` `context` from `global` `isolate` */
-        remove(route: string): void;
-        /** Run given `script` in current `document` with `global` `context`  */
-        append(route: string, script?: string, cb?: (status: string) => void): void;
-    };
+    script: IPageContextScript;
     /** Create new `Child Window` */
     openNew(opt: OpenNewWindowConfig): void;
     /** Fetch the given template from server or mem cache */
@@ -634,12 +641,7 @@ export declare interface IWebUI {
     /** Add or Remove `Watermark` in `HTMLElement`*/
     watermark: IWatermark;
     /** `Web UI` Form generator */
-    form: {
-        /** Generate `form` from `Dct<ElementInfo>[]` */
-        generate(fm: Dct<ElementInfo>[]): { fields: Dct<ElementInfo>; sql_def: Dct<ISqlDef>; body: string; };
-        /** Render `form` according to `IFormInfo` in given `container` */
-        render(fm: IFormInfo, $elm: JQuery<HTMLElement>): { fields: Dct<ElementInfo>; sql_def: Dct<ISqlDef> };
-    }
+    form: IWebForm;
 }
 export declare type OpenNewWindowConfig = {
     dependency?: string;
