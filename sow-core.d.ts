@@ -412,7 +412,7 @@ declare interface IPageContext {
     print(cb: (pctx: IPageContext, status: string, index?: any) => void, index?: any): void;
     delete(cb: (status: string, index: number | string) => void): void;
     clear($elem?: JQuery<HTMLElement>): IPageContext;
-    getSearchObj($inst?: JQuery<HTMLElement>, type?: string): void;
+    getSearchObj($inst?: JQuery<HTMLElement>, type?: string): Dct<any> | any[];
     searchObjModify?: (obj: any[] | Dct<any>) => void;
     clean(cb?: (status: string) => void): IPageContext;
     save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string, afterSave?: (res: { ret_val: number; isUpdate: boolean; }, next: () => void) => void): void;
@@ -536,7 +536,7 @@ export declare class PageContext implements IPageContext {
     public print(cb: (pctx: IPageContext, status: string, index: any) => void, index: any): void;
     public delete(cb: (status: string, index: number | string) => void): void;
     public clear($elem?: JQuery<HTMLElement>): IPageContext;
-    public getSearchObj($inst?: JQuery<HTMLElement>, type?: string): Dct<any>;
+    public getSearchObj($inst?: JQuery<HTMLElement>, type?: string): Dct<any> | any[];
     public searchObjModify?: (obj: any[] | Dct<any>) => void;
     public clean(cb?: (status: string) => void): IPageContext;
     public save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string, afterSave?: (res: { ret_val: number; isUpdate: boolean; }, next: () => void) => void): void;
