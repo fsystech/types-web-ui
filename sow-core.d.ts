@@ -386,7 +386,8 @@ declare interface IPageContext {
     dependencyResolve(params: any): void;
     onTransportRequest(request: IRequest): void;
     quoteLiteral(value?: string): string;
-    createQuery(obj: Dct<string>): string;
+    /** Create `SQL Statement` from `Dct<any>` */
+    createQuery(sqlDef: Dct<ISqlDef>, obj: Dct<string>): string;
     setDisposeProp(keys: (Dct<any>[]) | string, type?: string): void;
     lockUnlockElm(lock: boolean): void;
     alert(cfg: AlertConfig): void;
@@ -509,7 +510,8 @@ export declare class PageContext implements IPageContext {
     public dependencyResolve(params: any): void;
     public onTransportRequest(request: IRequest): void;
     public quoteLiteral(value?: string): string;
-    public createQuery(obj: Dct<string>): string;
+    /** Create `SQL Statement` from `Dct<any>` */
+    public createQuery(sqlDef: Dct<ISqlDef>, obj: Dct<string>): string;
     public setDisposeProp(keys: (Dct<any>[]) | string, type?: string): void;
     public lockUnlockElm(lock: boolean): void;
     public alert(cfg: AlertConfig): void;
