@@ -387,7 +387,7 @@ declare interface IPageContext {
     onTransportRequest(request: IRequest): void;
     quoteLiteral(value?: string): string;
     /** Create `SQL Statement` from `Dct<any>` */
-    createQuery(sqlDef: Dct<ISqlDef>, obj: Dct<string>): string;
+    createQuery(obj: Dct<string>, sqlDef?: Dct<ISqlDef>): string;
     setDisposeProp(keys: (Dct<any>[]) | string, type?: string): void;
     lockUnlockElm(lock: boolean): void;
     alert(cfg: AlertConfig): void;
@@ -511,7 +511,7 @@ export declare class PageContext implements IPageContext {
     public onTransportRequest(request: IRequest): void;
     public quoteLiteral(value?: string): string;
     /** Create `SQL Statement` from `Dct<any>` */
-    public createQuery(sqlDef: Dct<ISqlDef>, obj: Dct<string>): string;
+    public createQuery(obj: Dct<string>, sqlDef?: Dct<ISqlDef>): string;
     public setDisposeProp(keys: (Dct<any>[]) | string, type?: string): void;
     public lockUnlockElm(lock: boolean): void;
     public alert(cfg: AlertConfig): void;
