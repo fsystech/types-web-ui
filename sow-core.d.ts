@@ -348,6 +348,8 @@ export declare interface IExHandsonTable {
     resize(): void;
 }
 export declare interface IWebDatabase {
+    /** Close all active connection */
+    closeAllConn(): void;
     /** Close Connection */
     close(key: string): void;
     /** Execute plain text query */
