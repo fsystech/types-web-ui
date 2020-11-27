@@ -35,7 +35,12 @@ declare type DatabaseRequestConfig = import('./sow-core').DatabaseRequestConfig;
 declare type ISelectizeConfig = import('./sow-core').ISelectizeConfig;
 declare type IProxyServer = import('./sow-chat-ui').IProxyServer;
 declare type ChatUICore = import('./sow-chat-ui').ICore;
-
+// Extend `Selectize` `Options`
+declare namespace Selectize {
+	interface IOptions<T, U> {
+		dispose?: () => void;
+	}
+}
 declare type IContext = import('cwserver').IContext;
 declare type ISession = import('cwserver').ISession;
 declare type IRequestc = import('cwserver').IRequest;
