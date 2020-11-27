@@ -179,6 +179,8 @@ export declare type ElementInfo = {
     readonly style?: string;
     /** Define sql field name. It will use while perform `search/update/insert` (Like as your db table column name e.g. `id` or `schema.id`) */
     readonly sql?: string;
+    /** If value type `string` then you can allow `ilike=%value%` in sql statement. */
+    readonly ilike?: boolean;
     /** Define this element width (`bootstrap col width 12/1`) */
     readonly w: number;
     /** this element accept `drop` */
@@ -244,13 +246,15 @@ declare type SourceType = {
     query?: string;
     schema?: string;
     table?: string;
+    /** If this element auto load enable. Then it's should be provide. */
     poperty?: string;
     type?: "SQL" | "SP" | "TABLE";
     add_new?: string;
     search_poperty?: string;
     drop_type?: "selectize";
+    /** Define this `element` can be auto load. `If false` it's can be `KeyUp` */
     load?: boolean;
-    drop_def?: DropDef | ISelectizeConfig | ((obj: Dct<any>, pageCtx: IPageContext, lookup: (look: DropDef) => { dispose: () => void }) => void);
+    drop_def?: DropDef | ISelectizeConfig | ((obj: Dct<any>, pageCtx: IPageContext, lookup: (look: DropDef) => Selectize.IOptions<any, any>) => void);
 };
 export declare interface IWidget {
     readonly title: string;
