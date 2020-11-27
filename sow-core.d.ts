@@ -431,6 +431,8 @@ declare interface IPageContext {
     dropzone_dispose(): void;
     /** If this `window` is `child` then `window` will be `shake` */
     shake(): void;
+    /** Build `search` `param` with after */
+    buildSearchParam(arr: { poperty: string; value: any }[]): { param: { poperty: string; value: any }[], after_subquery?: string; };
 }
 export declare interface INavigator {
     getData(): Dct<any>;
@@ -560,6 +562,8 @@ export declare class PageContext implements IPageContext {
     public clean_dropzone(): void;
     public dropzone_dispose(): void;
     public shake(): void;
+    /** Build `search` `param` with after */
+    public buildSearchParam(arr: { poperty: string; value: any }[]): { param: { poperty: string; value: any }[], after_subquery?: string; };
 }
 declare interface InternalWorker {
     [id: string]: (...args: any[]) => InternalWorker;
