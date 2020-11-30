@@ -638,6 +638,8 @@ export declare interface IWebUI {
     openNew(opt: OpenNewWindowConfig): void;
     /** Fetch the given template from server or mem cache */
     getTemplate(templ?: string, cb?: (status: string, template: string) => void): void;
+    /** Check this route has any dependency */
+    hasDependency(route: string): boolean;
     /** Get dependancy of current page context */
     getDependency(route: string): string[];
     /** Remove Page Config */
