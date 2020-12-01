@@ -220,7 +220,7 @@ export declare type ElementInfo = {
     /** Define the dropdown type. It will be effect while your element type is `dropdown` */
     readonly drop_type?: "select" | "selectize" | string;
 };
-export declare interface ISelectizeConfig {
+/*export declare interface ISelectizeConfig {
     options?: any[];
     optgroups?: any[];
     maxItems?: number;
@@ -236,11 +236,11 @@ export declare interface ISelectizeConfig {
     optgroupValueField?: string;
     lockOptgroupOrder?: boolean;
     plugins?: string[];
-}
+}*/
 export declare type DropDef = {
     url?: string; sp: ((pageCtx: IPageContext) => void) | string;
     param?: (obj: Dct<any>) => Dct<any>;
-    selectize_config?: ISelectizeConfig;
+    selectize_config?: Selectize.IOptions<any, any>;
 };
 declare type SourceType = {
     query?: string;
@@ -254,7 +254,7 @@ declare type SourceType = {
     drop_type?: "selectize";
     /** Define this `element` can be auto load. `If false` it's can be `KeyUp` */
     load?: boolean;
-    drop_def?: DropDef | ISelectizeConfig | ((obj: Dct<any>, pageCtx: IPageContext, lookup: (look: DropDef) => Selectize.IOptions<any, any>) => void);
+    drop_def?: DropDef | Selectize.IOptions<any, any> | ((obj: Dct<any>, pageCtx: IPageContext, lookup: (look: DropDef) => Selectize.IOptions<any, any>) => void);
 };
 export declare interface IWidget {
     readonly title: string;
@@ -465,7 +465,7 @@ export declare type ISource = {
         add_new: string;
         owner: string;
         drop_type: "select" | string;
-        drop_def: DropDef | ISelectizeConfig;
+        drop_def: DropDef | Selectize.IOptions<any, any>;
     }[]>
 };
 export declare interface PageContexConstructor {
