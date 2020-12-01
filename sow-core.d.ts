@@ -363,13 +363,13 @@ export declare interface IWebDatabase {
     /** Dispose current `dbContext` */
     dispose(): void;
 }
-declare interface IPageContextElement {
-    /** `JQuery<HTMLInputElement>` of current `Input` */
+export declare interface IPageContextElement {
+    /** This `context` `InputElement` `JQuery<HTMLInputElement>` */
     $elm: JQuery<HTMLInputElement>;
     /** Any type of value this `HTMLInputElement` */
     value: any;
 }
-declare interface IPageContext {
+export declare interface IPageContext {
     readonly isdialog: boolean;
     readonly reg: IPageRegInfo;
     /** Current `IPageContext` `HTMLElement`s */
