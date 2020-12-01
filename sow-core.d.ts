@@ -363,10 +363,17 @@ export declare interface IWebDatabase {
     /** Dispose current `dbContext` */
     dispose(): void;
 }
+declare interface IPageContextElement {
+    /** `JQuery<HTMLInputElement>` of current `Input` */
+    $elm: JQuery<HTMLInputElement>;
+    /** Any type of value this `HTMLInputElement` */
+    value: any;
+}
 declare interface IPageContext {
     readonly isdialog: boolean;
     readonly reg: IPageRegInfo;
-    readonly elements: Dct<{ $elm: JQuery<HTMLElement>; value: any; }>;
+    /** Current `IPageContext` `HTMLElement`s */
+    readonly elements: Dct<IPageContextElement>;
     readonly _query: IRequest;
     readonly notification: INotification;
     /** Page container */
@@ -465,6 +472,7 @@ export declare interface PageContexConstructor {
     new(req: IRequest, $elm: JQuery<HTMLElement>, cb: (status: string) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog): PageContext;
     readonly prototype: PageContext;
 }
+
 export declare class PageContext implements IPageContext {
     public readonly _query: IRequest;
     public readonly isdialog: boolean;
@@ -475,7 +483,7 @@ export declare class PageContext implements IPageContext {
     public readonly destroy_event: (() => void)[];
     private cmd: ISQLCommand;
     private pageEvent: IPageEvent;
-    public elements: Dct<{ $elm: JQuery<HTMLInputElement>; value: any; }>;
+    public elements: Dct<IPageContextElement>;
     public notification: INotification;
     private sql_def: Dct<ISqlDef>;
     private ___callback: (() => void)[];
