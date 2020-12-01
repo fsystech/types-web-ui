@@ -364,8 +364,8 @@ export declare interface IWebDatabase {
     dispose(): void;
 }
 export declare interface IPageContextElement {
-    /** This `context` `InputElement` `JQuery<HTMLInputElement>` */
-    $elm: JQuery<HTMLInputElement>;
+    /** This `context` `HTMLElement` `instanceof` `JQuery<HTMLElement>` */
+    $elm: JQuery<HTMLElement>;
     /** Any type of value this `HTMLInputElement` */
     value: any;
 }
