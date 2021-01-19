@@ -25,6 +25,7 @@ declare type SearchDetail = {
     detail_event?: boolean | {
         on_page_ready: (pagctx: IPageContext) => void;
     };
+    getRow?: (index: number, row: object) => string;
     onRender(pagctx: IPageContext, $owner: JQuery<HTMLElement>): void;
     beforeRender?: (pagctx: IPageContext, data: any) => void;
     dump?: (pagctx: IPageContext, $owner: JQuery<HTMLElement>, resp: any) => void;
