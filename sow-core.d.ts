@@ -25,7 +25,7 @@ declare type SearchDetail = {
     detail_event?: boolean | {
         on_page_ready: (pagctx: IPageContext) => void;
     };
-    getRow?: (index: number, row: object) => string;
+    getRow?: (index: number, row: object, withTr?: boolean) => string;
     onRender(pagctx: IPageContext, $owner: JQuery<HTMLElement>): void;
     beforeRender?: (pagctx: IPageContext, data: any) => void;
     dump?: (pagctx: IPageContext, $owner: JQuery<HTMLElement>, resp: any) => void;
@@ -446,7 +446,7 @@ export declare interface INavigator {
     getData(): Dct<any>;
     populate(): INavigator;
     populate_row(row: Dct<any>, cb: () => void): INavigator;
-    update(row: Dct<any>): INavigator;
+    update(row: Dct<any>, isUpdate: boolean): INavigator;
     getDetail$(): JQuery<HTMLElement> | void;
     reset(): INavigator;
     setData(data: Dct<any>[], $tabel?: JQuery<HTMLElement>, nPopulate?: boolean): INavigator;
