@@ -427,7 +427,7 @@ export declare interface IPageContext {
     getSearchObj($inst?: JQuery<HTMLElement>, type?: string): Dct<any> | any[];
     searchObjModify?: (obj: any[] | Dct<any>) => void;
     clean(cb?: (status: string) => void): IPageContext;
-    onUpdateObjModify?: (nrow: Dct<any>, orow: Dct<any>) => void;
+    onUpdateObjModify?: (nrow: Dct<any>, mainRow: Dct<any>) => void;
     save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string, afterSave?: (res: { ret_val: number; isUpdate: boolean; }, next: () => void) => void): void;
     search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void | JQuery.jqXHR<any>;
     __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
