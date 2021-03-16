@@ -43,8 +43,8 @@ declare interface IHookFunc {
 }
 declare interface Ihub {
 	getServerProxy(): string[];
-	socket(): any;
-	init(needMsgInit?: boolean): void;
+	socket(): SocketIOClient.Socket;
+	init(needMsgInit?: boolean): SocketIOClient.Socket;
 }
 declare interface IDataMap {
 	set<T>(mom: T, child?: any, value?: any): IDataMap;
