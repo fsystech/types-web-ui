@@ -462,3 +462,4 @@ declare interface INumberFormat {
 	toSft(val: any): string;
 }
 declare var format: INumberFormat;
+declare var XLS: import('./xlsx').IXLS;
