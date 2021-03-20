@@ -17,6 +17,7 @@ declare interface IWebHttpRequest {
     done(next: (data: any) => void): IWebHttpRequest;
     fail(next: (xhr: XMLHttpRequest, textStatus: string, error: string) => void): IWebHttpRequest;
     send(): IWebHttpRequest;
+    abort(): void;
 }
 export declare interface IWebHttpRequestConstructor {
     new(opt: IHttpRequestOpetions): IWebHttpRequest;
