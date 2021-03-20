@@ -463,3 +463,4 @@ declare interface INumberFormat {
 }
 declare var format: INumberFormat;
 declare var XLS: import('./xlsx').IXLS;
+declare var WebWorker: import('./webworker').IWebWorkerConstructor;
