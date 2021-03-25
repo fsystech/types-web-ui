@@ -617,6 +617,8 @@ interface IPageContextScript {
     append(route: string, script?: string, cb?: (status: string) => void): void;
 }
 export declare interface IWebUI {
+    /** Check MVC route and forward */
+    checkRoute(): void;
     /** Render given `route`, if already been registered */
     renderView(route: string, $elm: JQuery<HTMLElement>, __cb: (status: string) => void, isdialog?: boolean, ___$ui?: JQueryUI.Dialog, __container_key?: string): void;
     /** Get given `route` template name */
