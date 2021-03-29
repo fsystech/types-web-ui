@@ -164,7 +164,9 @@ export declare type ElementRules = {
     /** Minimum length of value */
     min?: number,
     /** Is this required */
-    required?: boolean
+    required?: boolean;
+    /** Custom validator */
+    fn?: (val: string) => boolean;
 }
 /** Form element config */
 export declare type ElementInfo = {
