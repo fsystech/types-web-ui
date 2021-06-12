@@ -222,6 +222,8 @@ export declare type ElementInfo = {
     readonly source?: ((pageCtx: IPageContext) => SourceType) | 'OWN' | SourceType;
     /** Define the dropdown type. It will be effect while your element type is `dropdown` */
     readonly drop_type?: "select" | "selectize" | string;
+    /** It will fire on Search trigger */
+    readonly sql_def?: ISqlDef;
 };
 /*export declare interface ISelectizeConfig {
     options?: any[];
