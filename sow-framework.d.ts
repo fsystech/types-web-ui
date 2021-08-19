@@ -34,7 +34,7 @@ declare interface IHook {
 	add(name: string, fn: (...args: any[]) => void): IHook;
 	fire(evt: string, args: any[]): IHook;
 	fire(evt: "__open__new", args: OpenNewWindowConfig[]): IHook;
-	firea(evt: "on_route_change", a: string, $b: JQuery<HTMLElement>, script?: string, c?: (status: string) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog);
+	firea(evt: "on_route_change", a: string, $b: JQuery<HTMLElement>, script?: string, c?: (status: string) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog): IHook;
 	firea(...args: any[]): IHook;
 }
 declare interface IHookFunc {
