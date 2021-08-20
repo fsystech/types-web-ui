@@ -83,33 +83,39 @@ declare interface IDate {
 	get(): string;
 	getLocal(offset: string, now?: Date): Date;
 	getMap(): {
-		month: { [id: number]: string };
-		day: { [id: number]: string };
+		readonly month: { [id: number]: string };
+		readonly day: { [id: number]: string };
 	}
 }
 declare interface IData {
 	export(): IDataMap;
 }
+declare interface IBrowserCookies {
+	get(name: string): string | void;
+	create(name: string, value: string, path?: string, days?: number): IBrowserCookies;
+	delete(name: string, path?: string): boolean;
+}
 interface IBrowser {
-	Promise: {
-		support: boolean;
+	readonly Promise: {
+		readonly support: boolean;
 	};
-	blob: {
-		support: boolean;
+	readonly blob: {
+		readonly support: boolean;
 	};
-	workerThread: {
-		support: boolean;
+	readonly workerThread: {
+		readonly support: boolean;
 	};
-	compatibility: {
-		cssTransforms: boolean;
-		lineClamp: boolean;
+	readonly compatibility: {
+		readonly cssTransforms: boolean;
+		readonly lineClamp: boolean;
 	};
-	dom: number;
-	name: string;
-	type: string;
-	version: number;
+	readonly dom: number;
+	readonly name: string;
+	readonly type: string;
+	readonly version: number;
 	/** Random number of UserAgent */
-	identity: number;
+	readonly identity: number;
+	readonly cookies: IBrowserCookies;
 	support(cfg: Dct<any>): void;
 }
 declare interface IBrowserWindow {
