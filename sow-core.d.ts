@@ -356,23 +356,6 @@ export declare interface IExHandsonTable {
     /** Resize `HandsonTable` */
     resize(): void;
 }
-export declare interface IWebDatabase {
-    /** Close all active connection */
-    closeAllConn(): void;
-    /** Close Connection */
-    close(key: string): void;
-    /** Execute plain text query */
-    executeQuery(query: string, arr: any[], next: (res: IWebDatabaseResponse) => void): string;
-    /** 
-     * Execute stored procedure to database.
-     * It will communicate with http get request
-     */
-    execute(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
-    /** Execute stored procedure to database */
-    executeIO(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
-    /** Dispose current `dbContext` */
-    dispose(): void;
-}
 export declare interface IPageContextElement {
     /** This `context` `HTMLElement` `instanceof` `JQuery<HTMLElement>` */
     $elm: JQuery<HTMLElement>;

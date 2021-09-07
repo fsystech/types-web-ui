@@ -4,7 +4,7 @@
 
 /// <reference types="jquery"/>
 /// <reference types="node"/>
-
+/// <reference path="web-database.d.ts"/>
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
@@ -272,20 +272,6 @@ declare interface IDropzoneConstructor {
 		get_path(root: string, path: string): string;
 		toBase64(file: File): string;
 	};
-}
-declare interface IWebDatabaseResponse {
-	ret_val: number;
-	ret_msg: string;
-	ret_data_table?: any;
-	status: 'SUCCESS' | 'ERROR' | 'ABORTED'
-}
-declare interface IWebDatabaseConstructor {
-	/**
-	 * Create `WebDatabase` instance
-	 * default api: /app/database/crud
-	 */
-	new(api?: string): import('./sow-core').IWebDatabase;
-	readonly prototype: import('./sow-core').IWebDatabase;
 }
 declare interface IGScript {
 	remove(what: string, next?: () => void): void;
