@@ -59,8 +59,10 @@ declare interface IWebDatabase extends IApi {
     /** Execute plain text query */
     executeQuery(query: string, arr: any[], next: (res: IWebDatabaseResponse) => void): string;
     /** 
+     * ```ts 
      * Execute stored procedure to database.
      * It will communicate with http get request
+     * ```
      */
     execute(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
     /** Execute stored procedure to database */
