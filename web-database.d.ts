@@ -56,6 +56,15 @@ declare interface IWebDatabase extends IApi {
     execute(sp: string, obj: any[] | NodeJS.Dict<any>, validate?: boolean): Promise<IWebDatabaseResponse>;
     /** Execute stored procedure to database */
     executeIO(query: string, obj: any[] | NodeJS.Dict<any>, validate?: boolean): Promise<IWebDatabaseResponse>;
+    /** Execute plain text query */
+    executeQuery(query: string, arr: any[], next: (res: IWebDatabaseResponse) => void): string;
+    /** 
+     * Execute stored procedure to database.
+     * It will communicate with http get request
+     */
+    execute(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
+    /** Execute stored procedure to database */
+    executeIO(query: string, obj: any[] | Dct<any>, next: (res: IWebDatabaseResponse) => void, validate?: boolean): string;
 }
 declare interface IWebDatabaseConstructor {
     /**
