@@ -41,16 +41,6 @@ declare interface IHookFunc {
 	(name: string): IHook;
 	remove(evt: string): IHook;
 }
-declare interface Ihub {
-	/** return `Socket` Id, if initialized ! */
-	readonly id: string;
-	/** return `ServerProxy` string[] */
-	getServerProxy(): string[];
-	/** return `SocketIOClient.Socket`, if initialized !  */
-	socket(): SocketIOClient.Socket;
-	/** initialized `SocketIOClient.Socket` & return `SocketIOClient.Socket` */
-	init(needMsgInit?: boolean): SocketIOClient.Socket;
-}
 declare interface IDataMap {
 	set<T>(mom: T, child?: any, value?: any): IDataMap;
 	get(mom?: string, child?: any, deep?: boolean, deeper?: boolean): any;
