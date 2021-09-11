@@ -143,8 +143,8 @@ declare type SlimScrollConfig = {
 	borderRadius?: string;
 	railBorderRadius?: string;
 };
-declare type TElement = HTMLElement;
-declare interface JQuery<TElement = HTMLElement> {
+//declare type TElement = HTMLElement;
+declare interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
 	/** Destroy current context */
 	exit(): this;
 	/** Enable `HTMLElement`*/
