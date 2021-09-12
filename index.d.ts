@@ -41,6 +41,7 @@ declare type ChatUICore = import('./sow-chat-ui').ICore;
 declare namespace Selectize {
 	interface IOptions<T, U> {
 		dispose?: () => void;
+		optgroupLabelViewField?: string;
 	}
 }
 declare type IContext = import('cwserver').IContext;
