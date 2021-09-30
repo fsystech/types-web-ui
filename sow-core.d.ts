@@ -423,6 +423,7 @@ export declare interface IPageContext {
     save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string, afterSave?: (res: { ret_val: number; isUpdate: boolean; }, next: () => void) => void): void;
     search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void | JQuery.jqXHR<any>;
     __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
+    __afterQueryBuilder?: (enq: string) => string;
     loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
     saveObjModify?: (obj: Dct<any>) => { error: boolean; msg?: string };
     beforeSearch?: (obj: Dct<any>) => Dct<any>;
@@ -551,6 +552,7 @@ export declare class PageContext implements IPageContext {
     public save(cb: (status: string, retVal?: number, isUpdate?: boolean) => void, formobj?: Dct<any>, confirmMsg?: string, afterSave?: (res: { ret_val: number; isUpdate: boolean; }, next: () => void) => void): void;
     public search(cb: (status: string) => void, obj?: Dct<any>, def?: Dct<any>): void | JQuery.jqXHR<any>;
     public __onSearchDataModify?: (data: Dct<any>[]) => Dct<any>[];
+    public __afterQueryBuilder?: (enq: string) => string;
     public loadDropDown(cb: (status: string) => void, sdestroy?: boolean): void;
     public dispose(): void;
     private dragable: {
