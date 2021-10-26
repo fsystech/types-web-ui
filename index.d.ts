@@ -450,6 +450,10 @@ declare interface INumberFormat {
 	toAcre(val: any): string;
 	toSft(val: any): string;
 }
+declare interface IVAPIDKeys {
+    readonly publicKey: string;
+    readonly isChanged: boolean;
+}
 declare var format: INumberFormat;
 declare var XLS: import('./xlsx').IXLS;
 declare var WebWorker: import('./webworker').IWebWorkerConstructor;
