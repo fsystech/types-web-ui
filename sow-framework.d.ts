@@ -28,12 +28,19 @@ export declare interface AssemblerConstructor {
 }
 declare interface IHook {
 	hook(schema: "__web__page"): IHook;
+	hook(schema: "internal"): IHook;
 	hook(schema?: string): IHook;
 	add(name: "__open__new", fn: (cfg: OpenNewWindowConfig) => void): IHook;
 	add(name: "on_route_change", fn: (a: string, $b: JQuery<HTMLElement>, script?: string, c?: (status: string) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog) => void): IHook;
 	add(name: string, fn: (...args: any[]) => void): IHook;
 	fire(evt: string, args: any[]): IHook;
 	fire(evt: "__open__new", args: OpenNewWindowConfig[]): IHook;
+	add(name: "on-offline", fn: () => void): IHook;
+	add(name: "on-online", fn: () => void): IHook;
+	fire(evt: "on-offline", args: any[]): IHook;
+	firea(evt: "on-offline"): IHook;
+	fire(evt: "on-online", args: any[]): IHook;
+	firea(evt: "on-online"): IHook;
 	firea(evt: "on_route_change", a: string, $b: JQuery<HTMLElement>, script?: string, c?: (status: string) => void, isdialog?: boolean, $ui?: JQueryUI.Dialog): IHook;
 	firea(...args: any[]): IHook;
 }
@@ -119,10 +126,20 @@ declare interface IHotTable {
 	/**Create `HandsonTable` instance and Extend `cleanHandsonTable`, `loadDetail` and `createEmptyDataSet` in `IPageContext.IExHandsonTable` -> `accessor` `IPageContext.hot`*/
 	create(pageCtx: IPageContext, selector: string, settings: import('handsontable').default.GridSettings, minLength: number): XHandsontable;
 }
+declare interface IWebConnection {
+	/** return `readonly` network `conneciton` status (`true` or `false`)*/
+	readonly isOnline: boolean;
+	/** check network conneciton is offline. If offline we'll show notification*/
+	offline(): boolean;
+	/** check network conneciton is online. If online we'll show notification*/
+	online(): boolean;
+}
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
 	hub: Ihub;
 	Window: IBrowserWindow;
+	/** check network conneciton */
+	connection: IWebConnection;
 	async(callback: (...args: any[]) => void, ms: number | void): void;
 	registerNamespace(name: string, callback: () => [IModules, Dct<any>, string[]]): ISow;
 	mapPageNamespace(...args: any[]): ISow;
