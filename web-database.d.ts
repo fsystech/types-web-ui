@@ -25,6 +25,7 @@ declare interface IApi {
     postAsync(config: IDatabaseConfig, payload: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     getAsync(url: string, data: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     postAsync(url: string, data: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
+    postAsync(url: string, data: NodeJS.Dict<any>, def: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     /** 
      * Execute `stored procedure` to `database`.
      * It will communicate with http get `request`.
