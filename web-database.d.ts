@@ -15,6 +15,9 @@ declare interface IWebDatabaseResponse {
 declare interface IDatabaseConfig {
     module: string; sp: string; validate?: boolean;
 }
+declare interface IWebDatabaseRequestConfig {
+    conf?: string; data?: string | FormData; content_type?: string
+}
 declare interface IApi {
     readonly userAgent: string;
     /** Close all active connection */
@@ -23,6 +26,7 @@ declare interface IApi {
     postDataAsync(payload: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     getAsync(config: IDatabaseConfig, formObject?: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     postAsync(config: IDatabaseConfig, payload: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
+    uploadDataAsync(conf: IWebDatabaseRequestConfig): Promise<IWebDatabaseResponse>;
     getAsync(url: string, data: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     postAsync(url: string, data: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     postAsync(url: string, data: NodeJS.Dict<any>, def: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
