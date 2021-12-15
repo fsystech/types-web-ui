@@ -186,6 +186,10 @@ declare interface JQuery<TElement = HTMLElement> extends Iterable<TElement> {
 	checked(val: boolean): this;
 	/** Add `File` source from `FileReader` */
 	attr(src: 'src', val: string | ArrayBuffer | null): this;
+	/**
+	* Initialize a clockpicker with the given options
+	*/
+	clockpicker(options: { donetext?: string; placement?: 'top'; align?: 'left' }): this;
 }
 declare interface Uint8ArrayConstructor {
 	/** Add `File` source from `FileReader` */
