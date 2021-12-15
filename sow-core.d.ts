@@ -158,7 +158,7 @@ export declare type ExternalLink = {
 }
 export declare type ElementRules = {
     /** Ensure this value data type*/
-    m?: 'text' | 'numeric' | 'boolean' | 'url' | 'date' | 'email' | 'mobile' | 'multiple',
+    m?: 'text' | 'numeric' | 'boolean' | 'url' | 'date' | 'time' | 'email' | 'mobile' | 'multiple',
     /** Maximum length of value */
     max?: number,
     /** Minimum length of value */
@@ -171,7 +171,7 @@ export declare type ElementRules = {
 /** Form element config */
 export declare type ElementInfo = {
     /** Define the type of `element` */
-    readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'switch' | 'html' | 'widget' | 'multiple';
+    readonly t: 'input' | 'textarea' | 'dropdown' | 'date' | 'time' | 'switch' | 'html' | 'widget' | 'multiple';
     /** this is element name */
     readonly name?: string;
     /** Can use this element when search tigger ? */
