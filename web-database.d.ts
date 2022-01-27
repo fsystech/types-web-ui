@@ -6,17 +6,21 @@
 // by rajib chy
 /// <reference types="node"/>
 ////////////////////////////////////////////////////////////////
+declare type ApiResponseStatus = 'SUCCESS' | 'ERROR' | 'ABORTED' | 'TIMEOUT' | 'LOGOUT';
 declare interface IWebDatabaseResponse {
     ret_val: number;
     ret_msg: string;
     ret_data_table?: any;
-    status?: 'SUCCESS' | 'ERROR' | 'ABORTED'
+    status?: ApiResponseStatus;
 }
 declare interface IDatabaseConfig {
     module: string; sp: string; validate?: boolean;
 }
 declare interface IWebDatabaseRequestConfig {
-    conf?: string; data?: string | FormData; content_type?: string
+    conf?: string;
+    data?: string | FormData;
+    content_type?: string;
+    timeout?: number;
 }
 declare interface HttpRequestInit extends RequestInit {
     timeout?: number;
