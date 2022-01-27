@@ -18,6 +18,10 @@ declare interface IDatabaseConfig {
 declare interface IWebDatabaseRequestConfig {
     conf?: string; data?: string | FormData; content_type?: string
 }
+declare interface HttpRequestInit extends RequestInit {
+    timeout?: number;
+    controller?: AbortController;
+}
 declare interface IApi {
     readonly userAgent: string;
     /** Close all active connection */
