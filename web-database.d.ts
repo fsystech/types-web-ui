@@ -91,3 +91,10 @@ declare interface IWebDatabaseConstructor {
     new(api?: string, timeout?: number): IWebDatabase;
     readonly prototype: IWebDatabase;
 }
+declare type ApiRequestSettings = IWebDatabaseRequestConfig;
+declare interface IApiRequestHandler {
+    readonly key: string;
+    close(key?: string): void;
+    dispose(): void;
+    request(settings: ApiRequestSettings, def?: string, url?: string): Promise<IWebDatabaseResponse>;
+}
