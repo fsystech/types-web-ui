@@ -6,7 +6,7 @@
 // by rajib chy
 /// <reference types="node"/>
 ////////////////////////////////////////////////////////////////
-declare type ApiResponseStatus = 'SUCCESS' | 'ERROR' | 'ABORTED' | 'TIMEOUT' | 'LOGOUT';
+declare type ApiResponseStatus = 'SUCCESS' | 'ERROR' | 'ABORTED' | 'TIMEOUT' | 'NETWORK_ERROR' | 'LOGOUT';
 declare interface IWebDatabaseResponse {
     ret_val: number;
     ret_msg: string;
@@ -88,6 +88,6 @@ declare interface IWebDatabaseConstructor {
      * default api: /app/database/crud
      * ```
      */
-    new(api?: string): IWebDatabase;
+    new(api?: string, timeout?: number): IWebDatabase;
     readonly prototype: IWebDatabase;
 }
