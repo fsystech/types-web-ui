@@ -33,11 +33,11 @@ declare interface IApi {
     getDataAsync(formObject?: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     /**
      * 
-     * @param data Request param ?x=1 param shoud be `NodeJS.Dict<any>`
+     * @param data Not required. Request param ?x=1 param shoud be `NodeJS.Dict<any>`
      * @param url Not required. If pass url, the initilized url will be skip
      * @return `Promise<IWebDatabaseResponse>`
      */
-    getRequestAsync(data: NodeJS.Dict<any>, url?: string): Promise<IWebDatabaseResponse>;
+    getRequestAsync(data?: NodeJS.Dict<any>, url?: string): Promise<IWebDatabaseResponse>;
     postDataAsync(payload: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     getAsync(config: IDatabaseConfig, formObject?: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     postAsync(config: IDatabaseConfig, payload: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
@@ -106,5 +106,5 @@ declare interface IApiRequestHandler {
     post(settings: ApiRequestSettings, def?: string, url?: string): Promise<IWebDatabaseResponse>;
     request(settings: ApiRequestSettings, def?: string, url?: string): Promise<IWebDatabaseResponse>;
     /** Communicate with with db server */
-    getAsync(qParam: NodeJS.Dict<string>, timeout: number, url?: string): Promise<IWebDatabaseResponse>;
+    getAsync(qParam?: NodeJS.Dict<string>, timeout?: number, url?: string): Promise<IWebDatabaseResponse>;
 }
