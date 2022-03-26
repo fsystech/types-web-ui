@@ -143,6 +143,10 @@ declare interface ICSVWorkerConfig<T> {
 declare interface ICSVWorker {
 	exportInstance<T>(config: ICSVWorkerConfig<T>): {
 		bind($button: JQuery<HTMLElement>): void;
+		readonly button: {
+			$get($container: JQuery<HTMLElement>): JQuery<HTMLElement>;
+			template(): string;
+		};
 	}
 }
 export declare interface ISow {
