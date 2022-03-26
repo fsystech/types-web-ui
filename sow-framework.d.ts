@@ -134,6 +134,17 @@ declare interface IWebConnection {
 	/** check network conneciton is online. If online we'll show notification*/
 	online(): boolean;
 }
+declare interface ICSVWorkerConfig<T> {
+	readonly filenName: string;
+	readonly columns: string[],
+	readonly headers: string[];
+	getData(): any[];
+}
+declare interface ICSVWorker {
+	exportInstance<T>(config: ICSVWorkerConfig<T>): {
+		bind($button: JQuery<HTMLElement>): void;
+	}
+}
 export declare interface ISow {
 	OS: 'Windows' | 'Mobile' | 'Linux';
 	hub: Ihub;
@@ -214,6 +225,7 @@ export declare interface ISow {
 	multi: {
 		inherit(...args: any[]): any;
 	};
+	readonly csv: ICSVWorker;
 	onRouterChange(event: Dct<any>): void;
 	remove(name: string): ISow;
 	require(name: string): any;
