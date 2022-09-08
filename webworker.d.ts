@@ -12,8 +12,6 @@ declare interface IWebWorker {
     removeListener(name?: string): IWebWorker;
 }
 export declare interface IWebWorkerConstructor {
-    new(url: string): IWebWorker;
-    new(url: string, defaultListener: (ev: MessageEvent) => void): IWebWorker;
-    new(url: string, defaultListener: (ev: MessageEvent) => void, onError: (ev: ErrorEvent) => void): IWebWorker;
+    new(url: string, defaultListener?: (ev: MessageEvent) => void, onError?: (ev: ErrorEvent) => void): IWebWorker;
     readonly prototype: IWebWorker;
 }
