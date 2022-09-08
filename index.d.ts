@@ -455,11 +455,12 @@ declare interface INumberFormat {
 	toSft(val: any): string;
 }
 declare interface IVAPIDKeys {
-    readonly publicKey: string;
-    readonly isChanged: boolean;
+	readonly publicKey: string;
+	readonly isChanged: boolean;
 }
 declare var format: INumberFormat;
 declare var XLS: import('./xlsx').IXLS;
 declare var WebWorker: import('./webworker').IWebWorkerConstructor;
 declare var WebHttpRequest: import('./web-http-request').IWebHttpRequestConstructor;
 declare function _isUnauthorized(status: ApiResponseStatus): boolean;
+declare var _PACKAGE_VERSION: string;
