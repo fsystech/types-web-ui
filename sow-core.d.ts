@@ -571,7 +571,18 @@ export declare class PageContext implements IPageContext {
     public buildSearchParam(arr: { poperty: string; value: any }[]): { param: { poperty: string; value: any }[], after_subquery?: string; };
 }
 declare interface InternalWorker {
-    [id: string]: (...args: any[]) => InternalWorker;
+    [id: string]: any;
+    validate: {
+        keyup($elem: JQuery<HTMLElement>): number;
+        keyupAsync($elem: JQuery<HTMLElement>): void;
+        all($elem: JQuery<HTMLElement>, ignoreInvalid?: boolean): NodeJS.Dict<any>;
+    };
+    /** Open alert window. Initilized by `$.confirm` */
+    alert(cfg: AlertConfig): void;
+    /** Open prompt window. Initilized by `$.confirm` */
+    prompt(cfg: PromptConfig): void;
+    /** Open confirm window. Initilized by `$.confirm` */
+    confirm(cfg: ConfirmConfig): void;
 }
 export declare type ISqlDef = { (pageCtx: IPageContext, pv: string, obj: Dct<any>): void | Dct<any> | string };
 // 12:37 AM 11/12/2020 by rajib chy

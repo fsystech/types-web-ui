@@ -418,30 +418,10 @@ declare var __script: IGScript;
 declare var WebPageContext: PageContexConstructor;
 /** ctx can be define in back-end template engine */
 declare var ctx: IContext;
-declare type XHandsontable = import('handsontable').default;
-declare interface HandsontableConstructor {
-	new(element: Element, options: import('handsontable').default.GridSettings): XHandsontable;
-	readonly prototype: XHandsontable;
-	baseVersion: string;
-	buildDate: string;
-	packageName: 'handsontable';
-	version: string;
-	cellTypes: import('handsontable').default.CellTypes;
-	languages: import('handsontable').default.I18n.Internationalization;
-	dom: import('handsontable').default.Dom;
-	editors: import('handsontable').default.Editors;
-	helper: import('handsontable').default.Helper;
-	hooks: import('handsontable').default.Hooks.Methods;
-	plugins: import('handsontable').default.Plugins;
-	renderers: import('handsontable').default.Renderers;
-	validators: import('handsontable').default.Validators;
-	Core: typeof import('handsontable').default.Core;
-	EventManager: import('handsontable').default.EventManager;
-	DefaultSettings: import('handsontable').default.GridSettings;
-}
+declare type XHandsontable = import('./ht').Handsontable;
+declare type HandsontableConstructor = import('./ht').HandsontableConstructor;
 /**`Handsontable` class `Constructor` Extend `Handsontable Class` */
 declare var Handsontable: HandsontableConstructor;
-
 declare interface INumberFormat {
 	quantity(val: any): string;
 	amount(val: any): string;
