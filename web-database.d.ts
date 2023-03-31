@@ -26,10 +26,17 @@ declare interface HttpRequestInit extends RequestInit {
     timeout?: number;
     controller?: AbortController;
 }
+declare interface PostRequestConfig {
+    conf?: string | NodeJS.Dict<any>;
+    data?: string | FormData;
+    content_type?: string;
+    timeout?: number;
+}
 declare interface IApi {
     readonly userAgent: string;
     /** Close all active connection */
     closeAllConn(): IApi;
+    postRequestAsync(conf: PostRequestConfig, url?: string): Promise<IWebDatabaseResponse>;
     getDataAsync(formObject?: NodeJS.Dict<any>): Promise<IWebDatabaseResponse>;
     /**
      * 
@@ -103,6 +110,7 @@ declare interface IApiRequestHandler {
     readonly key: string;
     close(key?: string): void;
     dispose(): void;
+    postAsync(settings: PostRequestConfig, url?: string): Promise<IWebDatabaseResponse>;
     post(settings: ApiRequestSettings, def?: string, url?: string): Promise<IWebDatabaseResponse>;
     request(settings: ApiRequestSettings, def?: string, url?: string): Promise<IWebDatabaseResponse>;
     /** Communicate with with db server */
