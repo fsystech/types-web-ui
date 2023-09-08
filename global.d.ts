@@ -1,4 +1,4 @@
-// Type definitions for sow.mobile.trade.plus
+// Type definitions for types-web-ui
 // Project: https://fsys.tech
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 // 4:06 PM 10/26/2021
