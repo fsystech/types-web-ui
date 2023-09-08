@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////
 // Type definitions for Symbol Fundamental information
-// Project: https://safeonline.world/
+// Project: https://fsys.tech
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 // 12:18 PM 9/2/2021
 // by rajib chy

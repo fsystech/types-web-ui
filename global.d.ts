@@ -1,5 +1,5 @@
 // Type definitions for sow.mobile.trade.plus
-// Project: https://safeonline.world/
+// Project: https://fsys.tech
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 // 4:06 PM 10/26/2021
 // by rajib chy

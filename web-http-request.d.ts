@@ -1,5 +1,5 @@
-// Type definitions for sow-web-ui
-// Project: https://safeonline.world/
+// Type definitions for web-ui
+// Project: https://fsys.tech
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 // 11:46 PM 3/20/2021
 /// <reference types="jquery"/>

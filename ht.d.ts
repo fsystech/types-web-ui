@@ -1,5 +1,5 @@
-// Type definitions for sow-web-ui
-// Project: https://safeonline.world/
+// Type definitions for web-ui
+// Project: https://fsys.tech
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 // at 1:23 PM 11/9/2022
 import * as ht from 'handsontable';

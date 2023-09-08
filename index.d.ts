@@ -1,5 +1,5 @@
-// Type definitions for sow-web-ui
-// Project: https://safeonline.world/
+// Type definitions for web-ui
+// Project: https://fsys.tech
 // Definitions by: Rajib Chy <https://github.com/rajibchy>
 
 /// <reference types="jquery"/>
@@ -9,34 +9,34 @@
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
-declare type PageContext = import('./sow-core').PageContext;
-declare type PageContexConstructor = import('./sow-core').PageContexConstructor;
-declare type ElementInfo = import('./sow-core').ElementInfo;
-declare type ExternalLink = import('./sow-core').ExternalLink;
-declare type IPrintConfig = import('./sow-core').IPrintConfig;
-declare type ElementRules = import('./sow-core').ElementRules;
-declare type IFormInfo = import('./sow-core').IFormInfo;
-declare type INavigator = import('./sow-core').INavigator;
-declare type IRequest = import('./sow-core').IRequest;
-declare type IPageConfig = import('./sow-core').IPageConfig;
-declare type ISource = import('./sow-core').ISource;
-declare type AlertConfig = import('./sow-core').AlertConfig;
-declare type PromptConfig = import('./sow-core').PromptConfig;
-declare type ConfirmConfig = import('./sow-core').ConfirmConfig
-declare type XHRConfig = import('./sow-core').XHRConfig;
-declare type IPageContext = import('./sow-core').IPageContext;
-declare type IPageContextElement = import('./sow-core').IPageContextElement;
-declare type IPageRegInfo = import('./sow-core').IPageRegInfo
-declare type ISQLCommand = import('./sow-core').ISQLCommand;
-declare type IPageEvent = import('./sow-core').IPageEvent
-declare type ISqlDef = import('./sow-core').ISqlDef;
-declare type DropDef = import('./sow-core').DropDef;
-declare type IWebUI = import('./sow-core').IWebUI;
-declare type OpenNewWindowConfig = import('./sow-core').OpenNewWindowConfig;
-declare type DatabaseRequestConfig = import('./sow-core').DatabaseRequestConfig;
-// declare type ISelectizeConfig = import('./sow-core').ISelectizeConfig;
-declare type IProxyServer = import('./sow-chat-ui').IProxyServer;
-declare type ChatUICore = import('./sow-chat-ui').ICore;
+declare type PageContext = import('./core').PageContext;
+declare type PageContexConstructor = import('./core').PageContexConstructor;
+declare type ElementInfo = import('./core').ElementInfo;
+declare type ExternalLink = import('./core').ExternalLink;
+declare type IPrintConfig = import('./core').IPrintConfig;
+declare type ElementRules = import('./core').ElementRules;
+declare type IFormInfo = import('./core').IFormInfo;
+declare type INavigator = import('./core').INavigator;
+declare type IRequest = import('./core').IRequest;
+declare type IPageConfig = import('./core').IPageConfig;
+declare type ISource = import('./core').ISource;
+declare type AlertConfig = import('./core').AlertConfig;
+declare type PromptConfig = import('./core').PromptConfig;
+declare type ConfirmConfig = import('./core').ConfirmConfig
+declare type XHRConfig = import('./core').XHRConfig;
+declare type IPageContext = import('./core').IPageContext;
+declare type IPageContextElement = import('./core').IPageContextElement;
+declare type IPageRegInfo = import('./core').IPageRegInfo
+declare type ISQLCommand = import('./core').ISQLCommand;
+declare type IPageEvent = import('./core').IPageEvent
+declare type ISqlDef = import('./core').ISqlDef;
+declare type DropDef = import('./core').DropDef;
+declare type IWebUI = import('./core').IWebUI;
+declare type OpenNewWindowConfig = import('./core').OpenNewWindowConfig;
+declare type DatabaseRequestConfig = import('./core').DatabaseRequestConfig;
+// declare type ISelectizeConfig = import('./core').ISelectizeConfig;
+declare type IProxyServer = import('./chat-ui').IProxyServer;
+declare type ChatUICore = import('./chat-ui').ICore;
 // Extend `Selectize` `Options`
 declare namespace Selectize {
 	interface IOptions<T, U> {
@@ -47,12 +47,12 @@ declare namespace Selectize {
 declare type IContext = import('cwserver').IContext;
 declare type ISession = import('cwserver').ISession;
 declare type IRequestc = import('cwserver').IRequest;
-declare type ISowServer = import('cwserver').ISowServer;
+declare type ICwServer = import('cwserver').ICwServer;
 declare type IoResult = import('cwserver').IoResult;
 declare type QResult = import('cwserver').QResult<Dct<any>>;
 declare type QueryResult = import('cwserver').QueryResult<Dct<any>>;
-declare type ISowSocketServer = import('cwserver').ISowSocketServer;
-declare type ISowSocketInfo = import('cwserver').ISowSocketInfo;
+declare type ICWSocketServer = import('cwserver').ICwSocketServer;
+declare type ICWSocketInfo = import('cwserver').ICwSocketInfo;
 declare type IPostedFileInfo = import('cwserver').IPostedFileInfo;
 declare type zlib = typeof import('zlib');
 declare type Gzip = import('zlib').Gzip;
@@ -398,8 +398,8 @@ declare type LinkPreview = {
 	image?: string;
 	url: string;
 }
-/** Safe Online World Ltd. Web UI core Framework */
-declare var Sow: import('./sow-framework').ISow;
+/** FSys Tech Ltd. Web UI core Framework */
+declare var FSys: import('./framework').IFSys;
 /**
  * Create `WebDatabase` instance
  * 
