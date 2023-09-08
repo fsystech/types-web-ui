@@ -399,7 +399,7 @@ declare type LinkPreview = {
 	url: string;
 }
 /** FSys Tech Ltd. Web UI core Framework */
-declare var FSys: import('./framework').IFSys;
+declare var wui: import('./framework').IFSys;
 /**
  * Create `WebDatabase` instance
  * 
