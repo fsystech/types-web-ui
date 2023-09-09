@@ -1,23 +1,27 @@
 // @ts-check
 //#!/usr/bin/env node
-/*
-* Copyright FSys Tech Limited [FSys]. All rights reserved.  
-* 
-* This software owned by FSys Tech Limited [FSys] and is protected by copyright law 
-* and international copyright treaties. 
-* 
-* Access to and use of the software is governed by the terms of the applicable FSys Software
-* Services Agreement (the Agreement) and Customer end user license agreements granting 
-* a non-assignable, non-transferable and non-exclusive license to use the software 
-* for it's own data processing purposes under the terms defined in the Agreement.
-* 
-* Except as otherwise granted within the terms of the Agreement, copying or reproduction of any part 
-* of this source code or associated reference material to any other location for further reproduction
-* or redistribution, and any amendments to this copyright notice, are expressly prohibited. 
-*
-* Any reproduction or redistribution for sale or hiring of the Software not in accordance with 
-* the terms of the Agreement is a violation of copyright law. 
-*/
+// MIT License
+
+// Copyright (c) 2022 FSys Tech Ltd.
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
 // 11:18 PM 7/18/2020
 import { OpenNewWindowConfig } from './core';
 import HandsonTable from 'handsontable';
