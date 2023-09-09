@@ -434,6 +434,21 @@ declare interface INumberFormat {
 	toAcre(val: any): string;
 	toSft(val: any): string;
 }
+declare interface WebNotificationConfig {
+	icon?: string; // to be implemented
+	caption?: string;
+	content: any;
+	shadow?: boolean;
+	width?: string;
+	height?: string;
+	style?: boolean | NodeJS.Dict<any>; // {background: '', color: ''}
+	position?: string; //right, left
+	timeout?: number;
+	keepOpen?: boolean;
+	type: 'default' | 'success' | 'alert' | 'info' | 'warning';
+	IsObjtype?: boolean;
+	NotifyHide?: boolean;
+}
 declare interface IVAPIDKeys {
 	readonly publicKey: string;
 	readonly isChanged: boolean;

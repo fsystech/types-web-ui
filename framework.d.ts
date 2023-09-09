@@ -68,22 +68,22 @@ declare interface IDataMap {
 	clean(): IDataMap;
 	clear(): IDataMap;
 }
-declare interface IShow {
+declare interface IWebNotification {
 	/** Hide all open notification */
-	h(): IShow;
+	h(): IWebNotification;
 	/** Show information notification
 	 * @param {any} msg
-	 * @returns {IShow}
+	 * @returns {IWebNotification}
 	 */
 	i(msg?: any): this;
 	/** Show success notification
 	 * @param {any} msg
-	 * @returns {IShow}
+	 * @returns {IWebNotification}
 	 */
 	s(msg?: any): this;
 	/** Show error notification
 	 * @param {any} msg
-	 * @returns {IShow}
+	 * @returns {IWebNotification}
 	 */
 	e(msg?: any): this;
 }
@@ -196,7 +196,7 @@ export declare interface IFSys {
 		}
 	};
 	/** Show notification */
-	Show: IShow;
+	notify: IWebNotification;
 	/** Loading animation */
 	loader: {
 		/** Show loading animation */
