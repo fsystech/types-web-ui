@@ -99,7 +99,8 @@ declare interface IDate {
 	getMap(): {
 		readonly month: { [id: number]: string };
 		readonly day: { [id: number]: string };
-	}
+	};
+	format(...args: any[]): string;
 }
 declare interface IData {
 	export(): IDataMap;

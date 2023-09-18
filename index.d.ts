@@ -449,6 +449,7 @@ declare var Handsontable: HandsontableConstructor;
 declare interface INumberFormat {
 	quantity(val: any): string;
 	amount(val: any): string;
+	price(val: any): string;
 	number: {
 		d(val: any, prussian?: number): number;
 		f(val: any): {
