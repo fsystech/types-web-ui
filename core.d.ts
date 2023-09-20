@@ -191,6 +191,16 @@ export declare type ElementRules = {
     /** Custom validator */
     fn?: (val: string) => boolean;
 }
+declare type OptionItem = {
+    /** Option Id */
+    id: any;
+    /** Option title */
+    title: any;
+    /** Is element default selected */
+    selected?: boolean,
+    /** Is this element disabled ? */
+    readonly disabled?: boolean;
+};
 /** Form element config */
 export declare type ElementInfo = {
     /** Define the type of `element` */
@@ -240,7 +250,7 @@ export declare type ElementInfo = {
     /** widget key. It will be effect in `widget element` */
     readonly widget?: string;
     /** Default dropdown source data */
-    readonly data?: { id: any; title: any; selected?: boolean }[];
+    readonly data?: OptionItem[];
     /** It will be effect while your element type is `dropdown`*/
     readonly source?: ((pageCtx: IPageContext) => SourceType) | 'OWN' | SourceType;
     /** Define the dropdown type. It will be effect while your element type is `dropdown` */
@@ -422,7 +432,7 @@ export declare interface IPageContext {
     confirm(cfg: ConfirmConfig): void;
     validate($arg?: JQuery<HTMLElement>, allow_invalid?: boolean): Dct<any> | void;
     validateKeyup($arg: JQuery<HTMLElement>, async?: boolean): void;
-    createDropDown(obj: string | { id: string; title: string }[]): string;
+    createDropDown(obj: string | OptionItem[]): string;
     _xhr(cfg: JQueryAjaxSettings, s: (rs: {
         error: boolean;
         response: any;
@@ -551,7 +561,7 @@ export declare class PageContext implements IPageContext {
     public confirm(cfg: ConfirmConfig): void;
     public validate($arg?: JQuery<HTMLElement>, allow_invalid?: boolean): Dct<any> | void;
     public validateKeyup($arg: JQuery<HTMLInputElement>, async?: boolean): void;
-    public createDropDown(obj: string | { id: string; title: string }[]): string;
+    public createDropDown(obj: string | OptionItem[]): string;
     public _xhr(cfg: JQueryAjaxSettings, s: (rs: {
         error: boolean;
         response: any;
