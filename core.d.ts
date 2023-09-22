@@ -419,6 +419,11 @@ export declare interface IPageContext {
     destroyDetailTable(): void;
     getDependency(): string[];
     enableDisable(t: 'enable' | 'disable', field?: string[]): void;
+    /**
+     * Try to read or write column defination form local storage
+     * @param columns Datatable column array[], If empty/null then return from storage; otherwise, override at storage
+     */
+    getSetColumnDef(columns?: string[]): string[] | void;
     dumpObj(obj: Dct<any>): void;
     dependencyResolve(params: any): void;
     onTransportRequest(request: IRequest): void;
@@ -541,6 +546,11 @@ export declare class PageContext implements IPageContext {
     public msgBoxOpenCount: number;
     public isDisabled: boolean;
     public __data_navigate: boolean;
+    /**
+     * Try to read or write column defination form local storage
+     * @param columns Datatable column array[], If empty/null then return from storage; otherwise, override at storage
+     */
+    public getSetColumnDef(columns?: string[]): string[] | void;
     public getInteractive(): JQueryUI.Dialog;
     public prepare(containerKey: string): void;
     public onSearch(data?: any, cb?: (...args: any[]) => void): void;
