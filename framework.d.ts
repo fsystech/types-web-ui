@@ -200,6 +200,7 @@ export declare interface IFSys {
 			role_id: string;
 		}
 	};
+	getNext($btn: JQuery<HTMLElement>): () => void;
 	/** Show notification */
 	notify: IWebNotification;
 	/** Loading animation */
