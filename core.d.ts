@@ -742,18 +742,23 @@ declare interface ITemplateScript {
 }
 export declare interface IWeb {
     page(config: IPageConfig): void;
-    UI: IWebUI;
-    Template: {
-        script: ITemplateScript;
-        getSet: {
+    readonly UI: IWebUI;
+    readonly Template: {
+        readonly script: ITemplateScript;
+        readonly getSet: {
             [id: string]: ($elm?: JQuery<HTMLElement>) => undefined | string
         }
     };
-    userInfo: {
-        roleId: string;
-        loginId: string;
+    readonly userInfo: {
+        readonly roleId: string;
+        readonly loginId: string;
+        readonly userData?: {
+            readonly org_id?: string;
+            readonly on_behalf?: string;
+            readonly terminal_id?: string;
+        };
     };
-    Ext: {
+    readonly Ext: {
         export(need?: string[]): InternalWorker;
     };
     errorResponse(errorCode: string, $container: JQuery<HTMLElement>, oldResponse: string, cb?: () => void): void;

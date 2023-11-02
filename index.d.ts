@@ -30,6 +30,7 @@
 /// <reference types="node"/>
 /// <reference path="web-database.d.ts"/>
 /// <reference path="hub.d.ts"/>
+/// <reference path="contextmenu.d.ts"/>
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
