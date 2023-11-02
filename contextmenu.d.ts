@@ -33,7 +33,8 @@ declare type ContextMenuEvent = {
     readonly label: HTMLSpanElement;
     readonly hotkey: HTMLSpanElement,
     readonly items: ContextMenuItem[],
-    readonly data: ContextMenuItem
+    readonly data: ContextMenuItem;
+    readonly target: HTMLElement;
 }
 
 declare type ContextMenuItem = {
