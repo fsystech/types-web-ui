@@ -29,12 +29,9 @@ declare interface CtxEvent extends MouseEvent {
 }
 declare type ContextMenuEvent = {
     readonly handled: boolean;
-    readonly item: HTMLDivElement;
-    readonly label: HTMLSpanElement;
-    readonly hotkey: HTMLSpanElement,
-    readonly items: ContextMenuItem[],
-    readonly data: ContextMenuItem;
     readonly target: HTMLElement;
+    readonly data: ContextMenuItem;
+    readonly instance: IContextMenu;
 }
 
 declare type ContextMenuItem = {
@@ -49,8 +46,11 @@ declare type ContextMenuItem = {
 };
 
 declare interface IContextMenu {
+    hide(): void;
     install(): void;
     uninstall(): void;
+    readonly shown: boolean;
+    readonly items: ContextMenuItem[];
 }
 declare interface ContextMenuConstructor {
     new(container: HTMLElement, items: ContextMenuItem[]): IContextMenu;
