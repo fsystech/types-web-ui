@@ -28,13 +28,14 @@ declare interface CtxEvent extends MouseEvent {
     readonly target: HTMLElement;
 }
 declare type ContextMenuEvent = {
-    readonly handled: boolean;
+    handled: boolean;
     readonly target: HTMLElement;
     readonly data: ContextMenuItem;
     readonly instance: IContextMenu;
 }
 
 declare type ContextMenuItem = {
+    id?: string;
     text: string;
     color?: string;
     value?: string;
