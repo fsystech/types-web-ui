@@ -29,11 +29,17 @@ declare interface CtxEvent extends MouseEvent {
 }
 declare type ContextMenuEvent = {
     handled: boolean;
+    readonly title?: string;
     readonly target: HTMLElement;
     readonly data: ContextMenuItem;
     readonly instance: IContextMenu;
 }
-
+declare type ContextMenuArgv = {
+    readonly isChield?: boolean;
+    readonly container: HTMLElement;
+    readonly items: ContextMenuItem[];
+    readonly createTitle?: (target: HTMLElement) => string;
+}
 declare type ContextMenuItem = {
     id?: string;
     text: string;
@@ -54,7 +60,7 @@ declare interface IContextMenu {
     readonly items: ContextMenuItem[];
 }
 declare interface ContextMenuConstructor {
-    new(container: HTMLElement, items: ContextMenuItem[]): IContextMenu;
+    new(argv: ContextMenuArgv): IContextMenu;
     readonly prototype: IContextMenu;
 }
 declare var ContextMenu: ContextMenuConstructor;
