@@ -200,6 +200,8 @@ declare type OptionItem = {
     selected?: boolean,
     /** Is this element disabled ? */
     readonly disabled?: boolean;
+    /** Element style */
+    readonly style?: string;
 };
 /** Form element config */
 export declare type ElementInfo = {
