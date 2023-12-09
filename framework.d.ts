@@ -152,11 +152,15 @@ declare interface IWebConnection {
 	/** check network conneciton is online. If online we'll show notification*/
 	online(): boolean;
 }
-declare interface ICSVWorkerConfig<T> {
+declare type CSVColumn = {
+	readonly prop: string;
+	next(val: any): string;
+};
+interface ICSVWorkerConfig<T> {
 	readonly filenName: string;
-	readonly columns: string[],
+	readonly columns: (string | CSVColumn)[],
 	readonly headers: string[];
-	getData(): any[];
+	getData(): T[];
 }
 declare interface ICSVWorker {
 	exportInstance<T>(config: ICSVWorkerConfig<T>): {
