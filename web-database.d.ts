@@ -125,6 +125,8 @@ declare interface IWebDatabaseConstructor {
      * ```
      */
     new(api?: string, timeout?: number): IWebDatabase;
+    new(api?: string, viewstate?: string): IWebDatabase;
+    new(api?: string, timeout?: number, viewstate?: string): IWebDatabase;
     readonly prototype: IWebDatabase;
 }
 declare type ApiRequestSettings = IWebDatabaseRequestConfig;
