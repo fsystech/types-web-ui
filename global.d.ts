@@ -34,6 +34,7 @@ declare interface IVAPIDKeys {
 }
 declare global {
     var ThemeName: string;
+    var __viewstate: string;
     function locationReload(force?: boolean): void;
     /**
      * Voluntary Application Server Identification for Web Push
