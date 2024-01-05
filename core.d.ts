@@ -153,7 +153,7 @@ export declare interface ISQLCommand {
     readonly iu?: CommandConf;
     readonly d?: CommandConf;
     readonly s?: {
-        def_type?: 'query';
+        def_type?: 'query' | 'object';
         type?: 'SQL' | 'SP';
         sp?: string;
         sql?: string | ((pageCtx: IPageContext, obj?: Dct<any>) => string);
