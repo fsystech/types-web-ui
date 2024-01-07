@@ -247,7 +247,7 @@ export declare interface IFSys {
 	export(nam: string): any;
 	isArrayLike<T>(obj?: any): obj is T[];
 	isDate(val: any): val is Date;
-	isError(obj): obj is Error;
+	isError(obj: any): obj is Error;
 	isPlainObject<T>(obj?: any): obj is Dct<T>;
 	multi: {
 		inherit(...args: any[]): any;
@@ -258,4 +258,6 @@ export declare interface IFSys {
 	require(name: string): any;
 	hot: IHotTable;
 	widgetTemplate(): string;
+	/** decode encoded messages */
+	decodeMessage<T>(obj: T): T;
 }
