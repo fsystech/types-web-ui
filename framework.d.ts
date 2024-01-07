@@ -258,6 +258,9 @@ export declare interface IFSys {
 	require(name: string): any;
 	hot: IHotTable;
 	widgetTemplate(): string;
-	/** decode encoded messages */
+	/**
+	 * decode encoded messages
+	 * @param obj e.g. ['text', '2=PUBLIC|12=25|35=33580.8|10=552|18=192|20=360|1=DSE']
+	 */
 	decodeMessage<T>(obj: T): T;
 }
