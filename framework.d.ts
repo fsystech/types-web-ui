@@ -70,7 +70,7 @@ declare interface IDataMap {
 	get(mom?: string, child?: any, deep?: boolean, deeper?: boolean): any;
 	push(mom: string, child: any, value?: any): IDataMap;
 	clean(): IDataMap;
-	remove(key: string): IDataMap;
+	remove(key?: string): IDataMap;
 	clear(key: string): IDataMap;
 }
 declare interface IWebNotification {
