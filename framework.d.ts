@@ -159,8 +159,9 @@ export type ExportDataColumn = {
 };
 export type IExportDataWorkerConfig<T> = {
 	readonly filenName: string;
-	readonly columns: (string | ExportDataColumn)[],
 	readonly headers: string[];
+	readonly exportType: 'CSV' | 'XLSX' | undefined;
+	readonly columns: (string | ExportDataColumn)[],
 	getData(): T[];
 }
 export interface IExportDataWorker {

@@ -424,6 +424,7 @@ declare type LinkPreview = {
 	url: string;
 }
 declare type ExportDataColumn = import('./framework').ExportDataColumn;
+declare type IExportDataWorker = import('./framework').IExportDataWorker;
 declare type IExportDataWorkerConfig<T> = import('./framework').IExportDataWorkerConfig<T>;
 /** FSys Tech Ltd. Web UI core Framework */
 declare var wui: import('./framework').IFSys;
