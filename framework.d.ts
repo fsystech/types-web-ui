@@ -153,18 +153,18 @@ declare interface IWebConnection {
 	/** check network conneciton is online. If online we'll show notification*/
 	online(): boolean;
 }
-declare type CSVColumn = {
+declare type ExportDataColumn = {
 	readonly prop: string;
 	next(val: any): string;
 };
-interface ICSVWorkerConfig<T> {
+interface IExportDataWorkerConfig<T> {
 	readonly filenName: string;
-	readonly columns: (string | CSVColumn)[],
+	readonly columns: (string | ExportDataColumn)[],
 	readonly headers: string[];
 	getData(): T[];
 }
-declare interface ICSVWorker {
-	exportInstance<T>(config: ICSVWorkerConfig<T>): {
+declare interface IExportDataWorker {
+	exportInstance<T>(config: IExportDataWorkerConfig<T>): {
 		bind($button: JQuery<HTMLElement>): void;
 	}
 	readonly button: {
@@ -253,7 +253,7 @@ export declare interface IFSys {
 	multi: {
 		inherit(...args: any[]): any;
 	};
-	readonly csv: ICSVWorker;
+	readonly exportData: IExportDataWorker;
 	onRouterChange(event: Dct<any>): void;
 	remove(name: string): IFSys;
 	require(name: string): any;
