@@ -153,17 +153,17 @@ declare interface IWebConnection {
 	/** check network conneciton is online. If online we'll show notification*/
 	online(): boolean;
 }
-declare type ExportDataColumn = {
+export type ExportDataColumn = {
 	readonly prop: string;
 	next(val: any): string;
 };
-interface IExportDataWorkerConfig<T> {
+export type IExportDataWorkerConfig<T> = {
 	readonly filenName: string;
 	readonly columns: (string | ExportDataColumn)[],
 	readonly headers: string[];
 	getData(): T[];
 }
-declare interface IExportDataWorker {
+export interface IExportDataWorker {
 	exportInstance<T>(config: IExportDataWorkerConfig<T>): {
 		bind($button: JQuery<HTMLElement>): void;
 	}
