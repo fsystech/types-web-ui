@@ -160,12 +160,12 @@ export type ExportDataColumn = {
 export type IExportDataWorkerConfig<T> = {
 	readonly filenName: string;
 	readonly headers: string[];
-	readonly exportType: 'CSV' | 'XLSX' | undefined;
+	readonly exportType?: 'CSV' | 'XLSX';
 	readonly columns: (string | ExportDataColumn)[],
 	getData(): T[];
 }
 export interface IExportDataWorker {
-	exportInstance<T>(config: IExportDataWorkerConfig<T>): {
+	createInstance<T>(config: IExportDataWorkerConfig<T>): {
 		bind($button: JQuery<HTMLElement>): void;
 	}
 	readonly button: {
