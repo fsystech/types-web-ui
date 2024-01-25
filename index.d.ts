@@ -34,6 +34,12 @@
 declare interface Dct<T> {
 	[id: string]: T | undefined;
 }
+declare type XLSXColInfo = import('./sheetjs').XDEF.ColInfo;
+declare type SheetJsXLSX = {
+	writeFile: import('./sheetjs').writeFile;
+	writeFileAsync: import('./sheetjs').writeFileAsync;
+	readonly utils: import('./sheetjs').XDEF.XLSX$Utils;
+};
 declare type PageContext = import('./core').PageContext;
 declare type PageContexConstructor = import('./core').PageContexConstructor;
 declare type ElementInfo = import('./core').ElementInfo;
