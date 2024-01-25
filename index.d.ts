@@ -493,4 +493,5 @@ declare var XLS: import('./xlsx').IXLS;
 declare var WebWorker: import('./webworker').IWebWorkerConstructor;
 declare var WebHttpRequest: import('./web-http-request').IWebHttpRequestConstructor;
 declare function _isUnauthorized(status: ApiResponseStatus): boolean;
+declare function _isApiResponseOk(status: ApiResponseStatus): boolean;
 declare var _PACKAGE_VERSION: string;
