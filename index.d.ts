@@ -343,12 +343,15 @@ declare interface DBConfig {
 	module: string | void;
 	validate: boolean;
 }
-declare type DBConfigNext = (result: { config: DBConfig; rules: Dct<any> | void, fromObject: Dct<any> }) => void;
+declare type DBConfigArg = {
+	config: DBConfig; rules?: Dct<any>, fromObject: Dct<any>
+};
+declare type DBConfigNext = (result: DBConfigArg) => void;
 declare interface QueryConfig {
 	sp: string;
 	form_object: Dct<any>
 }
-declare type QueryConfigNext = (result: { config: QueryConfig; rules: Dct<any> | void }) => void;
+declare type QueryConfigNext = (result: { config: QueryConfig; rules?: Dct<any> }) => void;
 declare interface IPages {
 	icon: string;
 	path: string;
