@@ -454,7 +454,7 @@ declare var __script: IGScript;
 /** Create new `Web Page Context` */
 declare var WebPageContext: PageContexConstructor;
 /** ctx can be define in back-end template engine */
-declare var ctx: IContext;
+//declare var ctx: IContext;
 declare type XHandsontable = import('./ht').Handsontable;
 declare type HandsontableConstructor = import('./ht').HandsontableConstructor;
 /**`Handsontable` class `Constructor` Extend `Handsontable Class` */

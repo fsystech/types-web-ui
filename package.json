@@ -26,9 +26,8 @@
     "@types/node": "^14.11.2",
     "@types/socket.io-client": "^1.4.36",
     "@types/superagent": "^4.1.10",
+    "cwserver": "github:fsystech/cwserver",
     "typescript": "^4.0.3"
   },
-  "dependencies": {
-    "cwserver": "^4.0.0"
-  }
+  "dependencies": {}
 }
