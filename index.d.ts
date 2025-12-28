@@ -493,6 +493,7 @@ declare interface IVAPIDKeys {
 }
 declare var format: INumberFormat;
 declare var XLS: import('./xlsx').IXLS;
+declare type IWebWorker = import('./webworker').IWebWorker;
 declare var WebWorker: import('./webworker').IWebWorkerConstructor;
 declare var WebHttpRequest: import('./web-http-request').IWebHttpRequestConstructor;
 declare function _isUnauthorized(status: ApiResponseStatus): boolean;

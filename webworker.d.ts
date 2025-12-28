@@ -28,14 +28,21 @@
 // 11:46 PM 3/20/2021
 /// <reference types="jquery"/>
 /// <reference types="node"/>
-declare interface IWebWorker {
-    postMessage(msg: string): void;
-    sendQuery(...args: any[]): void;
+export interface IWebWorker {
     terminate(): void;
+    postMessage(msg: string): void;
+    /**
+     * This functions takes at least one argument, the method name we want to query.
+     * Then we can pass in the arguments that the method needs.
+     * @param methodName 
+     * @param methodArgs 
+     */
+    sendQuery(methodName: string, ...methodArgs: any[]): void;
     addListener(name: string, listener: (...args: any[]) => void): IWebWorker;
     removeListener(name?: string): IWebWorker;
+    onUnauthorized(): void;
 }
-export declare interface IWebWorkerConstructor {
+export interface IWebWorkerConstructor {
     new(url: string, defaultListener?: (...args: any[]) => void, onError?: (ev: ErrorEvent) => void, workerName?: string): IWebWorker;
     readonly prototype: IWebWorker;
 }
